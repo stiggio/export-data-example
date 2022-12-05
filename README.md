@@ -6,7 +6,7 @@ This repository contains an example for exporting your Stigg data using a GraphQ
 
 ### Requirements
 
-* A Stigg account with the data you with to export.
+* A Stigg account with the data you wish to export.
 
 ### Setup
 
