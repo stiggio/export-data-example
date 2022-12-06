@@ -1,0 +1,13 @@
+{
+  "possibleTypes": {
+    "Credentials": [
+      "HubspotCredentials",
+      "StripeCredentials",
+      "ZuoraCredentials"
+    ],
+    "ResetPeriodConfiguration": [
+      "MonthlyResetPeriodConfig",
+      "WeeklyResetPeriodConfig"
+    ]
+  }
+}

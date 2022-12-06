@@ -3,6 +3,8 @@
 <img src="docs/StiggIcon.svg" width="50" alt="Stigg Logo">
 
 This repository contains an example for exporting your Stigg data using a GraphQL client.
+When script execution is done, for each entity a file will be created in the ```/data``` directory.
+For data customizations you can alter the queries in the [./src/queries](./src/queries) directory.
 
 ### Requirements
 

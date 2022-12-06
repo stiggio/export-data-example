@@ -323,7 +323,7 @@ async function exportCoupons(
 
 function writeToFile(data: Array<Record<string, any>>, filename: string) {
   fs.writeFile(
-    `./${filename}.json`,
+    `./data/${filename}.json`,
     JSON.stringify(data),
     "utf8",
     function (err) {
@@ -353,8 +353,8 @@ async function exportStiggData() {
 }
 
 exportStiggData()
-  .then((r) => {
-    console.log(JSON.stringify(r));
+  .then(() => {
+    console.log('Export is done!');
     process.exit(0);
   })
   .catch((e) => {

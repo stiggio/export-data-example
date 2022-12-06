@@ -1,14 +1,8 @@
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -23,29 +17,29 @@ export type Scalars = {
 
 /** DenyReason of get access policy */
 export enum AccessDeniedReason {
-  CustomerNotFound = "CustomerNotFound",
-  FeatureNotFound = "FeatureNotFound",
-  NoActiveSubscription = "NoActiveSubscription",
-  NoFeatureEntitlementInSubscription = "NoFeatureEntitlementInSubscription",
-  RequestedUsageExceedingLimit = "RequestedUsageExceedingLimit",
-  Unknown = "Unknown",
+  CustomerNotFound = 'CustomerNotFound',
+  FeatureNotFound = 'FeatureNotFound',
+  NoActiveSubscription = 'NoActiveSubscription',
+  NoFeatureEntitlementInSubscription = 'NoFeatureEntitlementInSubscription',
+  RequestedUsageExceedingLimit = 'RequestedUsageExceedingLimit',
+  Unknown = 'Unknown'
 }
 
 export type AddCompatibleAddonsToPlanInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The ids of the relations. */
-  relationIds: Array<Scalars["String"]>;
+  relationIds: Array<Scalars['String']>;
 };
 
 export type AddonCreateInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
-  productId: Scalars["String"];
-  refId?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
+  productId: Scalars['String'];
+  refId?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<PackageStatus>;
 };
 
@@ -74,38 +68,38 @@ export type AddonSort = {
 };
 
 export enum AddonSortFields {
-  BillingId = "billingId",
-  CreatedAt = "createdAt",
-  Description = "description",
-  DisplayName = "displayName",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  IsLatest = "isLatest",
-  PricingType = "pricingType",
-  ProductId = "productId",
-  RefId = "refId",
-  Status = "status",
-  UpdatedAt = "updatedAt",
-  VersionNumber = "versionNumber",
+  BillingId = 'billingId',
+  CreatedAt = 'createdAt',
+  Description = 'description',
+  DisplayName = 'displayName',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  IsLatest = 'isLatest',
+  PricingType = 'pricingType',
+  ProductId = 'productId',
+  RefId = 'refId',
+  Status = 'status',
+  UpdatedAt = 'updatedAt',
+  VersionNumber = 'versionNumber'
 }
 
 export type AddonUpdateInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName: Scalars["String"];
-  id: Scalars["String"];
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  id: Scalars['String'];
   status?: InputMaybe<PackageStatus>;
 };
 
 export type Address = {
-  addressLine1?: InputMaybe<Scalars["String"]>;
-  addressLine2?: InputMaybe<Scalars["String"]>;
-  city?: InputMaybe<Scalars["String"]>;
-  country?: InputMaybe<Scalars["String"]>;
-  phoneNumber?: InputMaybe<Scalars["String"]>;
-  postalCode?: InputMaybe<Scalars["String"]>;
-  state?: InputMaybe<Scalars["String"]>;
+  addressLine1?: InputMaybe<Scalars['String']>;
+  addressLine2?: InputMaybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
+  country?: InputMaybe<Scalars['String']>;
+  phoneNumber?: InputMaybe<Scalars['String']>;
+  postalCode?: InputMaybe<Scalars['String']>;
+  state?: InputMaybe<Scalars['String']>;
 };
 
 export type ApiKeyFilter = {
@@ -121,42 +115,42 @@ export type ApiKeySort = {
 };
 
 export enum ApiKeySortFields {
-  Id = "id",
+  Id = 'id'
 }
 
 export enum ApiKeyType {
-  Client = "CLIENT",
-  Server = "SERVER",
+  Client = 'CLIENT',
+  Server = 'SERVER'
 }
 
 export type ArchiveCouponInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  refId: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  refId: Scalars['String'];
 };
 
 export type ArchivePlanInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  id: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 export type AttachCustomerPaymentMethodInput = {
-  customerId?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  paymentMethodId: Scalars["String"];
-  refId?: InputMaybe<Scalars["String"]>;
+  customerId?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  paymentMethodId: Scalars['String'];
+  refId?: InputMaybe<Scalars['String']>;
   vendorIdentifier: VendorIdentifier;
 };
 
 export enum BillingAnchor {
-  StartOfTheMonth = "START_OF_THE_MONTH",
-  SubscriptionStart = "SUBSCRIPTION_START",
+  StartOfTheMonth = 'START_OF_THE_MONTH',
+  SubscriptionStart = 'SUBSCRIPTION_START'
 }
 
 /** Billing model. */
 export enum BillingModel {
-  FlatFee = "FLAT_FEE",
-  PerUnit = "PER_UNIT",
-  UsageBased = "USAGE_BASED",
+  FlatFee = 'FLAT_FEE',
+  PerUnit = 'PER_UNIT',
+  UsageBased = 'USAGE_BASED'
 }
 
 export type BillingModelFilterComparison = {
@@ -165,8 +159,8 @@ export type BillingModelFilterComparison = {
   gte?: InputMaybe<BillingModel>;
   iLike?: InputMaybe<BillingModel>;
   in?: InputMaybe<Array<BillingModel>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<BillingModel>;
   lt?: InputMaybe<BillingModel>;
   lte?: InputMaybe<BillingModel>;
@@ -178,8 +172,8 @@ export type BillingModelFilterComparison = {
 
 /** Billing period. */
 export enum BillingPeriod {
-  Annually = "ANNUALLY",
-  Monthly = "MONTHLY",
+  Annually = 'ANNUALLY',
+  Monthly = 'MONTHLY'
 }
 
 export type BillingPeriodFilterComparison = {
@@ -188,8 +182,8 @@ export type BillingPeriodFilterComparison = {
   gte?: InputMaybe<BillingPeriod>;
   iLike?: InputMaybe<BillingPeriod>;
   in?: InputMaybe<Array<BillingPeriod>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<BillingPeriod>;
   lt?: InputMaybe<BillingPeriod>;
   lte?: InputMaybe<BillingPeriod>;
@@ -200,22 +194,22 @@ export type BillingPeriodFilterComparison = {
 };
 
 export type BooleanFieldComparison = {
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
 };
 
 export enum ChangeType {
-  Added = "ADDED",
-  Deleted = "DELETED",
-  Modified = "MODIFIED",
-  Reordered = "REORDERED",
+  Added = 'ADDED',
+  Deleted = 'DELETED',
+  Modified = 'MODIFIED',
+  Reordered = 'REORDERED'
 }
 
 export type CheckoutOptions = {
-  allowPromoCodes?: InputMaybe<Scalars["Boolean"]>;
-  cancelUrl: Scalars["String"];
-  collectBillingAddress?: InputMaybe<Scalars["Boolean"]>;
-  successUrl: Scalars["String"];
+  allowPromoCodes?: InputMaybe<Scalars['Boolean']>;
+  cancelUrl: Scalars['String'];
+  collectBillingAddress?: InputMaybe<Scalars['Boolean']>;
+  successUrl: Scalars['String'];
 };
 
 export type CouponFilter = {
@@ -258,22 +252,22 @@ export type CouponSort = {
 };
 
 export enum CouponSortFields {
-  BillingId = "billingId",
-  CreatedAt = "createdAt",
-  Description = "description",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Name = "name",
-  RefId = "refId",
-  Status = "status",
-  Type = "type",
-  UpdatedAt = "updatedAt",
+  BillingId = 'billingId',
+  CreatedAt = 'createdAt',
+  Description = 'description',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Name = 'name',
+  RefId = 'refId',
+  Status = 'status',
+  Type = 'type',
+  UpdatedAt = 'updatedAt'
 }
 
 /** The status of the coupon */
 export enum CouponStatus {
-  Active = "ACTIVE",
-  Archived = "ARCHIVED",
+  Active = 'ACTIVE',
+  Archived = 'ARCHIVED'
 }
 
 export type CouponStatusFilterComparison = {
@@ -282,8 +276,8 @@ export type CouponStatusFilterComparison = {
   gte?: InputMaybe<CouponStatus>;
   iLike?: InputMaybe<CouponStatus>;
   in?: InputMaybe<Array<CouponStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<CouponStatus>;
   lt?: InputMaybe<CouponStatus>;
   lte?: InputMaybe<CouponStatus>;
@@ -295,8 +289,8 @@ export type CouponStatusFilterComparison = {
 
 /** The type of the coupon */
 export enum CouponType {
-  Fixed = "FIXED",
-  Percentage = "PERCENTAGE",
+  Fixed = 'FIXED',
+  Percentage = 'PERCENTAGE'
 }
 
 export type CouponTypeFilterComparison = {
@@ -305,8 +299,8 @@ export type CouponTypeFilterComparison = {
   gte?: InputMaybe<CouponType>;
   iLike?: InputMaybe<CouponType>;
   in?: InputMaybe<Array<CouponType>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<CouponType>;
   lt?: InputMaybe<CouponType>;
   lte?: InputMaybe<CouponType>;
@@ -317,52 +311,52 @@ export type CouponTypeFilterComparison = {
 };
 
 export type CreateCouponInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  discountValue: Scalars["Float"];
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name: Scalars["String"];
-  refId: Scalars["String"];
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  description?: InputMaybe<Scalars['String']>;
+  discountValue: Scalars['Float'];
+  environmentId?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  refId: Scalars['String'];
   type: CouponType;
 };
 
 export type CreateEnvironment = {
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
   provisionStatus?: InputMaybe<EnvironmentProvisionStatus>;
-  slug?: InputMaybe<Scalars["String"]>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type CreateEnvironmentOptions = {
-  createDefaultProduct?: InputMaybe<Scalars["Boolean"]>;
+  createDefaultProduct?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type CreateExperimentInput = {
-  controlGroupName: Scalars["String"];
-  description?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name: Scalars["String"];
-  productId: Scalars["String"];
+  controlGroupName: Scalars['String'];
+  description?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  productId: Scalars['String'];
   productSettings?: InputMaybe<ProductSettingsInput>;
-  variantGroupName: Scalars["String"];
-  variantPercentage: Scalars["Float"];
+  variantGroupName: Scalars['String'];
+  variantPercentage: Scalars['Float'];
 };
 
 export type CreateHook = {
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  endpoint?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  endpoint?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
   eventLogTypes?: InputMaybe<Array<EventLogType>>;
-  id?: InputMaybe<Scalars["String"]>;
-  secretKey?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars['String']>;
+  secretKey?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<HookStatus>;
 };
 
 export type CreateIntegrationInput = {
-  environmentId: Scalars["String"];
+  environmentId: Scalars['String'];
   hubspotCredentials?: InputMaybe<HubspotCredentialsInput>;
   stripeCredentials?: InputMaybe<StripeCredentialsInput>;
   vendorIdentifier: VendorIdentifier;
@@ -406,30 +400,30 @@ export type CreateOneProductInput = {
 
 /** Currency */
 export enum Currency {
-  Ils = "ILS",
-  Usd = "USD",
+  Ils = 'ILS',
+  Usd = 'USD'
 }
 
 export type CursorPaging = {
   /** Paginate after opaque cursor */
-  after?: InputMaybe<Scalars["ConnectionCursor"]>;
+  after?: InputMaybe<Scalars['ConnectionCursor']>;
   /** Paginate before opaque cursor */
-  before?: InputMaybe<Scalars["ConnectionCursor"]>;
+  before?: InputMaybe<Scalars['ConnectionCursor']>;
   /** Paginate first */
-  first?: InputMaybe<Scalars["Int"]>;
+  first?: InputMaybe<Scalars['Int']>;
   /** Paginate last */
-  last?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type CustomerBillingInfo = {
   billingAddress?: InputMaybe<Address>;
   currency?: InputMaybe<Currency>;
-  invoiceCustomFields?: InputMaybe<Scalars["JSON"]>;
-  language?: InputMaybe<Scalars["String"]>;
-  paymentMethodId?: InputMaybe<Scalars["String"]>;
+  invoiceCustomFields?: InputMaybe<Scalars['JSON']>;
+  language?: InputMaybe<Scalars['String']>;
+  paymentMethodId?: InputMaybe<Scalars['String']>;
   shippingAddress?: InputMaybe<Address>;
   taxIds?: InputMaybe<Array<TaxExempt>>;
-  timezone?: InputMaybe<Scalars["String"]>;
+  timezone?: InputMaybe<Scalars['String']>;
 };
 
 export type CustomerFilter = {
@@ -483,22 +477,22 @@ export type CustomerFilterPromotionalEntitlementFilter = {
 };
 
 export type CustomerInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
   billingInformation?: InputMaybe<CustomerBillingInfo>;
-  couponRefId?: InputMaybe<Scalars["String"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  crmId?: InputMaybe<Scalars["String"]>;
-  customerId?: InputMaybe<Scalars["String"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  refId?: InputMaybe<Scalars["String"]>;
-  shouldSyncFree?: InputMaybe<Scalars["Boolean"]>;
+  couponRefId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  crmId?: InputMaybe<Scalars['String']>;
+  customerId?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['String']>;
+  shouldSyncFree?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type CustomerPortalInput = {
-  customerId: Scalars["String"];
+  customerId: Scalars['String'];
 };
 
 export type CustomerSort = {
@@ -508,18 +502,18 @@ export type CustomerSort = {
 };
 
 export enum CustomerSortFields {
-  BillingId = "billingId",
-  CreatedAt = "createdAt",
-  CrmHubspotCompanyId = "crmHubspotCompanyId",
-  CrmHubspotCompanyUrl = "crmHubspotCompanyUrl",
-  CrmId = "crmId",
-  CustomerId = "customerId",
-  Email = "email",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Name = "name",
-  RefId = "refId",
-  UpdatedAt = "updatedAt",
+  BillingId = 'billingId',
+  CreatedAt = 'createdAt',
+  CrmHubspotCompanyId = 'crmHubspotCompanyId',
+  CrmHubspotCompanyUrl = 'crmHubspotCompanyUrl',
+  CrmId = 'crmId',
+  CustomerId = 'customerId',
+  Email = 'email',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Name = 'name',
+  RefId = 'refId',
+  UpdatedAt = 'updatedAt'
 }
 
 export type CustomerSubscriptionFilter = {
@@ -588,141 +582,141 @@ export type CustomerSubscriptionSort = {
 };
 
 export enum CustomerSubscriptionSortFields {
-  BillingId = "billingId",
-  CancelReason = "cancelReason",
-  CancellationDate = "cancellationDate",
-  CreatedAt = "createdAt",
-  CrmId = "crmId",
-  CrmLinkUrl = "crmLinkUrl",
-  EffectiveEndDate = "effectiveEndDate",
-  EndDate = "endDate",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  PricingType = "pricingType",
-  RefId = "refId",
-  StartDate = "startDate",
-  Status = "status",
-  SubscriptionId = "subscriptionId",
-  TrialEndDate = "trialEndDate",
+  BillingId = 'billingId',
+  CancelReason = 'cancelReason',
+  CancellationDate = 'cancellationDate',
+  CreatedAt = 'createdAt',
+  CrmId = 'crmId',
+  CrmLinkUrl = 'crmLinkUrl',
+  EffectiveEndDate = 'effectiveEndDate',
+  EndDate = 'endDate',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  PricingType = 'pricingType',
+  RefId = 'refId',
+  StartDate = 'startDate',
+  Status = 'status',
+  SubscriptionId = 'subscriptionId',
+  TrialEndDate = 'trialEndDate'
 }
 
 export type DateFieldComparison = {
   between?: InputMaybe<DateFieldComparisonBetween>;
-  eq?: InputMaybe<Scalars["DateTime"]>;
-  gt?: InputMaybe<Scalars["DateTime"]>;
-  gte?: InputMaybe<Scalars["DateTime"]>;
-  in?: InputMaybe<Array<Scalars["DateTime"]>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
-  lt?: InputMaybe<Scalars["DateTime"]>;
-  lte?: InputMaybe<Scalars["DateTime"]>;
-  neq?: InputMaybe<Scalars["DateTime"]>;
+  eq?: InputMaybe<Scalars['DateTime']>;
+  gt?: InputMaybe<Scalars['DateTime']>;
+  gte?: InputMaybe<Scalars['DateTime']>;
+  in?: InputMaybe<Array<Scalars['DateTime']>>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
+  lt?: InputMaybe<Scalars['DateTime']>;
+  lte?: InputMaybe<Scalars['DateTime']>;
+  neq?: InputMaybe<Scalars['DateTime']>;
   notBetween?: InputMaybe<DateFieldComparisonBetween>;
-  notIn?: InputMaybe<Array<Scalars["DateTime"]>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type DateFieldComparisonBetween = {
-  lower: Scalars["DateTime"];
-  upper: Scalars["DateTime"];
+  lower: Scalars['DateTime'];
+  upper: Scalars['DateTime'];
 };
 
 export type DefaultTrialConfigInputDto = {
-  duration?: InputMaybe<Scalars["Float"]>;
+  duration?: InputMaybe<Scalars['Float']>;
   units?: InputMaybe<TrialPeriodUnits>;
 };
 
 export type DeleteCustomerInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  id: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 export type DeleteFeatureInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  id: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 export type DeleteOneAddonInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOneEnvironmentInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOneHookInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOneIntegrationInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOnePackageEntitlementInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOnePriceInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOneProductInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DeleteOnePromotionalEntitlementInput = {
   /** The id of the record to delete. */
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type DiscardPackageDraftInput = {
-  environmentId: Scalars["String"];
-  refId: Scalars["String"];
+  environmentId: Scalars['String'];
+  refId: Scalars['String'];
 };
 
 export type EntitlementCheckRequested = {
-  customerId: Scalars["String"];
+  customerId: Scalars['String'];
   entitlementCheckResult: EntitlementCheckResult;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  featureId: Scalars["String"];
-  requestedUsage?: InputMaybe<Scalars["Float"]>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  featureId: Scalars['String'];
+  requestedUsage?: InputMaybe<Scalars['Float']>;
 };
 
 export type EntitlementCheckResult = {
   accessDeniedReason?: InputMaybe<AccessDeniedReason>;
-  currentUsage?: InputMaybe<Scalars["Float"]>;
-  hasAccess: Scalars["Boolean"];
-  hasUnlimitedUsage?: InputMaybe<Scalars["Boolean"]>;
+  currentUsage?: InputMaybe<Scalars['Float']>;
+  hasAccess: Scalars['Boolean'];
+  hasUnlimitedUsage?: InputMaybe<Scalars['Boolean']>;
   monthlyResetPeriodConfiguration?: InputMaybe<MonthlyResetPeriodConfigInput>;
-  nextResetDate?: InputMaybe<Scalars["DateTime"]>;
-  requestedUsage?: InputMaybe<Scalars["Float"]>;
+  nextResetDate?: InputMaybe<Scalars['DateTime']>;
+  requestedUsage?: InputMaybe<Scalars['Float']>;
   resetPeriod?: InputMaybe<EntitlementResetPeriod>;
-  usageLimit?: InputMaybe<Scalars["Float"]>;
+  usageLimit?: InputMaybe<Scalars['Float']>;
   weeklyResetPeriodConfiguration?: InputMaybe<WeeklyResetPeriodConfigInput>;
 };
 
 export type EntitlementOptions = {
-  requestedUsage?: InputMaybe<Scalars["Float"]>;
-  shouldTrack?: InputMaybe<Scalars["Boolean"]>;
+  requestedUsage?: InputMaybe<Scalars['Float']>;
+  shouldTrack?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Entitlement reset period. */
 export enum EntitlementResetPeriod {
-  Day = "DAY",
-  Hour = "HOUR",
-  Month = "MONTH",
-  Week = "WEEK",
+  Day = 'DAY',
+  Hour = 'HOUR',
+  Month = 'MONTH',
+  Week = 'WEEK'
 }
 
 export enum EntitySelectionMode {
-  BlackList = "BLACK_LIST",
-  WhiteList = "WHITE_LIST",
+  BlackList = 'BLACK_LIST',
+  WhiteList = 'WHITE_LIST'
 }
 
 export type EnvironmentFilter = {
@@ -736,10 +730,10 @@ export type EnvironmentFilter = {
 
 /** EnvironmentProvisionStatus. */
 export enum EnvironmentProvisionStatus {
-  Done = "DONE",
-  Failed = "FAILED",
-  InProgress = "IN_PROGRESS",
-  NotProvisioned = "NOT_PROVISIONED",
+  Done = 'DONE',
+  Failed = 'FAILED',
+  InProgress = 'IN_PROGRESS',
+  NotProvisioned = 'NOT_PROVISIONED'
 }
 
 export type EnvironmentSort = {
@@ -749,147 +743,147 @@ export type EnvironmentSort = {
 };
 
 export enum EnvironmentSortFields {
-  CreatedAt = "createdAt",
-  DisplayName = "displayName",
-  Id = "id",
-  Slug = "slug",
+  CreatedAt = 'createdAt',
+  DisplayName = 'displayName',
+  Id = 'id',
+  Slug = 'slug'
 }
 
 /** error codes */
 export enum ErrorCode {
-  AccountNotFoundError = "AccountNotFoundError",
-  AddonHasToHavePriceError = "AddonHasToHavePriceError",
-  AddonNotFound = "AddonNotFound",
-  ArchivedCouponCantBeApplied = "ArchivedCouponCantBeApplied",
-  BadUserInput = "BadUserInput",
-  BillingPeriodMissingError = "BillingPeriodMissingError",
-  CannotDeleteCustomerError = "CannotDeleteCustomerError",
-  CannotDeleteFeatureError = "CannotDeleteFeatureError",
-  CannotEditPackageInNonDraftMode = "CannotEditPackageInNonDraftMode",
-  CheckoutIsNotSupported = "CheckoutIsNotSupported",
-  CheckoutOptionsMissing = "CheckoutOptionsMissing",
-  CouponNotFound = "CouponNotFound",
-  CustomerAlreadyUsesCoupon = "CustomerAlreadyUsesCoupon",
-  CustomerHasNoPaymentMethod = "CustomerHasNoPaymentMethod",
-  CustomerNoBillingId = "CustomerNoBillingId",
-  CustomerNotFound = "CustomerNotFound",
-  DraftPlanCantBeArchived = "DraftPlanCantBeArchived",
-  DuplicatedEntityNotAllowed = "DuplicatedEntityNotAllowed",
-  EditAllowedOnDraftPackageOnlyError = "EditAllowedOnDraftPackageOnlyError",
-  EntitlementsMustBelongToSamePackage = "EntitlementsMustBelongToSamePackage",
-  EntityIdDifferentFromRefIdError = "EntityIdDifferentFromRefIdError",
-  EnvironmentMissing = "EnvironmentMissing",
-  ExperimentAlreadyRunning = "ExperimentAlreadyRunning",
-  ExperimentNotFoundError = "ExperimentNotFoundError",
-  ExperimentStatusError = "ExperimentStatusError",
-  FailedToImportCustomer = "FailedToImportCustomer",
-  FeatureNotFound = "FeatureNotFound",
-  IdentityForbidden = "IdentityForbidden",
-  ImportAlreadyInProgress = "ImportAlreadyInProgress",
-  InitStripePaymentMethodError = "InitStripePaymentMethodError",
-  IntegrationNotFound = "IntegrationNotFound",
-  IntegrityViolation = "IntegrityViolation",
-  InvalidAddressError = "InvalidAddressError",
-  InvalidArgumentError = "InvalidArgumentError",
-  InvalidCancellationDate = "InvalidCancellationDate",
-  InvalidEntitlementResetPeriod = "InvalidEntitlementResetPeriod",
-  InvalidMemberDelete = "InvalidMemberDelete",
-  InvalidQuantity = "InvalidQuantity",
-  InvalidSubscriptionStatus = "InvalidSubscriptionStatus",
-  InvalidUpdatePriceUnitAmountError = "InvalidUpdatePriceUnitAmountError",
-  InvalidUsageValueForIncrementalFeatureError = "InvalidUsageValueForIncrementalFeatureError",
-  MemberInvitationError = "MemberInvitationError",
-  MemberNotFound = "MemberNotFound",
-  MeteringNotAvailableForFeatureType = "MeteringNotAvailableForFeatureType",
-  MissingEntityIdError = "MissingEntityIdError",
-  NoFeatureEntitlementInSubscription = "NoFeatureEntitlementInSubscription",
-  OperationNotAllowedDuringInProgressExperiment = "OperationNotAllowedDuringInProgressExperiment",
-  PackageAlreadyPublished = "PackageAlreadyPublished",
-  PackagePricingTypeNotSet = "PackagePricingTypeNotSet",
-  PlanAlreadyExtended = "PlanAlreadyExtended",
-  PlanIsUsedAsDefaultStartPlan = "PlanIsUsedAsDefaultStartPlan",
-  PlanIsUsedAsDowngradePlan = "PlanIsUsedAsDowngradePlan",
-  PlanNotFound = "PlanNotFound",
-  PlanWithChildCantBeDeleted = "PlanWithChildCantBeDeleted",
-  PlansCircularDependencyError = "PlansCircularDependencyError",
-  PriceNotFound = "PriceNotFound",
-  RateLimitExceeded = "RateLimitExceeded",
-  ResyncAlreadyInProgress = "ResyncAlreadyInProgress",
-  SelectedBillingModelDoesntMatchImportedItemError = "SelectedBillingModelDoesntMatchImportedItemError",
-  StripeCustomerIsDeleted = "StripeCustomerIsDeleted",
-  SubscriptionAlreadyCanceledOrExpired = "SubscriptionAlreadyCanceledOrExpired",
-  SubscriptionMustHaveSinglePlanError = "SubscriptionMustHaveSinglePlanError",
-  SubscriptionNotFound = "SubscriptionNotFound",
-  TrialMinDateError = "TrialMinDateError",
-  TrialMustBeCancelledImmediately = "TrialMustBeCancelledImmediately",
-  UnPublishedPackage = "UnPublishedPackage",
-  Unauthenticated = "Unauthenticated",
-  UncompatibleSubscriptionAddon = "UncompatibleSubscriptionAddon",
-  UnexpectedError = "UnexpectedError",
-  UnsupportedFeatureType = "UnsupportedFeatureType",
-  UnsupportedVendorIdentifier = "UnsupportedVendorIdentifier",
+  AccountNotFoundError = 'AccountNotFoundError',
+  AddonHasToHavePriceError = 'AddonHasToHavePriceError',
+  AddonNotFound = 'AddonNotFound',
+  ArchivedCouponCantBeApplied = 'ArchivedCouponCantBeApplied',
+  BadUserInput = 'BadUserInput',
+  BillingPeriodMissingError = 'BillingPeriodMissingError',
+  CannotDeleteCustomerError = 'CannotDeleteCustomerError',
+  CannotDeleteFeatureError = 'CannotDeleteFeatureError',
+  CannotEditPackageInNonDraftMode = 'CannotEditPackageInNonDraftMode',
+  CheckoutIsNotSupported = 'CheckoutIsNotSupported',
+  CheckoutOptionsMissing = 'CheckoutOptionsMissing',
+  CouponNotFound = 'CouponNotFound',
+  CustomerAlreadyUsesCoupon = 'CustomerAlreadyUsesCoupon',
+  CustomerHasNoPaymentMethod = 'CustomerHasNoPaymentMethod',
+  CustomerNoBillingId = 'CustomerNoBillingId',
+  CustomerNotFound = 'CustomerNotFound',
+  DraftPlanCantBeArchived = 'DraftPlanCantBeArchived',
+  DuplicatedEntityNotAllowed = 'DuplicatedEntityNotAllowed',
+  EditAllowedOnDraftPackageOnlyError = 'EditAllowedOnDraftPackageOnlyError',
+  EntitlementsMustBelongToSamePackage = 'EntitlementsMustBelongToSamePackage',
+  EntityIdDifferentFromRefIdError = 'EntityIdDifferentFromRefIdError',
+  EnvironmentMissing = 'EnvironmentMissing',
+  ExperimentAlreadyRunning = 'ExperimentAlreadyRunning',
+  ExperimentNotFoundError = 'ExperimentNotFoundError',
+  ExperimentStatusError = 'ExperimentStatusError',
+  FailedToImportCustomer = 'FailedToImportCustomer',
+  FeatureNotFound = 'FeatureNotFound',
+  IdentityForbidden = 'IdentityForbidden',
+  ImportAlreadyInProgress = 'ImportAlreadyInProgress',
+  InitStripePaymentMethodError = 'InitStripePaymentMethodError',
+  IntegrationNotFound = 'IntegrationNotFound',
+  IntegrityViolation = 'IntegrityViolation',
+  InvalidAddressError = 'InvalidAddressError',
+  InvalidArgumentError = 'InvalidArgumentError',
+  InvalidCancellationDate = 'InvalidCancellationDate',
+  InvalidEntitlementResetPeriod = 'InvalidEntitlementResetPeriod',
+  InvalidMemberDelete = 'InvalidMemberDelete',
+  InvalidQuantity = 'InvalidQuantity',
+  InvalidSubscriptionStatus = 'InvalidSubscriptionStatus',
+  InvalidUpdatePriceUnitAmountError = 'InvalidUpdatePriceUnitAmountError',
+  InvalidUsageValueForIncrementalFeatureError = 'InvalidUsageValueForIncrementalFeatureError',
+  MemberInvitationError = 'MemberInvitationError',
+  MemberNotFound = 'MemberNotFound',
+  MeteringNotAvailableForFeatureType = 'MeteringNotAvailableForFeatureType',
+  MissingEntityIdError = 'MissingEntityIdError',
+  NoFeatureEntitlementInSubscription = 'NoFeatureEntitlementInSubscription',
+  OperationNotAllowedDuringInProgressExperiment = 'OperationNotAllowedDuringInProgressExperiment',
+  PackageAlreadyPublished = 'PackageAlreadyPublished',
+  PackagePricingTypeNotSet = 'PackagePricingTypeNotSet',
+  PlanAlreadyExtended = 'PlanAlreadyExtended',
+  PlanIsUsedAsDefaultStartPlan = 'PlanIsUsedAsDefaultStartPlan',
+  PlanIsUsedAsDowngradePlan = 'PlanIsUsedAsDowngradePlan',
+  PlanNotFound = 'PlanNotFound',
+  PlanWithChildCantBeDeleted = 'PlanWithChildCantBeDeleted',
+  PlansCircularDependencyError = 'PlansCircularDependencyError',
+  PriceNotFound = 'PriceNotFound',
+  RateLimitExceeded = 'RateLimitExceeded',
+  ResyncAlreadyInProgress = 'ResyncAlreadyInProgress',
+  SelectedBillingModelDoesntMatchImportedItemError = 'SelectedBillingModelDoesntMatchImportedItemError',
+  StripeCustomerIsDeleted = 'StripeCustomerIsDeleted',
+  SubscriptionAlreadyCanceledOrExpired = 'SubscriptionAlreadyCanceledOrExpired',
+  SubscriptionMustHaveSinglePlanError = 'SubscriptionMustHaveSinglePlanError',
+  SubscriptionNotFound = 'SubscriptionNotFound',
+  TrialMinDateError = 'TrialMinDateError',
+  TrialMustBeCancelledImmediately = 'TrialMustBeCancelledImmediately',
+  UnPublishedPackage = 'UnPublishedPackage',
+  Unauthenticated = 'Unauthenticated',
+  UncompatibleSubscriptionAddon = 'UncompatibleSubscriptionAddon',
+  UnexpectedError = 'UnexpectedError',
+  UnsupportedFeatureType = 'UnsupportedFeatureType',
+  UnsupportedVendorIdentifier = 'UnsupportedVendorIdentifier'
 }
 
 export type EstimateSubscriptionInput = {
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
   billingInformation?: InputMaybe<SubscriptionBillingInfo>;
   billingPeriod?: InputMaybe<BillingPeriod>;
-  customerId: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
-  planId?: InputMaybe<Scalars["String"]>;
-  priceUnitAmount?: InputMaybe<Scalars["Float"]>;
-  startDate?: InputMaybe<Scalars["DateTime"]>;
+  customerId: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
+  planId?: InputMaybe<Scalars['String']>;
+  priceUnitAmount?: InputMaybe<Scalars['Float']>;
+  startDate?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type EstimateSubscriptionUpdateInput = {
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  subscriptionId: Scalars["String"];
-  unitQuantity?: InputMaybe<Scalars["Float"]>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  subscriptionId: Scalars['String'];
+  unitQuantity?: InputMaybe<Scalars['Float']>;
 };
 
 /** EventLogType */
 export enum EventLogType {
-  AddonCreated = "ADDON_CREATED",
-  AddonDeleted = "ADDON_DELETED",
-  AddonUpdated = "ADDON_UPDATED",
-  CouponArchived = "COUPON_ARCHIVED",
-  CouponCreated = "COUPON_CREATED",
-  CouponUpdated = "COUPON_UPDATED",
-  CreateSubscriptionFailed = "CREATE_SUBSCRIPTION_FAILED",
-  CustomerCreated = "CUSTOMER_CREATED",
-  CustomerDeleted = "CUSTOMER_DELETED",
-  CustomerPaymentFailed = "CUSTOMER_PAYMENT_FAILED",
-  CustomerUpdated = "CUSTOMER_UPDATED",
-  EntitlementsUpdated = "ENTITLEMENTS_UPDATED",
-  EntitlementDenied = "ENTITLEMENT_DENIED",
-  EntitlementGranted = "ENTITLEMENT_GRANTED",
-  EntitlementRequested = "ENTITLEMENT_REQUESTED",
-  FeatureCreated = "FEATURE_CREATED",
-  FeatureDeleted = "FEATURE_DELETED",
-  FeatureUpdated = "FEATURE_UPDATED",
-  ImportIntegrationCatalogTriggered = "IMPORT_INTEGRATION_CATALOG_TRIGGERED",
-  ImportIntegrationCustomersTriggered = "IMPORT_INTEGRATION_CUSTOMERS_TRIGGERED",
-  MeasurementReported = "MEASUREMENT_REPORTED",
-  PackagePublished = "PACKAGE_PUBLISHED",
-  PlanCreated = "PLAN_CREATED",
-  PlanDeleted = "PLAN_DELETED",
-  PlanUpdated = "PLAN_UPDATED",
-  PromotionalEntitlementExpired = "PROMOTIONAL_ENTITLEMENT_EXPIRED",
-  PromotionalEntitlementGranted = "PROMOTIONAL_ENTITLEMENT_GRANTED",
-  PromotionalEntitlementRevoked = "PROMOTIONAL_ENTITLEMENT_REVOKED",
-  PromotionalEntitlementUpdated = "PROMOTIONAL_ENTITLEMENT_UPDATED",
-  ResyncIntegrationTriggered = "RESYNC_INTEGRATION_TRIGGERED",
-  SubscriptionCanceled = "SUBSCRIPTION_CANCELED",
-  SubscriptionCreated = "SUBSCRIPTION_CREATED",
-  SubscriptionExpired = "SUBSCRIPTION_EXPIRED",
-  SubscriptionTrialConverted = "SUBSCRIPTION_TRIAL_CONVERTED",
-  SubscriptionTrialEndsSoon = "SUBSCRIPTION_TRIAL_ENDS_SOON",
-  SubscriptionTrialExpired = "SUBSCRIPTION_TRIAL_EXPIRED",
-  SubscriptionTrialStarted = "SUBSCRIPTION_TRIAL_STARTED",
-  SubscriptionUpdated = "SUBSCRIPTION_UPDATED",
-  SubscriptionUsageUpdated = "SUBSCRIPTION_USAGE_UPDATED",
-  SyncFailed = "SYNC_FAILED",
+  AddonCreated = 'ADDON_CREATED',
+  AddonDeleted = 'ADDON_DELETED',
+  AddonUpdated = 'ADDON_UPDATED',
+  CouponArchived = 'COUPON_ARCHIVED',
+  CouponCreated = 'COUPON_CREATED',
+  CouponUpdated = 'COUPON_UPDATED',
+  CreateSubscriptionFailed = 'CREATE_SUBSCRIPTION_FAILED',
+  CustomerCreated = 'CUSTOMER_CREATED',
+  CustomerDeleted = 'CUSTOMER_DELETED',
+  CustomerPaymentFailed = 'CUSTOMER_PAYMENT_FAILED',
+  CustomerUpdated = 'CUSTOMER_UPDATED',
+  EntitlementsUpdated = 'ENTITLEMENTS_UPDATED',
+  EntitlementDenied = 'ENTITLEMENT_DENIED',
+  EntitlementGranted = 'ENTITLEMENT_GRANTED',
+  EntitlementRequested = 'ENTITLEMENT_REQUESTED',
+  FeatureCreated = 'FEATURE_CREATED',
+  FeatureDeleted = 'FEATURE_DELETED',
+  FeatureUpdated = 'FEATURE_UPDATED',
+  ImportIntegrationCatalogTriggered = 'IMPORT_INTEGRATION_CATALOG_TRIGGERED',
+  ImportIntegrationCustomersTriggered = 'IMPORT_INTEGRATION_CUSTOMERS_TRIGGERED',
+  MeasurementReported = 'MEASUREMENT_REPORTED',
+  PackagePublished = 'PACKAGE_PUBLISHED',
+  PlanCreated = 'PLAN_CREATED',
+  PlanDeleted = 'PLAN_DELETED',
+  PlanUpdated = 'PLAN_UPDATED',
+  PromotionalEntitlementExpired = 'PROMOTIONAL_ENTITLEMENT_EXPIRED',
+  PromotionalEntitlementGranted = 'PROMOTIONAL_ENTITLEMENT_GRANTED',
+  PromotionalEntitlementRevoked = 'PROMOTIONAL_ENTITLEMENT_REVOKED',
+  PromotionalEntitlementUpdated = 'PROMOTIONAL_ENTITLEMENT_UPDATED',
+  ResyncIntegrationTriggered = 'RESYNC_INTEGRATION_TRIGGERED',
+  SubscriptionCanceled = 'SUBSCRIPTION_CANCELED',
+  SubscriptionCreated = 'SUBSCRIPTION_CREATED',
+  SubscriptionExpired = 'SUBSCRIPTION_EXPIRED',
+  SubscriptionTrialConverted = 'SUBSCRIPTION_TRIAL_CONVERTED',
+  SubscriptionTrialEndsSoon = 'SUBSCRIPTION_TRIAL_ENDS_SOON',
+  SubscriptionTrialExpired = 'SUBSCRIPTION_TRIAL_EXPIRED',
+  SubscriptionTrialStarted = 'SUBSCRIPTION_TRIAL_STARTED',
+  SubscriptionUpdated = 'SUBSCRIPTION_UPDATED',
+  SubscriptionUsageUpdated = 'SUBSCRIPTION_USAGE_UPDATED',
+  SyncFailed = 'SYNC_FAILED'
 }
 
 export type ExperimentFilter = {
@@ -929,25 +923,25 @@ export type ExperimentSort = {
 };
 
 export enum ExperimentSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Name = "name",
-  ProductId = "productId",
-  RefId = "refId",
-  Status = "status",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Name = 'name',
+  ProductId = 'productId',
+  RefId = 'refId',
+  Status = 'status'
 }
 
 export type ExperimentStatsQuery = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  experimentRefId: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  experimentRefId: Scalars['String'];
 };
 
 /** The status of the EXPERIMENT */
 export enum ExperimentStatus {
-  Completed = "COMPLETED",
-  Draft = "DRAFT",
-  InProgress = "IN_PROGRESS",
+  Completed = 'COMPLETED',
+  Draft = 'DRAFT',
+  InProgress = 'IN_PROGRESS'
 }
 
 export type ExperimentStatusFilterComparison = {
@@ -956,8 +950,8 @@ export type ExperimentStatusFilterComparison = {
   gte?: InputMaybe<ExperimentStatus>;
   iLike?: InputMaybe<ExperimentStatus>;
   in?: InputMaybe<Array<ExperimentStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<ExperimentStatus>;
   lt?: InputMaybe<ExperimentStatus>;
   lte?: InputMaybe<ExperimentStatus>;
@@ -983,15 +977,15 @@ export type FeatureFilter = {
 };
 
 export type FeatureInput = {
-  description?: InputMaybe<Scalars["String"]>;
-  displayName: Scalars["String"];
-  environmentId: Scalars["String"];
+  description?: InputMaybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  environmentId: Scalars['String'];
   featureStatus?: InputMaybe<FeatureStatus>;
   featureType: FeatureType;
-  featureUnits?: InputMaybe<Scalars["String"]>;
-  featureUnitsPlural?: InputMaybe<Scalars["String"]>;
+  featureUnits?: InputMaybe<Scalars['String']>;
+  featureUnitsPlural?: InputMaybe<Scalars['String']>;
   meterType?: InputMaybe<MeterType>;
-  refId: Scalars["String"];
+  refId: Scalars['String'];
 };
 
 export type FeatureSort = {
@@ -1001,23 +995,23 @@ export type FeatureSort = {
 };
 
 export enum FeatureSortFields {
-  CreatedAt = "createdAt",
-  Description = "description",
-  DisplayName = "displayName",
-  EnvironmentId = "environmentId",
-  FeatureStatus = "featureStatus",
-  FeatureType = "featureType",
-  Id = "id",
-  MeterType = "meterType",
-  RefId = "refId",
-  UpdatedAt = "updatedAt",
+  CreatedAt = 'createdAt',
+  Description = 'description',
+  DisplayName = 'displayName',
+  EnvironmentId = 'environmentId',
+  FeatureStatus = 'featureStatus',
+  FeatureType = 'featureType',
+  Id = 'id',
+  MeterType = 'meterType',
+  RefId = 'refId',
+  UpdatedAt = 'updatedAt'
 }
 
 /** Feature status. */
 export enum FeatureStatus {
-  Active = "ACTIVE",
-  New = "NEW",
-  Suspended = "SUSPENDED",
+  Active = 'ACTIVE',
+  New = 'NEW',
+  Suspended = 'SUSPENDED'
 }
 
 export type FeatureStatusFilterComparison = {
@@ -1026,8 +1020,8 @@ export type FeatureStatusFilterComparison = {
   gte?: InputMaybe<FeatureStatus>;
   iLike?: InputMaybe<FeatureStatus>;
   in?: InputMaybe<Array<FeatureStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<FeatureStatus>;
   lt?: InputMaybe<FeatureStatus>;
   lte?: InputMaybe<FeatureStatus>;
@@ -1039,8 +1033,8 @@ export type FeatureStatusFilterComparison = {
 
 /** The type of the feature */
 export enum FeatureType {
-  Boolean = "BOOLEAN",
-  Number = "NUMBER",
+  Boolean = 'BOOLEAN',
+  Number = 'NUMBER'
 }
 
 export type FeatureTypeFilterComparison = {
@@ -1049,8 +1043,8 @@ export type FeatureTypeFilterComparison = {
   gte?: InputMaybe<FeatureType>;
   iLike?: InputMaybe<FeatureType>;
   in?: InputMaybe<Array<FeatureType>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<FeatureType>;
   lt?: InputMaybe<FeatureType>;
   lte?: InputMaybe<FeatureType>;
@@ -1061,26 +1055,26 @@ export type FeatureTypeFilterComparison = {
 };
 
 export type FetchEntitlementQuery = {
-  customerId: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
-  featureId: Scalars["String"];
+  customerId: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
+  featureId: Scalars['String'];
   options?: InputMaybe<EntitlementOptions>;
 };
 
 export type FetchEntitlementsQuery = {
-  customerId: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
+  customerId: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
 };
 
 export type GetPackageByRefIdInput = {
-  environmentId: Scalars["String"];
-  refId: Scalars["String"];
-  versionNumber?: InputMaybe<Scalars["Float"]>;
+  environmentId: Scalars['String'];
+  refId: Scalars['String'];
+  versionNumber?: InputMaybe<Scalars['Float']>;
 };
 
 export type GetPaywallInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  productId?: InputMaybe<Scalars["String"]>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  productId?: InputMaybe<Scalars['String']>;
 };
 
 export type HookFilter = {
@@ -1100,17 +1094,17 @@ export type HookSort = {
 };
 
 export enum HookSortFields {
-  CreatedAt = "createdAt",
-  Endpoint = "endpoint",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Status = "status",
+  CreatedAt = 'createdAt',
+  Endpoint = 'endpoint',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Status = 'status'
 }
 
 /** HookStatus. */
 export enum HookStatus {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
+  Active = 'ACTIVE',
+  Inactive = 'INACTIVE'
 }
 
 export type HookStatusFilterComparison = {
@@ -1119,8 +1113,8 @@ export type HookStatusFilterComparison = {
   gte?: InputMaybe<HookStatus>;
   iLike?: InputMaybe<HookStatus>;
   in?: InputMaybe<Array<HookStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<HookStatus>;
   lt?: InputMaybe<HookStatus>;
   lte?: InputMaybe<HookStatus>;
@@ -1131,38 +1125,38 @@ export type HookStatusFilterComparison = {
 };
 
 export type HubspotCredentialsInput = {
-  authorizationCode: Scalars["String"];
-  refreshToken?: InputMaybe<Scalars["String"]>;
+  authorizationCode: Scalars['String'];
+  refreshToken?: InputMaybe<Scalars['String']>;
 };
 
 export type ImportCustomerInput = {
-  billingId: Scalars["String"];
-  customerId?: InputMaybe<Scalars["String"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  refId?: InputMaybe<Scalars["String"]>;
+  billingId: Scalars['String'];
+  customerId?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['String']>;
 };
 
 export type ImportIntegrationCatalogInput = {
   billingModel?: InputMaybe<BillingModel>;
   entitySelectionMode: EntitySelectionMode;
-  environmentId: Scalars["String"];
-  featureUnitName?: InputMaybe<Scalars["String"]>;
-  featureUnitPluralName?: InputMaybe<Scalars["String"]>;
-  plansSelectionBlacklist?: InputMaybe<Array<Scalars["String"]>>;
-  plansSelectionWhitelist?: InputMaybe<Array<Scalars["String"]>>;
-  productId: Scalars["String"];
-  selectedAddonBillingIds: Array<Scalars["String"]>;
+  environmentId: Scalars['String'];
+  featureUnitName?: InputMaybe<Scalars['String']>;
+  featureUnitPluralName?: InputMaybe<Scalars['String']>;
+  plansSelectionBlacklist?: InputMaybe<Array<Scalars['String']>>;
+  plansSelectionWhitelist?: InputMaybe<Array<Scalars['String']>>;
+  productId: Scalars['String'];
+  selectedAddonBillingIds: Array<Scalars['String']>;
   vendorIdentifier: VendorIdentifier;
 };
 
 export type ImportIntegrationCustomersInput = {
-  customersSelectionBlacklist?: InputMaybe<Array<Scalars["String"]>>;
-  customersSelectionWhitelist?: InputMaybe<Array<Scalars["String"]>>;
+  customersSelectionBlacklist?: InputMaybe<Array<Scalars['String']>>;
+  customersSelectionWhitelist?: InputMaybe<Array<Scalars['String']>>;
   entitySelectionMode: EntitySelectionMode;
-  environmentId: Scalars["String"];
-  productId: Scalars["String"];
+  environmentId: Scalars['String'];
+  productId: Scalars['String'];
   vendorIdentifier: VendorIdentifier;
 };
 
@@ -1183,48 +1177,48 @@ export type ImportIntegrationTaskSort = {
 };
 
 export enum ImportIntegrationTaskSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Status = "status",
-  TaskType = "taskType",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Status = 'status',
+  TaskType = 'taskType'
 }
 
 export type InitAddStripeCustomerPaymentMethodInput = {
-  customerRefId: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
+  customerRefId: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
 };
 
 export type InitiateCheckoutInput = {
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
-  allowPromoCodes?: InputMaybe<Scalars["Boolean"]>;
+  allowPromoCodes?: InputMaybe<Scalars['Boolean']>;
   billingPeriod: BillingPeriod;
-  cancelUrl: Scalars["String"];
-  collectBillingAddress?: InputMaybe<Scalars["Boolean"]>;
-  customerId: Scalars["String"];
-  planId: Scalars["String"];
-  successUrl: Scalars["String"];
-  unitQuantity?: InputMaybe<Scalars["Int"]>;
+  cancelUrl: Scalars['String'];
+  collectBillingAddress?: InputMaybe<Scalars['Boolean']>;
+  customerId: Scalars['String'];
+  planId: Scalars['String'];
+  successUrl: Scalars['String'];
+  unitQuantity?: InputMaybe<Scalars['Int']>;
 };
 
 export type IntFieldComparison = {
   between?: InputMaybe<IntFieldComparisonBetween>;
-  eq?: InputMaybe<Scalars["Int"]>;
-  gt?: InputMaybe<Scalars["Int"]>;
-  gte?: InputMaybe<Scalars["Int"]>;
-  in?: InputMaybe<Array<Scalars["Int"]>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
-  lt?: InputMaybe<Scalars["Int"]>;
-  lte?: InputMaybe<Scalars["Int"]>;
-  neq?: InputMaybe<Scalars["Int"]>;
+  eq?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  neq?: InputMaybe<Scalars['Int']>;
   notBetween?: InputMaybe<IntFieldComparisonBetween>;
-  notIn?: InputMaybe<Array<Scalars["Int"]>>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type IntFieldComparisonBetween = {
-  lower: Scalars["Int"];
-  upper: Scalars["Int"];
+  lower: Scalars['Int'];
+  upper: Scalars['Int'];
 };
 
 export type IntegrationFilter = {
@@ -1243,10 +1237,10 @@ export type IntegrationSort = {
 };
 
 export enum IntegrationSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  VendorIdentifier = "vendorIdentifier",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  VendorIdentifier = 'vendorIdentifier'
 }
 
 export type MemberFilter = {
@@ -1263,21 +1257,21 @@ export type MemberSort = {
 };
 
 export enum MemberSortFields {
-  CreatedAt = "createdAt",
-  Id = "id",
+  CreatedAt = 'createdAt',
+  Id = 'id'
 }
 
 /** Member Status. */
 export enum MemberStatus {
-  Invited = "INVITED",
-  Registered = "REGISTERED",
+  Invited = 'INVITED',
+  Registered = 'REGISTERED'
 }
 
 /** The meter type of the feature */
 export enum MeterType {
-  Fluctuating = "Fluctuating",
-  Incremental = "Incremental",
-  None = "None",
+  Fluctuating = 'Fluctuating',
+  Incremental = 'Incremental',
+  None = 'None'
 }
 
 export type MeterTypeFilterComparison = {
@@ -1286,8 +1280,8 @@ export type MeterTypeFilterComparison = {
   gte?: InputMaybe<MeterType>;
   iLike?: InputMaybe<MeterType>;
   in?: InputMaybe<Array<MeterType>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<MeterType>;
   lt?: InputMaybe<MeterType>;
   lte?: InputMaybe<MeterType>;
@@ -1298,14 +1292,14 @@ export type MeterTypeFilterComparison = {
 };
 
 export type MoneyInputDto = {
-  amount: Scalars["Float"];
+  amount: Scalars['Float'];
   currency?: InputMaybe<Currency>;
 };
 
 /** Montly reset period according to configuration */
 export enum MonthlyAccordingTo {
-  StartOfTheMonth = "StartOfTheMonth",
-  SubscriptionStart = "SubscriptionStart",
+  StartOfTheMonth = 'StartOfTheMonth',
+  SubscriptionStart = 'SubscriptionStart'
 }
 
 export type MonthlyResetPeriodConfigInput = {
@@ -1314,22 +1308,22 @@ export type MonthlyResetPeriodConfigInput = {
 
 export type NumberFieldComparison = {
   between?: InputMaybe<NumberFieldComparisonBetween>;
-  eq?: InputMaybe<Scalars["Float"]>;
-  gt?: InputMaybe<Scalars["Float"]>;
-  gte?: InputMaybe<Scalars["Float"]>;
-  in?: InputMaybe<Array<Scalars["Float"]>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
-  lt?: InputMaybe<Scalars["Float"]>;
-  lte?: InputMaybe<Scalars["Float"]>;
-  neq?: InputMaybe<Scalars["Float"]>;
+  eq?: InputMaybe<Scalars['Float']>;
+  gt?: InputMaybe<Scalars['Float']>;
+  gte?: InputMaybe<Scalars['Float']>;
+  in?: InputMaybe<Array<Scalars['Float']>>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
+  lt?: InputMaybe<Scalars['Float']>;
+  lte?: InputMaybe<Scalars['Float']>;
+  neq?: InputMaybe<Scalars['Float']>;
   notBetween?: InputMaybe<NumberFieldComparisonBetween>;
-  notIn?: InputMaybe<Array<Scalars["Float"]>>;
+  notIn?: InputMaybe<Array<Scalars['Float']>>;
 };
 
 export type NumberFieldComparisonBetween = {
-  lower: Scalars["Float"];
-  upper: Scalars["Float"];
+  lower: Scalars['Float'];
+  upper: Scalars['Float'];
 };
 
 export type PackageDtoFilter = {
@@ -1357,19 +1351,19 @@ export type PackageDtoSort = {
 };
 
 export enum PackageDtoSortFields {
-  BillingId = "billingId",
-  CreatedAt = "createdAt",
-  Description = "description",
-  DisplayName = "displayName",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  IsLatest = "isLatest",
-  PricingType = "pricingType",
-  ProductId = "productId",
-  RefId = "refId",
-  Status = "status",
-  UpdatedAt = "updatedAt",
-  VersionNumber = "versionNumber",
+  BillingId = 'billingId',
+  CreatedAt = 'createdAt',
+  Description = 'description',
+  DisplayName = 'displayName',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  IsLatest = 'isLatest',
+  PricingType = 'pricingType',
+  ProductId = 'productId',
+  RefId = 'refId',
+  Status = 'status',
+  UpdatedAt = 'updatedAt',
+  VersionNumber = 'versionNumber'
 }
 
 export type PackageEntitlementFilter = {
@@ -1418,15 +1412,15 @@ export type PackageEntitlementFilterPackageDtoFilter = {
 };
 
 export type PackageEntitlementInput = {
-  description?: InputMaybe<Scalars["String"]>;
-  environmentId: Scalars["String"];
-  featureId: Scalars["String"];
-  hasUnlimitedUsage?: InputMaybe<Scalars["Boolean"]>;
+  description?: InputMaybe<Scalars['String']>;
+  environmentId: Scalars['String'];
+  featureId: Scalars['String'];
+  hasUnlimitedUsage?: InputMaybe<Scalars['Boolean']>;
   monthlyResetPeriodConfiguration?: InputMaybe<MonthlyResetPeriodConfigInput>;
-  order?: InputMaybe<Scalars["Float"]>;
-  packageId: Scalars["String"];
+  order?: InputMaybe<Scalars['Float']>;
+  packageId: Scalars['String'];
   resetPeriod?: InputMaybe<EntitlementResetPeriod>;
-  usageLimit?: InputMaybe<Scalars["Float"]>;
+  usageLimit?: InputMaybe<Scalars['Float']>;
   weeklyResetPeriodConfiguration?: InputMaybe<WeeklyResetPeriodConfigInput>;
 };
 
@@ -1437,41 +1431,42 @@ export type PackageEntitlementSort = {
 };
 
 export enum PackageEntitlementSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  PackageId = "packageId",
-  UpdatedAt = "updatedAt",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  PackageId = 'packageId',
+  UpdatedAt = 'updatedAt'
 }
 
 export type PackageEntitlementUpdateInput = {
-  description?: InputMaybe<Scalars["String"]>;
-  hasUnlimitedUsage?: InputMaybe<Scalars["Boolean"]>;
+  description?: InputMaybe<Scalars['String']>;
+  displayNameOverride?: InputMaybe<Scalars['String']>;
+  hasUnlimitedUsage?: InputMaybe<Scalars['Boolean']>;
   hiddenFromWidgets?: InputMaybe<Array<WidgetType>>;
   monthlyResetPeriodConfiguration?: InputMaybe<MonthlyResetPeriodConfigInput>;
-  order?: InputMaybe<Scalars["Float"]>;
+  order?: InputMaybe<Scalars['Float']>;
   resetPeriod?: InputMaybe<EntitlementResetPeriod>;
-  usageLimit?: InputMaybe<Scalars["Float"]>;
+  usageLimit?: InputMaybe<Scalars['Float']>;
   weeklyResetPeriodConfiguration?: InputMaybe<WeeklyResetPeriodConfigInput>;
 };
 
 export type PackagePricingInput = {
-  environmentId: Scalars["String"];
-  packageId: Scalars["String"];
+  environmentId: Scalars['String'];
+  packageId: Scalars['String'];
   pricingModel?: InputMaybe<PricingModelCreateInput>;
   pricingType: PricingType;
 };
 
 export type PackagePublishInput = {
-  id: Scalars["ID"];
+  id: Scalars['ID'];
   migrationType: PublishMigrationType;
 };
 
 /** Package status. */
 export enum PackageStatus {
-  Archived = "ARCHIVED",
-  Draft = "DRAFT",
-  Published = "PUBLISHED",
+  Archived = 'ARCHIVED',
+  Draft = 'DRAFT',
+  Published = 'PUBLISHED'
 }
 
 export type PackageStatusFilterComparison = {
@@ -1480,8 +1475,8 @@ export type PackageStatusFilterComparison = {
   gte?: InputMaybe<PackageStatus>;
   iLike?: InputMaybe<PackageStatus>;
   in?: InputMaybe<Array<PackageStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<PackageStatus>;
   lt?: InputMaybe<PackageStatus>;
   lte?: InputMaybe<PackageStatus>;
@@ -1493,19 +1488,19 @@ export type PackageStatusFilterComparison = {
 
 /** Type of a payment method */
 export enum PaymentMethodType {
-  Bank = "BANK",
-  Card = "CARD",
+  Bank = 'BANK',
+  Card = 'CARD'
 }
 
 export type PlanCreateInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
-  parentPlanId?: InputMaybe<Scalars["String"]>;
-  productId: Scalars["String"];
-  refId?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
+  parentPlanId?: InputMaybe<Scalars['String']>;
+  productId: Scalars['String'];
+  refId?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<PackageStatus>;
 };
 
@@ -1567,29 +1562,29 @@ export type PlanSort = {
 };
 
 export enum PlanSortFields {
-  BillingId = "billingId",
-  CreatedAt = "createdAt",
-  Description = "description",
-  DisplayName = "displayName",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  IsLatest = "isLatest",
-  PricingType = "pricingType",
-  ProductId = "productId",
-  RefId = "refId",
-  Status = "status",
-  UpdatedAt = "updatedAt",
-  VersionNumber = "versionNumber",
+  BillingId = 'billingId',
+  CreatedAt = 'createdAt',
+  Description = 'description',
+  DisplayName = 'displayName',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  IsLatest = 'isLatest',
+  PricingType = 'pricingType',
+  ProductId = 'productId',
+  RefId = 'refId',
+  Status = 'status',
+  UpdatedAt = 'updatedAt',
+  VersionNumber = 'versionNumber'
 }
 
 export type PlanUpdateInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
   defaultTrialConfig?: InputMaybe<DefaultTrialConfigInputDto>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
-  id: Scalars["String"];
-  parentPlanId?: InputMaybe<Scalars["String"]>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
+  parentPlanId?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<PackageStatus>;
 };
 
@@ -1633,25 +1628,25 @@ export type PriceSort = {
 };
 
 export enum PriceSortFields {
-  BillingModel = "billingModel",
-  BillingPeriod = "billingPeriod",
-  CreatedAt = "createdAt",
-  Id = "id",
+  BillingModel = 'billingModel',
+  BillingPeriod = 'billingPeriod',
+  CreatedAt = 'createdAt',
+  Id = 'id'
 }
 
 export type PricingModelCreateInput = {
   billingModel: BillingModel;
-  featureId?: InputMaybe<Scalars["String"]>;
-  maxUnitQuantity?: InputMaybe<Scalars["Float"]>;
-  minUnitQuantity?: InputMaybe<Scalars["Float"]>;
+  featureId?: InputMaybe<Scalars['String']>;
+  maxUnitQuantity?: InputMaybe<Scalars['Float']>;
+  minUnitQuantity?: InputMaybe<Scalars['Float']>;
   pricePeriods: Array<PricePeriodInput>;
 };
 
 /** Package pricing type. */
 export enum PricingType {
-  Custom = "CUSTOM",
-  Free = "FREE",
-  Paid = "PAID",
+  Custom = 'CUSTOM',
+  Free = 'FREE',
+  Paid = 'PAID'
 }
 
 export type PricingTypeFilterComparison = {
@@ -1660,8 +1655,8 @@ export type PricingTypeFilterComparison = {
   gte?: InputMaybe<PricingType>;
   iLike?: InputMaybe<PricingType>;
   in?: InputMaybe<Array<PricingType>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<PricingType>;
   lt?: InputMaybe<PricingType>;
   lte?: InputMaybe<PricingType>;
@@ -1672,11 +1667,11 @@ export type PricingTypeFilterComparison = {
 };
 
 export type ProductCreateInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
-  environmentId: Scalars["String"];
-  refId: Scalars["String"];
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  environmentId: Scalars['String'];
+  refId: Scalars['String'];
 };
 
 export type ProductFilter = {
@@ -1693,10 +1688,10 @@ export type ProductFilter = {
 };
 
 export type ProductSettingsInput = {
-  downgradePlanId?: InputMaybe<Scalars["String"]>;
+  downgradePlanId?: InputMaybe<Scalars['String']>;
   subscriptionCancellationTime: SubscriptionCancellationTime;
   subscriptionEndSetup: SubscriptionEndSetup;
-  subscriptionStartPlanId?: InputMaybe<Scalars["String"]>;
+  subscriptionStartPlanId?: InputMaybe<Scalars['String']>;
   subscriptionStartSetup: SubscriptionStartSetup;
 };
 
@@ -1707,20 +1702,20 @@ export type ProductSort = {
 };
 
 export enum ProductSortFields {
-  CreatedAt = "createdAt",
-  Description = "description",
-  DisplayName = "displayName",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  IsDefaultProduct = "isDefaultProduct",
-  RefId = "refId",
-  UpdatedAt = "updatedAt",
+  CreatedAt = 'createdAt',
+  Description = 'description',
+  DisplayName = 'displayName',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  IsDefaultProduct = 'isDefaultProduct',
+  RefId = 'refId',
+  UpdatedAt = 'updatedAt'
 }
 
 export type ProductUpdateInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
   productSettings?: InputMaybe<ProductSettingsInput>;
 };
 
@@ -1735,28 +1730,28 @@ export type PromotionalEntitlementFilter = {
 };
 
 export type PromotionalEntitlementInput = {
-  customerId: Scalars["String"];
-  description?: InputMaybe<Scalars["String"]>;
-  endDate?: InputMaybe<Scalars["DateTime"]>;
-  environmentId: Scalars["String"];
-  featureId: Scalars["String"];
-  hasUnlimitedUsage?: InputMaybe<Scalars["Boolean"]>;
-  isVisible: Scalars["Boolean"];
+  customerId: Scalars['String'];
+  description?: InputMaybe<Scalars['String']>;
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  environmentId: Scalars['String'];
+  featureId: Scalars['String'];
+  hasUnlimitedUsage?: InputMaybe<Scalars['Boolean']>;
+  isVisible: Scalars['Boolean'];
   monthlyResetPeriodConfiguration?: InputMaybe<MonthlyResetPeriodConfigInput>;
   period: PromotionalEntitlementPeriod;
   resetPeriod?: InputMaybe<EntitlementResetPeriod>;
-  usageLimit?: InputMaybe<Scalars["Float"]>;
+  usageLimit?: InputMaybe<Scalars['Float']>;
   weeklyResetPeriodConfiguration?: InputMaybe<WeeklyResetPeriodConfigInput>;
 };
 
 /** Promotional entitlement duration */
 export enum PromotionalEntitlementPeriod {
-  Custom = "CUSTOM",
-  Lifetime = "LIFETIME",
-  OneMonth = "ONE_MONTH",
-  OneWeek = "ONE_WEEK",
-  OneYear = "ONE_YEAR",
-  SixMonth = "SIX_MONTH",
+  Custom = 'CUSTOM',
+  Lifetime = 'LIFETIME',
+  OneMonth = 'ONE_MONTH',
+  OneWeek = 'ONE_WEEK',
+  OneYear = 'ONE_YEAR',
+  SixMonth = 'SIX_MONTH'
 }
 
 export type PromotionalEntitlementSort = {
@@ -1766,18 +1761,18 @@ export type PromotionalEntitlementSort = {
 };
 
 export enum PromotionalEntitlementSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Status = "status",
-  UpdatedAt = "updatedAt",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Status = 'status',
+  UpdatedAt = 'updatedAt'
 }
 
 /** Promotional entitlement status */
 export enum PromotionalEntitlementStatus {
-  Active = "Active",
-  Expired = "Expired",
-  Paused = "Paused",
+  Active = 'Active',
+  Expired = 'Expired',
+  Paused = 'Paused'
 }
 
 export type PromotionalEntitlementStatusFilterComparison = {
@@ -1786,8 +1781,8 @@ export type PromotionalEntitlementStatusFilterComparison = {
   gte?: InputMaybe<PromotionalEntitlementStatus>;
   iLike?: InputMaybe<PromotionalEntitlementStatus>;
   in?: InputMaybe<Array<PromotionalEntitlementStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<PromotionalEntitlementStatus>;
   lt?: InputMaybe<PromotionalEntitlementStatus>;
   lte?: InputMaybe<PromotionalEntitlementStatus>;
@@ -1798,229 +1793,229 @@ export type PromotionalEntitlementStatusFilterComparison = {
 };
 
 export type PromotionalEntitlementUpdateInput = {
-  description?: InputMaybe<Scalars["String"]>;
-  endDate?: InputMaybe<Scalars["DateTime"]>;
-  hasUnlimitedUsage?: InputMaybe<Scalars["Boolean"]>;
-  isVisible: Scalars["Boolean"];
+  description?: InputMaybe<Scalars['String']>;
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  hasUnlimitedUsage?: InputMaybe<Scalars['Boolean']>;
+  isVisible: Scalars['Boolean'];
   monthlyResetPeriodConfiguration?: InputMaybe<MonthlyResetPeriodConfigInput>;
   period: PromotionalEntitlementPeriod;
   resetPeriod?: InputMaybe<EntitlementResetPeriod>;
-  usageLimit?: InputMaybe<Scalars["Float"]>;
+  usageLimit?: InputMaybe<Scalars['Float']>;
   weeklyResetPeriodConfiguration?: InputMaybe<WeeklyResetPeriodConfigInput>;
 };
 
 export type ProvisionCustomerInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
   billingInformation?: InputMaybe<CustomerBillingInfo>;
-  couponRefId?: InputMaybe<Scalars["String"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  crmId?: InputMaybe<Scalars["String"]>;
-  customerId?: InputMaybe<Scalars["String"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  excludeFromExperiment?: InputMaybe<Scalars["Boolean"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  refId?: InputMaybe<Scalars["String"]>;
-  shouldSyncFree?: InputMaybe<Scalars["Boolean"]>;
+  couponRefId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  crmId?: InputMaybe<Scalars['String']>;
+  customerId?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  excludeFromExperiment?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['String']>;
+  shouldSyncFree?: InputMaybe<Scalars['Boolean']>;
   subscriptionParams?: InputMaybe<ProvisionCustomerSubscriptionInput>;
 };
 
 export type ProvisionCustomerSubscriptionInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
-  awaitPaymentConfirmation?: InputMaybe<Scalars["Boolean"]>;
+  awaitPaymentConfirmation?: InputMaybe<Scalars['Boolean']>;
   billingInformation?: InputMaybe<SubscriptionBillingInfo>;
   billingPeriod?: InputMaybe<BillingPeriod>;
-  planId?: InputMaybe<Scalars["String"]>;
-  priceUnitAmount?: InputMaybe<Scalars["Float"]>;
-  refId?: InputMaybe<Scalars["String"]>;
-  startDate?: InputMaybe<Scalars["DateTime"]>;
-  subscriptionId?: InputMaybe<Scalars["String"]>;
+  planId?: InputMaybe<Scalars['String']>;
+  priceUnitAmount?: InputMaybe<Scalars['Float']>;
+  refId?: InputMaybe<Scalars['String']>;
+  startDate?: InputMaybe<Scalars['DateTime']>;
+  subscriptionId?: InputMaybe<Scalars['String']>;
 };
 
 export type ProvisionSubscription = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
-  awaitPaymentConfirmation?: InputMaybe<Scalars["Boolean"]>;
+  awaitPaymentConfirmation?: InputMaybe<Scalars['Boolean']>;
   billingInformation?: InputMaybe<SubscriptionBillingInfo>;
   billingPeriod?: InputMaybe<BillingPeriod>;
   checkoutOptions?: InputMaybe<CheckoutOptions>;
-  customerId: Scalars["String"];
-  planId?: InputMaybe<Scalars["String"]>;
-  priceUnitAmount?: InputMaybe<Scalars["Float"]>;
-  refId?: InputMaybe<Scalars["String"]>;
-  skipTrial?: InputMaybe<Scalars["Boolean"]>;
-  startDate?: InputMaybe<Scalars["DateTime"]>;
-  subscriptionId?: InputMaybe<Scalars["String"]>;
+  customerId: Scalars['String'];
+  planId?: InputMaybe<Scalars['String']>;
+  priceUnitAmount?: InputMaybe<Scalars['Float']>;
+  refId?: InputMaybe<Scalars['String']>;
+  skipTrial?: InputMaybe<Scalars['Boolean']>;
+  startDate?: InputMaybe<Scalars['DateTime']>;
+  subscriptionId?: InputMaybe<Scalars['String']>;
 };
 
 /** Provision subscription status */
 export enum ProvisionSubscriptionStatus {
-  PaymentRequired = "PAYMENT_REQUIRED",
-  Success = "SUCCESS",
+  PaymentRequired = 'PAYMENT_REQUIRED',
+  Success = 'SUCCESS'
 }
 
 /** PublishMigrationType */
 export enum PublishMigrationType {
-  AllCustomers = "ALL_CUSTOMERS",
-  NewCustomers = "NEW_CUSTOMERS",
+  AllCustomers = 'ALL_CUSTOMERS',
+  NewCustomers = 'NEW_CUSTOMERS'
 }
 
 export type RemoveBasePlanFromPlanInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type RemoveCompatibleAddonsFromPlanInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The ids of the relations. */
-  relationIds: Array<Scalars["String"]>;
+  relationIds: Array<Scalars['String']>;
 };
 
 export type RemoveCouponFromCustomerInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type RemoveCouponFromCustomerSubscriptionInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type RemoveExperimentFromCustomerInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type RemoveExperimentFromCustomerSubscriptionInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type ResyncIntegrationInput = {
-  environmentId: Scalars["String"];
+  environmentId: Scalars['String'];
   vendorIdentifier: VendorIdentifier;
 };
 
 export type SetBasePlanOnPlanInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type SetCompatibleAddonsOnPlanInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The ids of the relations. */
-  relationIds: Array<Scalars["String"]>;
+  relationIds: Array<Scalars['String']>;
 };
 
 export type SetCouponOnCustomerInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type SetCouponOnCustomerSubscriptionInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type SetExperimentOnCustomerInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 export type SetExperimentOnCustomerSubscriptionInput = {
   /** The id of the record. */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The id of relation. */
-  relationId: Scalars["String"];
+  relationId: Scalars['String'];
 };
 
 /** Sort Directions */
 export enum SortDirection {
-  Asc = "ASC",
-  Desc = "DESC",
+  Asc = 'ASC',
+  Desc = 'DESC'
 }
 
 /** Sort Nulls Options */
 export enum SortNulls {
-  NullsFirst = "NULLS_FIRST",
-  NullsLast = "NULLS_LAST",
+  NullsFirst = 'NULLS_FIRST',
+  NullsLast = 'NULLS_LAST'
 }
 
 export enum SourceType {
-  JsClientSdk = "JS_CLIENT_SDK",
-  NodeServerSdk = "NODE_SERVER_SDK",
+  JsClientSdk = 'JS_CLIENT_SDK',
+  NodeServerSdk = 'NODE_SERVER_SDK'
 }
 
 export type StartExperimentInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  refId: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  refId: Scalars['String'];
 };
 
 export type StopExperimentInput = {
-  environmentId?: InputMaybe<Scalars["String"]>;
-  refId: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  refId: Scalars['String'];
 };
 
 export type StringFieldComparison = {
-  eq?: InputMaybe<Scalars["String"]>;
-  gt?: InputMaybe<Scalars["String"]>;
-  gte?: InputMaybe<Scalars["String"]>;
-  iLike?: InputMaybe<Scalars["String"]>;
-  in?: InputMaybe<Array<Scalars["String"]>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
-  like?: InputMaybe<Scalars["String"]>;
-  lt?: InputMaybe<Scalars["String"]>;
-  lte?: InputMaybe<Scalars["String"]>;
-  neq?: InputMaybe<Scalars["String"]>;
-  notILike?: InputMaybe<Scalars["String"]>;
-  notIn?: InputMaybe<Array<Scalars["String"]>>;
-  notLike?: InputMaybe<Scalars["String"]>;
+  eq?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  iLike?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<Scalars['String']>>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
+  like?: InputMaybe<Scalars['String']>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  neq?: InputMaybe<Scalars['String']>;
+  notILike?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']>>;
+  notLike?: InputMaybe<Scalars['String']>;
 };
 
 export type StripeCredentialsInput = {
-  accountId?: InputMaybe<Scalars["String"]>;
-  authorizationCode: Scalars["String"];
-  isTestMode: Scalars["Boolean"];
+  accountId?: InputMaybe<Scalars['String']>;
+  authorizationCode: Scalars['String'];
+  isTestMode: Scalars['Boolean'];
 };
 
 export type StripeCustomerSearchInput = {
-  customerName?: InputMaybe<Scalars["String"]>;
-  environmentId: Scalars["String"];
-  nextPage?: InputMaybe<Scalars["String"]>;
+  customerName?: InputMaybe<Scalars['String']>;
+  environmentId: Scalars['String'];
+  nextPage?: InputMaybe<Scalars['String']>;
 };
 
 export type StripeProductSearchInput = {
-  environmentId: Scalars["String"];
-  nextPage?: InputMaybe<Scalars["String"]>;
-  productName?: InputMaybe<Scalars["String"]>;
+  environmentId: Scalars['String'];
+  nextPage?: InputMaybe<Scalars['String']>;
+  productName?: InputMaybe<Scalars['String']>;
 };
 
 export type StripeSubscriptionSearchInput = {
-  environmentId: Scalars["String"];
-  nextPage?: InputMaybe<Scalars["String"]>;
+  environmentId: Scalars['String'];
+  nextPage?: InputMaybe<Scalars['String']>;
 };
 
 export type SubscriptionAddonFilter = {
@@ -2084,8 +2079,8 @@ export type SubscriptionAddonFilterPriceFilter = {
 };
 
 export type SubscriptionAddonInput = {
-  addonId: Scalars["String"];
-  quantity?: InputMaybe<Scalars["Int"]>;
+  addonId: Scalars['String'];
+  quantity?: InputMaybe<Scalars['Int']>;
 };
 
 export type SubscriptionAddonSort = {
@@ -2095,27 +2090,27 @@ export type SubscriptionAddonSort = {
 };
 
 export enum SubscriptionAddonSortFields {
-  CreatedAt = "createdAt",
-  Id = "id",
-  Quantity = "quantity",
-  UpdatedAt = "updatedAt",
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Quantity = 'quantity',
+  UpdatedAt = 'updatedAt'
 }
 
 export type SubscriptionBillingInfo = {
-  taxRateIds?: InputMaybe<Array<Scalars["String"]>>;
+  taxRateIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 /** Subscription cancellation status */
 export enum SubscriptionCancelReason {
-  CancelledByBilling = "CancelledByBilling",
-  DetachBilling = "DetachBilling",
-  Expired = "Expired",
-  Immediate = "Immediate",
-  PendingPaymentExpired = "PendingPaymentExpired",
-  ScheduledCancellation = "ScheduledCancellation",
-  TrialConverted = "TrialConverted",
-  TrialEnded = "TrialEnded",
-  UpgradeOrDowngrade = "UpgradeOrDowngrade",
+  CancelledByBilling = 'CancelledByBilling',
+  DetachBilling = 'DetachBilling',
+  Expired = 'Expired',
+  Immediate = 'Immediate',
+  PendingPaymentExpired = 'PendingPaymentExpired',
+  ScheduledCancellation = 'ScheduledCancellation',
+  TrialConverted = 'TrialConverted',
+  TrialEnded = 'TrialEnded',
+  UpgradeOrDowngrade = 'UpgradeOrDowngrade'
 }
 
 export type SubscriptionCancelReasonFilterComparison = {
@@ -2124,8 +2119,8 @@ export type SubscriptionCancelReasonFilterComparison = {
   gte?: InputMaybe<SubscriptionCancelReason>;
   iLike?: InputMaybe<SubscriptionCancelReason>;
   in?: InputMaybe<Array<SubscriptionCancelReason>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<SubscriptionCancelReason>;
   lt?: InputMaybe<SubscriptionCancelReason>;
   lte?: InputMaybe<SubscriptionCancelReason>;
@@ -2136,55 +2131,54 @@ export type SubscriptionCancelReasonFilterComparison = {
 };
 
 export type SubscriptionCancellationInput = {
-  endDate?: InputMaybe<Scalars["DateTime"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  environmentId?: InputMaybe<Scalars['String']>;
   subscriptionCancellationTime?: InputMaybe<SubscriptionCancellationTime>;
-  subscriptionRefId: Scalars["String"];
+  subscriptionRefId: Scalars['String'];
 };
 
 export enum SubscriptionCancellationTime {
-  EndOfBillingPeriod = "END_OF_BILLING_PERIOD",
-  Immediate = "IMMEDIATE",
-  SpecificDate = "SPECIFIC_DATE",
+  EndOfBillingPeriod = 'END_OF_BILLING_PERIOD',
+  Immediate = 'IMMEDIATE',
+  SpecificDate = 'SPECIFIC_DATE'
 }
 
 /** Subscription decision strategy */
 export enum SubscriptionDecisionStrategy {
-  PredefinedFreePlan = "PREDEFINED_FREE_PLAN",
-  PredefinedTrialPlan = "PREDEFINED_TRIAL_PLAN",
-  RequestedPlan = "REQUESTED_PLAN",
-  SkippedSubscriptionCreation = "SKIPPED_SUBSCRIPTION_CREATION",
+  PredefinedFreePlan = 'PREDEFINED_FREE_PLAN',
+  PredefinedTrialPlan = 'PREDEFINED_TRIAL_PLAN',
+  RequestedPlan = 'REQUESTED_PLAN',
+  SkippedSubscriptionCreation = 'SKIPPED_SUBSCRIPTION_CREATION'
 }
 
 export enum SubscriptionEndSetup {
-  CancelSubscription = "CANCEL_SUBSCRIPTION",
-  DowngradeToFree = "DOWNGRADE_TO_FREE",
+  CancelSubscription = 'CANCEL_SUBSCRIPTION',
+  DowngradeToFree = 'DOWNGRADE_TO_FREE'
 }
 
 export type SubscriptionInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
-  awaitPaymentConfirmation?: InputMaybe<Scalars["Boolean"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
+  awaitPaymentConfirmation?: InputMaybe<Scalars['Boolean']>;
+  billingId?: InputMaybe<Scalars['String']>;
   billingInformation?: InputMaybe<SubscriptionBillingInfo>;
   billingPeriod?: InputMaybe<BillingPeriod>;
-  couponId?: InputMaybe<Scalars["String"]>;
-  crmId?: InputMaybe<Scalars["String"]>;
-  customerId: Scalars["String"];
-  endDate?: InputMaybe<Scalars["DateTime"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  isCustomPriceSubscription?: InputMaybe<Scalars["Boolean"]>;
-  isOverridingTrialConfig?: InputMaybe<Scalars["Boolean"]>;
-  isTrial?: InputMaybe<Scalars["Boolean"]>;
-  planId?: InputMaybe<Scalars["String"]>;
-  priceUnitAmount?: InputMaybe<Scalars["Float"]>;
-  refId?: InputMaybe<Scalars["String"]>;
-  startDate?: InputMaybe<Scalars["DateTime"]>;
-  subscriptionId?: InputMaybe<Scalars["String"]>;
+  crmId?: InputMaybe<Scalars['String']>;
+  customerId: Scalars['String'];
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  isCustomPriceSubscription?: InputMaybe<Scalars['Boolean']>;
+  isOverridingTrialConfig?: InputMaybe<Scalars['Boolean']>;
+  isTrial?: InputMaybe<Scalars['Boolean']>;
+  planId?: InputMaybe<Scalars['String']>;
+  priceUnitAmount?: InputMaybe<Scalars['Float']>;
+  refId?: InputMaybe<Scalars['String']>;
+  startDate?: InputMaybe<Scalars['DateTime']>;
+  subscriptionId?: InputMaybe<Scalars['String']>;
 };
 
 export type SubscriptionMigrationInput = {
-  subscriptionId: Scalars["String"];
+  subscriptionId: Scalars['String'];
 };
 
 export type SubscriptionMigrationTaskFilter = {
@@ -2204,11 +2198,11 @@ export type SubscriptionMigrationTaskSort = {
 };
 
 export enum SubscriptionMigrationTaskSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
-  Status = "status",
-  TaskType = "taskType",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id',
+  Status = 'status',
+  TaskType = 'taskType'
 }
 
 export type SubscriptionPriceFilter = {
@@ -2259,26 +2253,26 @@ export type SubscriptionPriceSort = {
 };
 
 export enum SubscriptionPriceSortFields {
-  CreatedAt = "createdAt",
-  Id = "id",
-  UpdatedAt = "updatedAt",
-  UsageLimit = "usageLimit",
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  UpdatedAt = 'updatedAt',
+  UsageLimit = 'usageLimit'
 }
 
 export enum SubscriptionStartSetup {
-  FreePlan = "FREE_PLAN",
-  PlanSelection = "PLAN_SELECTION",
-  TrialPeriod = "TRIAL_PERIOD",
+  FreePlan = 'FREE_PLAN',
+  PlanSelection = 'PLAN_SELECTION',
+  TrialPeriod = 'TRIAL_PERIOD'
 }
 
 /** Subscription status */
 export enum SubscriptionStatus {
-  Active = "ACTIVE",
-  Canceled = "CANCELED",
-  Expired = "EXPIRED",
-  InTrial = "IN_TRIAL",
-  NotStarted = "NOT_STARTED",
-  PaymentPending = "PAYMENT_PENDING",
+  Active = 'ACTIVE',
+  Canceled = 'CANCELED',
+  Expired = 'EXPIRED',
+  InTrial = 'IN_TRIAL',
+  NotStarted = 'NOT_STARTED',
+  PaymentPending = 'PAYMENT_PENDING'
 }
 
 export type SubscriptionStatusFilterComparison = {
@@ -2287,8 +2281,8 @@ export type SubscriptionStatusFilterComparison = {
   gte?: InputMaybe<SubscriptionStatus>;
   iLike?: InputMaybe<SubscriptionStatus>;
   in?: InputMaybe<Array<SubscriptionStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<SubscriptionStatus>;
   lt?: InputMaybe<SubscriptionStatus>;
   lte?: InputMaybe<SubscriptionStatus>;
@@ -2300,18 +2294,18 @@ export type SubscriptionStatusFilterComparison = {
 
 /** Status of the integration sync */
 export enum SyncStatus {
-  Error = "ERROR",
-  NoSyncRequired = "NO_SYNC_REQUIRED",
-  Pending = "PENDING",
-  Success = "SUCCESS",
+  Error = 'ERROR',
+  NoSyncRequired = 'NO_SYNC_REQUIRED',
+  Pending = 'PENDING',
+  Success = 'SUCCESS'
 }
 
 export enum TaskStatus {
-  Completed = "COMPLETED",
-  Failed = "FAILED",
-  InProgress = "IN_PROGRESS",
-  PartiallyFailed = "PARTIALLY_FAILED",
-  Pending = "PENDING",
+  Completed = 'COMPLETED',
+  Failed = 'FAILED',
+  InProgress = 'IN_PROGRESS',
+  PartiallyFailed = 'PARTIALLY_FAILED',
+  Pending = 'PENDING'
 }
 
 export type TaskStatusFilterComparison = {
@@ -2320,8 +2314,8 @@ export type TaskStatusFilterComparison = {
   gte?: InputMaybe<TaskStatus>;
   iLike?: InputMaybe<TaskStatus>;
   in?: InputMaybe<Array<TaskStatus>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<TaskStatus>;
   lt?: InputMaybe<TaskStatus>;
   lte?: InputMaybe<TaskStatus>;
@@ -2332,10 +2326,10 @@ export type TaskStatusFilterComparison = {
 };
 
 export enum TaskType {
-  ImportIntegrationCatalog = "IMPORT_INTEGRATION_CATALOG",
-  ImportIntegrationCustomers = "IMPORT_INTEGRATION_CUSTOMERS",
-  ResyncIntegration = "RESYNC_INTEGRATION",
-  SubscriptionMigration = "SUBSCRIPTION_MIGRATION",
+  ImportIntegrationCatalog = 'IMPORT_INTEGRATION_CATALOG',
+  ImportIntegrationCustomers = 'IMPORT_INTEGRATION_CUSTOMERS',
+  ResyncIntegration = 'RESYNC_INTEGRATION',
+  SubscriptionMigration = 'SUBSCRIPTION_MIGRATION'
 }
 
 export type TaskTypeFilterComparison = {
@@ -2344,8 +2338,8 @@ export type TaskTypeFilterComparison = {
   gte?: InputMaybe<TaskType>;
   iLike?: InputMaybe<TaskType>;
   in?: InputMaybe<Array<TaskType>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<TaskType>;
   lt?: InputMaybe<TaskType>;
   lte?: InputMaybe<TaskType>;
@@ -2356,103 +2350,103 @@ export type TaskTypeFilterComparison = {
 };
 
 export type TaxExempt = {
-  type: Scalars["String"];
-  value: Scalars["String"];
+  type: Scalars['String'];
+  value: Scalars['String'];
 };
 
 export type TestHookInput = {
-  endpointUrl: Scalars["String"];
-  environmentId: Scalars["String"];
+  endpointUrl: Scalars['String'];
+  environmentId: Scalars['String'];
   hookEventType: EventLogType;
 };
 
 /** day or month. */
 export enum TrialPeriodUnits {
-  Day = "DAY",
-  Month = "MONTH",
+  Day = 'DAY',
+  Month = 'MONTH'
 }
 
 export type UpdateAccountInput = {
-  displayName: Scalars["String"];
-  id: Scalars["String"];
+  displayName: Scalars['String'];
+  id: Scalars['String'];
   subscriptionBillingAnchor?: InputMaybe<BillingAnchor>;
-  timezone?: InputMaybe<Scalars["String"]>;
+  timezone?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateCouponInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name: Scalars["String"];
-  refId: Scalars["String"];
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  description?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  refId: Scalars['String'];
 };
 
 export type UpdateCustomerInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
-  billingId?: InputMaybe<Scalars["String"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
+  billingId?: InputMaybe<Scalars['String']>;
   billingInformation?: InputMaybe<CustomerBillingInfo>;
-  couponRefId?: InputMaybe<Scalars["String"]>;
-  crmId?: InputMaybe<Scalars["String"]>;
-  customerId?: InputMaybe<Scalars["String"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  refId?: InputMaybe<Scalars["String"]>;
+  couponRefId?: InputMaybe<Scalars['String']>;
+  crmId?: InputMaybe<Scalars['String']>;
+  customerId?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateEnvironment = {
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
   provisionStatus?: InputMaybe<EnvironmentProvisionStatus>;
-  slug?: InputMaybe<Scalars["String"]>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateExperimentInput = {
-  controlGroupName?: InputMaybe<Scalars["String"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  productId?: InputMaybe<Scalars["String"]>;
+  controlGroupName?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  productId?: InputMaybe<Scalars['String']>;
   productSettings?: InputMaybe<ProductSettingsInput>;
-  refId: Scalars["String"];
-  variantGroupName?: InputMaybe<Scalars["String"]>;
-  variantPercentage?: InputMaybe<Scalars["Float"]>;
+  refId: Scalars['String'];
+  variantGroupName?: InputMaybe<Scalars['String']>;
+  variantPercentage?: InputMaybe<Scalars['Float']>;
 };
 
 export type UpdateFeature = {
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
   featureStatus?: InputMaybe<FeatureStatus>;
   featureType?: InputMaybe<FeatureType>;
-  featureUnits?: InputMaybe<Scalars["String"]>;
-  featureUnitsPlural?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
+  featureUnits?: InputMaybe<Scalars['String']>;
+  featureUnitsPlural?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
   meterType?: InputMaybe<MeterType>;
-  refId?: InputMaybe<Scalars["String"]>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]>;
+  refId?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type UpdateFeatureInput = {
-  description?: InputMaybe<Scalars["String"]>;
-  displayName?: InputMaybe<Scalars["String"]>;
-  environmentId: Scalars["String"];
-  featureUnits?: InputMaybe<Scalars["String"]>;
-  featureUnitsPlural?: InputMaybe<Scalars["String"]>;
-  refId: Scalars["String"];
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  environmentId: Scalars['String'];
+  featureUnits?: InputMaybe<Scalars['String']>;
+  featureUnitsPlural?: InputMaybe<Scalars['String']>;
+  refId: Scalars['String'];
 };
 
 export type UpdateHook = {
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  endpoint?: InputMaybe<Scalars["String"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  endpoint?: InputMaybe<Scalars['String']>;
+  environmentId?: InputMaybe<Scalars['String']>;
   eventLogTypes?: InputMaybe<Array<EventLogType>>;
-  id?: InputMaybe<Scalars["String"]>;
-  secretKey?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars['String']>;
+  secretKey?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<HookStatus>;
 };
 
@@ -2464,91 +2458,91 @@ export type UpdateIntegrationInput = {
 
 export type UpdateOneEnvironmentInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: UpdateEnvironment;
 };
 
 export type UpdateOneFeatureInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: UpdateFeature;
 };
 
 export type UpdateOneHookInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: UpdateHook;
 };
 
 export type UpdateOneIntegrationInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: UpdateIntegrationInput;
 };
 
 export type UpdateOnePackageEntitlementInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: PackageEntitlementUpdateInput;
 };
 
 export type UpdateOneProductInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: ProductUpdateInput;
 };
 
 export type UpdateOnePromotionalEntitlementInput = {
   /** The id of the record to update */
-  id: Scalars["String"];
+  id: Scalars['String'];
   /** The update to apply. */
   update: PromotionalEntitlementUpdateInput;
 };
 
 export type UpdatePackageEntitlementOrderInput = {
   entitlements: Array<UpdatePackageEntitlementOrderItemInput>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  packageId: Scalars["String"];
+  environmentId?: InputMaybe<Scalars['String']>;
+  packageId: Scalars['String'];
 };
 
 export type UpdatePackageEntitlementOrderItemInput = {
-  id: Scalars["String"];
-  order?: InputMaybe<Scalars["Float"]>;
+  id: Scalars['String'];
+  order?: InputMaybe<Scalars['Float']>;
 };
 
 export type UpdateSubscriptionInput = {
-  additionalMetaData?: InputMaybe<Scalars["JSON"]>;
+  additionalMetaData?: InputMaybe<Scalars['JSON']>;
   addons?: InputMaybe<Array<SubscriptionAddonInput>>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  refId?: InputMaybe<Scalars["String"]>;
-  subscriptionId?: InputMaybe<Scalars["String"]>;
-  trialEndDate?: InputMaybe<Scalars["DateTime"]>;
-  unitQuantity?: InputMaybe<Scalars["Float"]>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['String']>;
+  subscriptionId?: InputMaybe<Scalars['String']>;
+  trialEndDate?: InputMaybe<Scalars['DateTime']>;
+  unitQuantity?: InputMaybe<Scalars['Float']>;
 };
 
 export type UsageHistoryInput = {
-  customerRefId: Scalars["String"];
-  endDate?: InputMaybe<Scalars["DateTime"]>;
-  environmentId?: InputMaybe<Scalars["String"]>;
-  featureRefId: Scalars["String"];
+  customerRefId: Scalars['String'];
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  environmentId?: InputMaybe<Scalars['String']>;
+  featureRefId: Scalars['String'];
   monthlyResetPeriodConfiguration?: InputMaybe<MonthlyResetPeriodConfigInput>;
   resetPeriod?: InputMaybe<EntitlementResetPeriod>;
-  startDate: Scalars["DateTime"];
+  startDate: Scalars['DateTime'];
   weeklyResetPeriodConfiguration?: InputMaybe<WeeklyResetPeriodConfigInput>;
 };
 
 export type UsageMeasurementCreateInput = {
-  createdAt?: InputMaybe<Scalars["DateTime"]>;
-  customerId: Scalars["String"];
-  environmentId?: InputMaybe<Scalars["String"]>;
-  featureId: Scalars["String"];
-  value: Scalars["Float"];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  customerId: Scalars['String'];
+  environmentId?: InputMaybe<Scalars['String']>;
+  featureId: Scalars['String'];
+  value: Scalars['Float'];
 };
 
 export type UsageMeasurementFilter = {
@@ -2600,15 +2594,15 @@ export type UsageMeasurementSort = {
 };
 
 export enum UsageMeasurementSortFields {
-  CreatedAt = "createdAt",
-  EnvironmentId = "environmentId",
-  Id = "id",
+  CreatedAt = 'createdAt',
+  EnvironmentId = 'environmentId',
+  Id = 'id'
 }
 
 export enum VendorIdentifier {
-  Hubspot = "HUBSPOT",
-  Stripe = "STRIPE",
-  Zuora = "ZUORA",
+  Hubspot = 'HUBSPOT',
+  Stripe = 'STRIPE',
+  Zuora = 'ZUORA'
 }
 
 export type VendorIdentifierFilterComparison = {
@@ -2617,8 +2611,8 @@ export type VendorIdentifierFilterComparison = {
   gte?: InputMaybe<VendorIdentifier>;
   iLike?: InputMaybe<VendorIdentifier>;
   in?: InputMaybe<Array<VendorIdentifier>>;
-  is?: InputMaybe<Scalars["Boolean"]>;
-  isNot?: InputMaybe<Scalars["Boolean"]>;
+  is?: InputMaybe<Scalars['Boolean']>;
+  isNot?: InputMaybe<Scalars['Boolean']>;
   like?: InputMaybe<VendorIdentifier>;
   lt?: InputMaybe<VendorIdentifier>;
   lte?: InputMaybe<VendorIdentifier>;
@@ -2630,14 +2624,14 @@ export type VendorIdentifierFilterComparison = {
 
 /** Weekly reset period according to configuration */
 export enum WeeklyAccordingTo {
-  EveryFriday = "EveryFriday",
-  EveryMonday = "EveryMonday",
-  EverySaturday = "EverySaturday",
-  EverySunday = "EverySunday",
-  EveryThursday = "EveryThursday",
-  EveryTuesday = "EveryTuesday",
-  EveryWednesday = "EveryWednesday",
-  SubscriptionStart = "SubscriptionStart",
+  EveryFriday = 'EveryFriday',
+  EveryMonday = 'EveryMonday',
+  EverySaturday = 'EverySaturday',
+  EverySunday = 'EverySunday',
+  EveryThursday = 'EveryThursday',
+  EveryTuesday = 'EveryTuesday',
+  EveryWednesday = 'EveryWednesday',
+  SubscriptionStart = 'SubscriptionStart'
 }
 
 export type WeeklyResetPeriodConfigInput = {
@@ -2646,391 +2640,67 @@ export type WeeklyResetPeriodConfigInput = {
 
 /** The widget type */
 export enum WidgetType {
-  CustomerPortal = "CUSTOMER_PORTAL",
-  Paywall = "PAYWALL",
+  CustomerPortal = 'CUSTOMER_PORTAL',
+  Paywall = 'PAYWALL'
 }
 
 export type ZuoraCredentialsInput = {
-  baseUrl: Scalars["String"];
-  clientId: Scalars["String"];
-  clientSecret: Scalars["String"];
+  baseUrl: Scalars['String'];
+  clientId: Scalars['String'];
+  clientSecret: Scalars['String'];
 };
 
 /** The group of the experiment */
 export enum ExperimentGroupType {
-  Control = "CONTROL",
-  Variant = "VARIANT",
+  Control = 'CONTROL',
+  Variant = 'VARIANT'
 }
 
 export type FetchAddonsQueryVariables = Exact<{
   paging?: InputMaybe<CursorPaging>;
 }>;
 
-export type FetchAddonsQuery = {
-  __typename?: "Query";
-  addons: {
-    __typename?: "AddonConnection";
-    pageInfo: {
-      __typename?: "PageInfo";
-      endCursor?: any | null;
-      hasNextPage?: boolean | null;
-    };
-    edges: Array<{
-      __typename?: "AddonEdge";
-      node: {
-        __typename?: "Addon";
-        id: string;
-        refId: string;
-        displayName: string;
-        description?: string | null;
-        billingId?: string | null;
-        createdAt?: any | null;
-        status: PackageStatus;
-        versionNumber: number;
-        isLatest?: boolean | null;
-        pricingType?: PricingType | null;
-        entitlements?: Array<{
-          __typename?: "PackageEntitlement";
-          id: string;
-          featureId: string;
-          usageLimit?: number | null;
-          hasUnlimitedUsage?: boolean | null;
-          resetPeriod?: EntitlementResetPeriod | null;
-          resetPeriodConfiguration?:
-            | {
-                __typename: "MonthlyResetPeriodConfig";
-                monthlyAccordingTo?: MonthlyAccordingTo | null;
-              }
-            | {
-                __typename: "WeeklyResetPeriodConfig";
-                weeklyAccordingTo?: WeeklyAccordingTo | null;
-              }
-            | null;
-          feature: { __typename?: "Feature"; id: string };
-        }> | null;
-        product?: { __typename?: "Product"; id: string } | null;
-        prices?: Array<{
-          __typename?: "Price";
-          id: string;
-          billingModel: BillingModel;
-          billingPeriod: BillingPeriod;
-          featureId?: string | null;
-          crmId?: string | null;
-          minUnitQuantity?: number | null;
-          maxUnitQuantity?: number | null;
-          price: { __typename?: "Money"; amount: number; currency: Currency };
-          feature?: {
-            __typename?: "Feature";
-            id: string;
-            refId: string;
-          } | null;
-        }> | null;
-      };
-    }>;
-  };
-};
+
+export type FetchAddonsQuery = { __typename?: 'Query', addons: { __typename?: 'AddonConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: any | null, hasNextPage?: boolean | null }, edges: Array<{ __typename?: 'AddonEdge', node: { __typename?: 'Addon', id: string, refId: string, displayName: string, description?: string | null, billingId?: string | null, createdAt?: any | null, status: PackageStatus, versionNumber: number, isLatest?: boolean | null, pricingType?: PricingType | null, entitlements?: Array<{ __typename?: 'PackageEntitlement', id: string, featureId: string, usageLimit?: number | null, hasUnlimitedUsage?: boolean | null, resetPeriod?: EntitlementResetPeriod | null, resetPeriodConfiguration?: { __typename: 'MonthlyResetPeriodConfig', monthlyAccordingTo?: MonthlyAccordingTo | null } | { __typename: 'WeeklyResetPeriodConfig', weeklyAccordingTo?: WeeklyAccordingTo | null } | null, feature: { __typename?: 'Feature', id: string } }> | null, product?: { __typename?: 'Product', id: string } | null, prices?: Array<{ __typename?: 'Price', id: string, billingModel: BillingModel, billingPeriod: BillingPeriod, featureId?: string | null, crmId?: string | null, minUnitQuantity?: number | null, maxUnitQuantity?: number | null, price: { __typename?: 'Money', amount: number, currency: Currency }, feature?: { __typename?: 'Feature', id: string, refId: string } | null }> | null } }> } };
 
 export type FetchCouponsQueryVariables = Exact<{
   paging?: InputMaybe<CursorPaging>;
 }>;
 
-export type FetchCouponsQuery = {
-  __typename?: "Query";
-  coupons: {
-    __typename?: "CouponConnection";
-    pageInfo: {
-      __typename?: "PageInfo";
-      hasNextPage?: boolean | null;
-      endCursor?: any | null;
-      startCursor?: any | null;
-    };
-    edges: Array<{
-      __typename?: "CouponEdge";
-      node: {
-        __typename?: "Coupon";
-        id: string;
-        discountValue: number;
-        type: CouponType;
-        additionalMetaData?: any | null;
-        refId: string;
-        name: string;
-        description?: string | null;
-        createdAt: any;
-        updatedAt: any;
-        billingId?: string | null;
-        status: CouponStatus;
-      };
-    }>;
-  };
-};
+
+export type FetchCouponsQuery = { __typename?: 'Query', coupons: { __typename?: 'CouponConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage?: boolean | null, endCursor?: any | null, startCursor?: any | null }, edges: Array<{ __typename?: 'CouponEdge', node: { __typename?: 'Coupon', id: string, discountValue: number, type: CouponType, additionalMetaData?: any | null, refId: string, name: string, description?: string | null, createdAt: any, updatedAt: any, billingId?: string | null, status: CouponStatus } }> } };
 
 export type FetchCustomersQueryVariables = Exact<{
   paging?: InputMaybe<CursorPaging>;
 }>;
 
-export type FetchCustomersQuery = {
-  __typename?: "Query";
-  customers: {
-    __typename?: "CustomerConnection";
-    edges: Array<{
-      __typename?: "CustomerEdge";
-      node: {
-        __typename?: "Customer";
-        additionalMetaData?: any | null;
-        billingId?: string | null;
-        customerId: string;
-        crmId?: string | null;
-        defaultPaymentExpirationMonth?: number | null;
-        defaultPaymentExpirationYear?: number | null;
-        defaultPaymentMethodId?: string | null;
-        defaultPaymentMethodLast4Digits?: string | null;
-        defaultPaymentMethodType?: PaymentMethodType | null;
-        email?: string | null;
-        name?: string | null;
-        crmHubspotCompanyId?: string | null;
-        createdAt?: any | null;
-        excludeFromExperiment?: boolean | null;
-        coupon?: { __typename?: "Coupon"; id: string } | null;
-        promotionalEntitlements: Array<{
-          __typename?: "PromotionalEntitlement";
-          description?: string | null;
-          endDate?: any | null;
-          featureId: string;
-          resetPeriod?: EntitlementResetPeriod | null;
-          startDate: any;
-          usageLimit?: number | null;
-          isVisible: boolean;
-          unlimited?: boolean | null;
-          resetPeriodConfiguration?:
-            | {
-                __typename?: "MonthlyResetPeriodConfig";
-                monthlyAccordingTo?: MonthlyAccordingTo | null;
-              }
-            | {
-                __typename?: "WeeklyResetPeriodConfig";
-                weeklyAccordingTo?: WeeklyAccordingTo | null;
-              }
-            | null;
-          feature: { __typename?: "Feature"; refId: string };
-        }>;
-        experiment?: { __typename?: "Experiment"; refId: string } | null;
-        subscriptions?: Array<{
-          __typename?: "CustomerSubscription";
-          additionalMetaData?: any | null;
-          cancelReason?: SubscriptionCancelReason | null;
-          cancellationDate?: any | null;
-          createdAt?: any | null;
-          currentBillingPeriodEnd?: any | null;
-          subscriptionId: string;
-          billingId?: string | null;
-          crmId?: string | null;
-          isCustomPriceSubscription?: boolean | null;
-          status: SubscriptionStatus;
-          startDate: any;
-          trialEndDate?: any | null;
-          addons?: Array<{
-            __typename?: "SubscriptionAddon";
-            quantity: number;
-            addon: {
-              __typename?: "Addon";
-              refId: string;
-              versionNumber: number;
-            };
-          }> | null;
-          plan: { __typename?: "Plan"; refId: string; versionNumber: number };
-          prices?: Array<{
-            __typename?: "SubscriptionPrice";
-            usageLimit?: number | null;
-            price?: { __typename?: "Price"; id: string } | null;
-          }> | null;
-        }> | null;
-      };
-    }>;
-    pageInfo: {
-      __typename?: "PageInfo";
-      hasNextPage?: boolean | null;
-      endCursor?: any | null;
-      startCursor?: any | null;
-    };
-  };
-};
+
+export type FetchCustomersQuery = { __typename?: 'Query', customers: { __typename?: 'CustomerConnection', edges: Array<{ __typename?: 'CustomerEdge', node: { __typename?: 'Customer', additionalMetaData?: any | null, billingId?: string | null, customerId: string, crmId?: string | null, defaultPaymentExpirationMonth?: number | null, defaultPaymentExpirationYear?: number | null, defaultPaymentMethodId?: string | null, defaultPaymentMethodLast4Digits?: string | null, defaultPaymentMethodType?: PaymentMethodType | null, email?: string | null, name?: string | null, crmHubspotCompanyId?: string | null, createdAt?: any | null, excludeFromExperiment?: boolean | null, coupon?: { __typename?: 'Coupon', id: string } | null, promotionalEntitlements: Array<{ __typename?: 'PromotionalEntitlement', description?: string | null, endDate?: any | null, featureId: string, resetPeriod?: EntitlementResetPeriod | null, startDate: any, usageLimit?: number | null, isVisible: boolean, unlimited?: boolean | null, resetPeriodConfiguration?: { __typename?: 'MonthlyResetPeriodConfig', monthlyAccordingTo?: MonthlyAccordingTo | null } | { __typename?: 'WeeklyResetPeriodConfig', weeklyAccordingTo?: WeeklyAccordingTo | null } | null, feature: { __typename?: 'Feature', refId: string } }>, experiment?: { __typename?: 'Experiment', refId: string } | null, subscriptions?: Array<{ __typename?: 'CustomerSubscription', additionalMetaData?: any | null, cancelReason?: SubscriptionCancelReason | null, cancellationDate?: any | null, createdAt?: any | null, currentBillingPeriodEnd?: any | null, subscriptionId: string, billingId?: string | null, crmId?: string | null, isCustomPriceSubscription?: boolean | null, status: SubscriptionStatus, startDate: any, trialEndDate?: any | null, addons?: Array<{ __typename?: 'SubscriptionAddon', quantity: number, addon: { __typename?: 'Addon', refId: string, versionNumber: number } }> | null, plan: { __typename?: 'Plan', refId: string, versionNumber: number }, prices?: Array<{ __typename?: 'SubscriptionPrice', usageLimit?: number | null, price?: { __typename?: 'Price', id: string } | null }> | null }> | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage?: boolean | null, endCursor?: any | null, startCursor?: any | null } } };
 
 export type CachedEntitlementsQueryVariables = Exact<{
   query: FetchEntitlementsQuery;
 }>;
 
-export type CachedEntitlementsQuery = {
-  __typename?: "Query";
-  cachedEntitlements: Array<{
-    __typename?: "Entitlement";
-    isGranted: boolean;
-    accessDeniedReason?: AccessDeniedReason | null;
-    customerId?: string | null;
-    usageLimit?: number | null;
-    hasUnlimitedUsage: boolean;
-    currentUsage?: number | null;
-    requestedUsage?: number | null;
-    nextResetDate?: any | null;
-    resetPeriod?: EntitlementResetPeriod | null;
-    resetPeriodConfiguration?:
-      | {
-          __typename: "MonthlyResetPeriodConfig";
-          monthlyAccordingTo?: MonthlyAccordingTo | null;
-        }
-      | {
-          __typename: "WeeklyResetPeriodConfig";
-          weeklyAccordingTo?: WeeklyAccordingTo | null;
-        }
-      | null;
-    feature?: { __typename?: "EntitlementFeature"; id: string } | null;
-  }>;
-};
+
+export type CachedEntitlementsQuery = { __typename?: 'Query', cachedEntitlements: Array<{ __typename?: 'Entitlement', isGranted: boolean, accessDeniedReason?: AccessDeniedReason | null, customerId?: string | null, usageLimit?: number | null, hasUnlimitedUsage: boolean, currentUsage?: number | null, requestedUsage?: number | null, nextResetDate?: any | null, resetPeriod?: EntitlementResetPeriod | null, resetPeriodConfiguration?: { __typename: 'MonthlyResetPeriodConfig', monthlyAccordingTo?: MonthlyAccordingTo | null } | { __typename: 'WeeklyResetPeriodConfig', weeklyAccordingTo?: WeeklyAccordingTo | null } | null, feature?: { __typename?: 'EntitlementFeature', id: string } | null }> };
 
 export type FetchFeaturesQueryVariables = Exact<{
   paging?: InputMaybe<CursorPaging>;
 }>;
 
-export type FetchFeaturesQuery = {
-  __typename?: "Query";
-  features: {
-    __typename?: "FeatureConnection";
-    pageInfo: {
-      __typename?: "PageInfo";
-      endCursor?: any | null;
-      hasNextPage?: boolean | null;
-    };
-    edges: Array<{
-      __typename?: "FeatureEdge";
-      node: {
-        __typename?: "Feature";
-        id: string;
-        displayName: string;
-        description?: string | null;
-        updatedAt: any;
-        refId: string;
-        featureStatus: FeatureStatus;
-        environmentId: string;
-        featureType: FeatureType;
-        meterType?: MeterType | null;
-        featureUnits?: string | null;
-        featureUnitsPlural?: string | null;
-      };
-    }>;
-  };
-};
+
+export type FetchFeaturesQuery = { __typename?: 'Query', features: { __typename?: 'FeatureConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: any | null, hasNextPage?: boolean | null }, edges: Array<{ __typename?: 'FeatureEdge', node: { __typename?: 'Feature', id: string, displayName: string, description?: string | null, updatedAt: any, refId: string, featureStatus: FeatureStatus, environmentId: string, featureType: FeatureType, meterType?: MeterType | null, featureUnits?: string | null, featureUnitsPlural?: string | null } }> } };
 
 export type FetchPlansQueryVariables = Exact<{
   paging?: InputMaybe<CursorPaging>;
 }>;
 
-export type FetchPlansQuery = {
-  __typename?: "Query";
-  plans: {
-    __typename?: "PlanConnection";
-    pageInfo: {
-      __typename?: "PageInfo";
-      endCursor?: any | null;
-      hasNextPage?: boolean | null;
-    };
-    edges: Array<{
-      __typename?: "PlanEdge";
-      node: {
-        __typename?: "Plan";
-        id: string;
-        refId: string;
-        displayName: string;
-        description?: string | null;
-        status: PackageStatus;
-        billingId?: string | null;
-        versionNumber: number;
-        isLatest?: boolean | null;
-        isParent: boolean;
-        pricingType?: PricingType | null;
-        defaultTrialConfig?: {
-          __typename?: "DefaultTrialConfig";
-          units: TrialPeriodUnits;
-          duration: number;
-        } | null;
-        basePlan?: { __typename?: "Plan"; id: string } | null;
-        product: { __typename?: "Product"; id: string };
-        entitlements?: Array<{
-          __typename?: "PackageEntitlement";
-          id: string;
-          featureId: string;
-          usageLimit?: number | null;
-          hasUnlimitedUsage?: boolean | null;
-          resetPeriod?: EntitlementResetPeriod | null;
-          resetPeriodConfiguration?:
-            | {
-                __typename: "MonthlyResetPeriodConfig";
-                monthlyAccordingTo?: MonthlyAccordingTo | null;
-              }
-            | {
-                __typename: "WeeklyResetPeriodConfig";
-                weeklyAccordingTo?: WeeklyAccordingTo | null;
-              }
-            | null;
-          feature: { __typename?: "Feature"; id: string };
-        }> | null;
-        compatibleAddons?: Array<{ __typename?: "Addon"; id: string }> | null;
-        prices?: Array<{
-          __typename?: "Price";
-          id: string;
-          billingModel: BillingModel;
-          billingPeriod: BillingPeriod;
-          featureId?: string | null;
-          crmId?: string | null;
-          minUnitQuantity?: number | null;
-          maxUnitQuantity?: number | null;
-          price: { __typename?: "Money"; amount: number; currency: Currency };
-          feature?: {
-            __typename?: "Feature";
-            id: string;
-            refId: string;
-          } | null;
-        }> | null;
-      };
-    }>;
-  };
-};
+
+export type FetchPlansQuery = { __typename?: 'Query', plans: { __typename?: 'PlanConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: any | null, hasNextPage?: boolean | null }, edges: Array<{ __typename?: 'PlanEdge', node: { __typename?: 'Plan', id: string, refId: string, displayName: string, description?: string | null, status: PackageStatus, billingId?: string | null, versionNumber: number, isLatest?: boolean | null, isParent: boolean, pricingType?: PricingType | null, defaultTrialConfig?: { __typename?: 'DefaultTrialConfig', units: TrialPeriodUnits, duration: number } | null, basePlan?: { __typename?: 'Plan', id: string } | null, product: { __typename?: 'Product', id: string }, entitlements?: Array<{ __typename?: 'PackageEntitlement', id: string, featureId: string, usageLimit?: number | null, hasUnlimitedUsage?: boolean | null, resetPeriod?: EntitlementResetPeriod | null, resetPeriodConfiguration?: { __typename: 'MonthlyResetPeriodConfig', monthlyAccordingTo?: MonthlyAccordingTo | null } | { __typename: 'WeeklyResetPeriodConfig', weeklyAccordingTo?: WeeklyAccordingTo | null } | null, feature: { __typename?: 'Feature', id: string } }> | null, compatibleAddons?: Array<{ __typename?: 'Addon', id: string }> | null, prices?: Array<{ __typename?: 'Price', id: string, billingModel: BillingModel, billingPeriod: BillingPeriod, featureId?: string | null, crmId?: string | null, minUnitQuantity?: number | null, maxUnitQuantity?: number | null, price: { __typename?: 'Money', amount: number, currency: Currency }, feature?: { __typename?: 'Feature', id: string, refId: string } | null }> | null } }> } };
 
 export type FetchProductsQueryVariables = Exact<{
   paging?: InputMaybe<CursorPaging>;
 }>;
 
-export type FetchProductsQuery = {
-  __typename?: "Query";
-  products: {
-    __typename?: "ProductConnection";
-    pageInfo: {
-      __typename?: "PageInfo";
-      hasNextPage?: boolean | null;
-      endCursor?: any | null;
-      startCursor?: any | null;
-    };
-    edges: Array<{
-      __typename?: "ProductEdge";
-      node: {
-        __typename?: "Product";
-        createdAt: any;
-        description?: string | null;
-        id: string;
-        displayName?: string | null;
-        refId: string;
-        isDefaultProduct: boolean;
-        environmentId: string;
-        updatedAt: any;
-        productSettings: {
-          __typename?: "ProductSettings";
-          subscriptionEndSetup: SubscriptionEndSetup;
-          subscriptionCancellationTime: SubscriptionCancellationTime;
-          downgradePlan?: {
-            __typename?: "Plan";
-            refId: string;
-            id: string;
-          } | null;
-        };
-      };
-    }>;
-  };
-};
+
+export type FetchProductsQuery = { __typename?: 'Query', products: { __typename?: 'ProductConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage?: boolean | null, endCursor?: any | null, startCursor?: any | null }, edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', createdAt: any, description?: string | null, id: string, displayName?: string | null, refId: string, isDefaultProduct: boolean, environmentId: string, updatedAt: any, productSettings: { __typename?: 'ProductSettings', subscriptionEndSetup: SubscriptionEndSetup, subscriptionCancellationTime: SubscriptionCancellationTime, downgradePlan?: { __typename?: 'Plan', refId: string, id: string } | null } } }> } };

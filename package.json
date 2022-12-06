@@ -2,13 +2,13 @@
   "name": "export-data-example",
   "version": "1.0.0",
   "description": "Export your Stigg data",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "license": "ISC",
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node ./dist/index.js",
-    "start:dev": "ts-node-dev --deps --respawn --transpile-only index.ts",
+    "start:dev": "ts-node-dev --deps --respawn --transpile-only src/index.ts",
     "generate": "graphql-codegen"
   },
   "devDependencies": {

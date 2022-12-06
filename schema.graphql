@@ -1,6 +1,4 @@
-"""
-DenyReason of get access policy
-"""
+"""DenyReason of get access policy"""
 enum AccessDeniedReason {
   CustomerNotFound
   FeatureNotFound
@@ -23,14 +21,10 @@ type AccountNotFoundError {
 }
 
 input AddCompatibleAddonsToPlanInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The ids of the relations.
-  """
+  """The ids of the relations."""
   relationIds: [String!]!
 }
 
@@ -55,15 +49,11 @@ type Addon {
   id: String!
   isLatest: Boolean
   prices(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PriceFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PriceSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [PriceSort!] = [{direction: DESC, field: createdAt}]
   ): [Price!]
   pricingType: PricingType
   product: Product
@@ -97,19 +87,13 @@ type AddonAvgAggregate {
 }
 
 type AddonConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [AddonEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -164,14 +148,10 @@ type AddonDeleteResponse {
 }
 
 type AddonEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Addon
-  """
+  """The node containing the Addon"""
   node: Addon!
 }
 
@@ -332,9 +312,7 @@ enum BillingAnchor {
   SUBSCRIPTION_START
 }
 
-"""
-Billing model.
-"""
+"""Billing model."""
 enum BillingModel {
   FLAT_FEE
   PER_UNIT
@@ -358,9 +336,7 @@ input BillingModelFilterComparison {
   notLike: BillingModel
 }
 
-"""
-Billing period.
-"""
+"""Billing period."""
 enum BillingPeriod {
   ANNUALLY
   MONTHLY
@@ -420,9 +396,7 @@ input CheckoutOptions {
   successUrl: String!
 }
 
-"""
-Cursor for paging through collections
-"""
+"""Cursor for paging through collections"""
 scalar ConnectionCursor
 
 type Coupon {
@@ -431,15 +405,11 @@ type Coupon {
   billingLinkUrl: String
   createdAt: DateTime!
   customers(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: CustomerFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [CustomerSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [CustomerSort!] = [{direction: DESC, field: createdAt}]
   ): [Customer!]
   description: String
   discountValue: Float!
@@ -472,19 +442,13 @@ type CouponAvgAggregate {
 }
 
 type CouponConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [CouponEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -502,14 +466,10 @@ type CouponCountAggregate {
 }
 
 type CouponEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Coupon
-  """
+  """The node containing the Coupon"""
   node: Coupon!
 }
 
@@ -591,9 +551,7 @@ enum CouponSortFields {
   updatedAt
 }
 
-"""
-The status of the coupon
-"""
+"""The status of the coupon"""
 enum CouponStatus {
   ACTIVE
   ARCHIVED
@@ -620,9 +578,7 @@ type CouponSumAggregate {
   id: Float
 }
 
-"""
-The type of the coupon
-"""
+"""The type of the coupon"""
 enum CouponType {
   FIXED
   PERCENTAGE
@@ -699,16 +655,12 @@ input CreateIntegrationInput {
 }
 
 input CreateManyPackageEntitlementsInput {
-  """
-  Array of records to create
-  """
+  """Array of records to create"""
   packageEntitlements: [PackageEntitlementInput!]!
 }
 
 input CreateManyPromotionalEntitlementsInput {
-  """
-  Array of records to create
-  """
+  """Array of records to create"""
   promotionalEntitlements: [PromotionalEntitlementInput!]!
 }
 
@@ -718,62 +670,44 @@ input CreateOneEnvironmentInput {
 }
 
 input CreateOneFeatureInput {
-  """
-  The record to create
-  """
+  """The record to create"""
   feature: FeatureInput!
 }
 
 input CreateOneHookInput {
-  """
-  The record to create
-  """
+  """The record to create"""
   hook: CreateHook!
 }
 
 input CreateOneIntegrationInput {
-  """
-  The record to create
-  """
+  """The record to create"""
   integration: CreateIntegrationInput!
 }
 
 input CreateOneProductInput {
-  """
-  The record to create
-  """
+  """The record to create"""
   product: ProductCreateInput!
 }
 
 union Credentials = HubspotCredentials | StripeCredentials | ZuoraCredentials
 
-"""
-Currency
-"""
+"""Currency"""
 enum Currency {
   ILS
   USD
 }
 
 input CursorPaging {
-  """
-  Paginate after opaque cursor
-  """
+  """Paginate after opaque cursor"""
   after: ConnectionCursor
 
-  """
-  Paginate before opaque cursor
-  """
+  """Paginate before opaque cursor"""
   before: ConnectionCursor
 
-  """
-  Paginate first
-  """
+  """Paginate first"""
   first: Int
 
-  """
-  Paginate last
-  """
+  """Paginate last"""
   last: Int
 }
 
@@ -802,31 +736,19 @@ type Customer {
   id: String!
   name: String
   promotionalEntitlements(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PromotionalEntitlementFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PromotionalEntitlementSort!] = [
-      { direction: DESC, field: createdAt }
-    ]
+    """Specify to sort results."""
+    sorting: [PromotionalEntitlementSort!] = [{direction: DESC, field: createdAt}]
   ): [PromotionalEntitlement!]!
   refId: String! @deprecated(reason: "Renamed to customerId")
   subscriptions(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: CustomerSubscriptionFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [CustomerSubscriptionSort!] = [
-      { direction: DESC, field: createdAt }
-    ]
+    """Specify to sort results."""
+    sorting: [CustomerSubscriptionSort!] = [{direction: DESC, field: createdAt}]
   ): [CustomerSubscription!]
   syncStates: [SyncState!]
   trialedPlans: [TrialedPlan!]
@@ -860,19 +782,13 @@ input CustomerBillingInfo {
 }
 
 type CustomerConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [CustomerEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -892,14 +808,10 @@ type CustomerCountAggregate {
 }
 
 type CustomerEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Customer
-  """
+  """The node containing the Customer"""
   node: Customer!
 }
 
@@ -1105,15 +1017,11 @@ enum CustomerSortFields {
 type CustomerSubscription {
   additionalMetaData: JSON
   addons(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: SubscriptionAddonFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [SubscriptionAddonSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [SubscriptionAddonSort!] = [{direction: DESC, field: createdAt}]
   ): [SubscriptionAddon!]
   billingId: String
   billingLinkUrl: String
@@ -1135,15 +1043,11 @@ type CustomerSubscription {
   isCustomPriceSubscription: Boolean
   plan: Plan!
   prices(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: SubscriptionPriceFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [SubscriptionPriceSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [SubscriptionPriceSort!] = [{direction: DESC, field: createdAt}]
   ): [SubscriptionPrice!]
   pricingType: PricingType!
   refId: String! @deprecated(reason: "Renamed to subscriptionId")
@@ -1176,19 +1080,13 @@ type CustomerSubscriptionAggregateGroupBy {
 }
 
 type CustomerSubscriptionConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [CustomerSubscriptionEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -1212,14 +1110,10 @@ type CustomerSubscriptionCountAggregate {
 }
 
 type CustomerSubscriptionEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the CustomerSubscription
-  """
+  """The node containing the CustomerSubscription"""
   node: CustomerSubscription!
 }
 
@@ -1408,58 +1302,42 @@ input DeleteFeatureInput {
 }
 
 input DeleteOneAddonInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOneEnvironmentInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOneHookInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOneIntegrationInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOnePackageEntitlementInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOnePriceInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOneProductInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
 input DeleteOnePromotionalEntitlementInput {
-  """
-  The id of the record to delete.
-  """
+  """The id of the record to delete."""
   id: String!
 }
 
@@ -1484,8 +1362,10 @@ type Entitlement {
   accessDeniedReason: AccessDeniedReason
   currentUsage: Float
   customerId: String
+  displayNameOverride: String
   feature: EntitlementFeature
   hasUnlimitedUsage: Boolean!
+  hiddenFromWidgets: [WidgetType!]
   isGranted: Boolean!
   nextResetDate: DateTime
   requestedUsage: Float
@@ -1532,9 +1412,7 @@ input EntitlementOptions {
   shouldTrack: Boolean = false
 }
 
-"""
-Entitlement reset period.
-"""
+"""Entitlement reset period."""
 enum EntitlementResetPeriod {
   DAY
   HOUR
@@ -1556,8 +1434,10 @@ type EntitlementWithSummary {
   accessDeniedReason: AccessDeniedReason
   currentUsage: Float
   customerId: String
+  displayNameOverride: String
   feature: EntitlementFeature
   hasUnlimitedUsage: Boolean!
+  hiddenFromWidgets: [WidgetType!]
   isGranted: Boolean!
   nextResetDate: DateTime
   requestedUsage: Float
@@ -1582,14 +1462,10 @@ enum EntitySelectionMode {
 type Environment {
   account: Account
   apiKeys(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: ApiKeyFilter = {}
 
-    """
-    Specify to sort results.
-    """
+    """Specify to sort results."""
     sorting: [ApiKeySort!] = []
   ): [ApiKey!]!
   createdAt: DateTime
@@ -1608,14 +1484,10 @@ type EnvironmentAggregateGroupBy {
 }
 
 type EnvironmentConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [EnvironmentEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 }
 
@@ -1636,14 +1508,10 @@ type EnvironmentDeleteResponse {
 }
 
 type EnvironmentEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Environment
-  """
+  """The node containing the Environment"""
   node: Environment!
 }
 
@@ -1675,9 +1543,7 @@ type EnvironmentMissingError {
   isValidationError: Boolean!
 }
 
-"""
-EnvironmentProvisionStatus.
-"""
+"""EnvironmentProvisionStatus."""
 enum EnvironmentProvisionStatus {
   DONE
   FAILED
@@ -1698,9 +1564,7 @@ enum EnvironmentSortFields {
   slug
 }
 
-"""
-error codes
-"""
+"""error codes"""
 enum ErrorCode {
   AccountNotFoundError
   AddonHasToHavePriceError
@@ -1813,14 +1677,10 @@ type EventLogCountAggregate {
 }
 
 type EventLogEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the EventLog
-  """
+  """The node containing the EventLog"""
   node: EventLog!
 }
 
@@ -1834,9 +1694,7 @@ type EventLogMinAggregate {
   id: String
 }
 
-"""
-EventLogType
-"""
+"""EventLogType"""
 enum EventLogType {
   ADDON_CREATED
   ADDON_DELETED
@@ -1917,19 +1775,13 @@ type ExperimentAvgAggregate {
 }
 
 type ExperimentConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [ExperimentEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -1944,14 +1796,10 @@ type ExperimentCountAggregate {
 }
 
 type ExperimentEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Experiment
-  """
+  """The node containing the Experiment"""
   node: Experiment!
 }
 
@@ -2033,9 +1881,7 @@ input ExperimentStatsQuery {
   experimentRefId: String!
 }
 
-"""
-The status of the EXPERIMENT
-"""
+"""The status of the EXPERIMENT"""
 enum ExperimentStatus {
   COMPLETED
   DRAFT
@@ -2100,19 +1946,13 @@ type FeatureAggregateGroupBy {
 }
 
 type FeatureConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [FeatureEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -2130,14 +1970,10 @@ type FeatureCountAggregate {
 }
 
 type FeatureEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Feature
-  """
+  """The node containing the Feature"""
   node: Feature!
 }
 
@@ -2219,9 +2055,7 @@ enum FeatureSortFields {
   updatedAt
 }
 
-"""
-Feature status.
-"""
+"""Feature status."""
 enum FeatureStatus {
   ACTIVE
   NEW
@@ -2245,9 +2079,7 @@ input FeatureStatusFilterComparison {
   notLike: FeatureStatus
 }
 
-"""
-The type of the feature
-"""
+"""The type of the feature"""
 enum FeatureType {
   BOOLEAN
   NUMBER
@@ -2315,19 +2147,13 @@ type HookAggregateGroupBy {
 }
 
 type HookConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [HookEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -2351,14 +2177,10 @@ type HookDeleteResponse {
 }
 
 type HookEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Hook
-  """
+  """The node containing the Hook"""
   node: Hook!
 }
 
@@ -2402,9 +2224,7 @@ enum HookSortFields {
   status
 }
 
-"""
-HookStatus.
-"""
+"""HookStatus."""
 enum HookStatus {
   ACTIVE
   INACTIVE
@@ -2503,14 +2323,10 @@ type ImportIntegrationTaskAggregateGroupBy {
 }
 
 type ImportIntegrationTaskConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [ImportIntegrationTaskEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 }
 
@@ -2523,14 +2339,10 @@ type ImportIntegrationTaskCountAggregate {
 }
 
 type ImportIntegrationTaskEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the ImportIntegrationTask
-  """
+  """The node containing the ImportIntegrationTask"""
   node: ImportIntegrationTask!
 }
 
@@ -2643,19 +2455,13 @@ type IntegrationAggregateGroupBy {
 }
 
 type IntegrationConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [IntegrationEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -2675,14 +2481,10 @@ type IntegrationDeleteResponse {
 }
 
 type IntegrationEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Integration
-  """
+  """The node containing the Integration"""
   node: Integration!
 }
 
@@ -2777,19 +2579,13 @@ type MemberAggregateGroupBy {
 }
 
 type MemberConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [MemberEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -2799,14 +2595,10 @@ type MemberCountAggregate {
 }
 
 type MemberEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Member
-  """
+  """The node containing the Member"""
   node: Member!
 }
 
@@ -2847,9 +2639,7 @@ enum MemberSortFields {
   id
 }
 
-"""
-Member Status.
-"""
+"""Member Status."""
 enum MemberStatus {
   INVITED
   REGISTERED
@@ -2861,9 +2651,7 @@ type MembersInviteResponse {
   successInvites: [String!]!
 }
 
-"""
-The meter type of the feature
-"""
+"""The meter type of the feature"""
 enum MeterType {
   Fluctuating
   Incremental
@@ -2906,9 +2694,7 @@ input MoneyInputDTO {
   currency: Currency
 }
 
-"""
-Montly reset period according to configuration
-"""
+"""Montly reset period according to configuration"""
 enum MonthlyAccordingTo {
   StartOfTheMonth
   SubscriptionStart
@@ -2926,27 +2712,16 @@ type Mutation {
   addCompatibleAddonsToPlan(input: AddCompatibleAddonsToPlanInput!): Plan!
   archiveOneCoupon(input: ArchiveCouponInput!): Coupon!
   archivePlan(input: ArchivePlanInput!): Plan!
-  attachCustomerPaymentMethod(
-    input: AttachCustomerPaymentMethodInput!
-  ): Customer!
-  cancelSubscription(
-    input: SubscriptionCancellationInput!
-  ): CustomerSubscription!
+  attachCustomerPaymentMethod(input: AttachCustomerPaymentMethodInput!): Customer!
+  cancelSubscription(input: SubscriptionCancellationInput!): CustomerSubscription!
   createAccount(accountName: String!): Member!
   createAddonDraft(id: String!): Addon!
   createFeature(input: FeatureInput!): Feature!
-  createManyPackageEntitlements(
-    input: CreateManyPackageEntitlementsInput!
-  ): [PackageEntitlement!]!
-  createManyPromotionalEntitlements(
-    input: CreateManyPromotionalEntitlementsInput!
-  ): [PromotionalEntitlement!]!
+  createManyPackageEntitlements(input: CreateManyPackageEntitlementsInput!): [PackageEntitlement!]!
+  createManyPromotionalEntitlements(input: CreateManyPromotionalEntitlementsInput!): [PromotionalEntitlement!]!
   createOneAddon(input: AddonCreateInput!): Addon!
   createOneCoupon(input: CreateCouponInput!): Coupon!
-  createOneCustomer(input: CustomerInput!): Customer!
-    @deprecated(
-      reason: "Use 'provisionCustomer' instead to create both customer and subscription in single operation. See 'provisionCustomer' for more info."
-    )
+  createOneCustomer(input: CustomerInput!): Customer! @deprecated(reason: "Use 'provisionCustomer' instead to create both customer and subscription in single operation. See 'provisionCustomer' for more info.")
   createOneEnvironment(input: CreateOneEnvironmentInput!): Environment!
   createOneExperiment(input: CreateExperimentInput!): Experiment!
   createOneFeature(input: CreateOneFeatureInput!): Feature!
@@ -2956,96 +2731,57 @@ type Mutation {
   createOneProduct(input: CreateOneProductInput!): Product!
   createPlanDraft(id: String!): Plan!
   createSubscription(subscription: SubscriptionInput!): CustomerSubscription!
-  createUsageMeasurement(
-    usageMeasurement: UsageMeasurementCreateInput!
-  ): UsageMeasurement!
+  createUsageMeasurement(usageMeasurement: UsageMeasurementCreateInput!): UsageMeasurement!
   deleteEnvironment(slug: String!): String!
   deleteFeature(input: DeleteFeatureInput!): Feature!
   deleteOneAddon(input: DeleteOneAddonInput!): AddonDeleteResponse!
   deleteOneCustomer(input: DeleteCustomerInput!): Customer!
-  deleteOneEnvironment(
-    input: DeleteOneEnvironmentInput!
-  ): EnvironmentDeleteResponse!
+  deleteOneEnvironment(input: DeleteOneEnvironmentInput!): EnvironmentDeleteResponse!
   deleteOneFeature(input: DeleteFeatureInput!): Feature!
   deleteOneHook(input: DeleteOneHookInput!): HookDeleteResponse!
-  deleteOneIntegration(
-    input: DeleteOneIntegrationInput!
-  ): IntegrationDeleteResponse!
-  deleteOnePackageEntitlement(
-    input: DeleteOnePackageEntitlementInput!
-  ): PackageEntitlementDeleteResponse!
+  deleteOneIntegration(input: DeleteOneIntegrationInput!): IntegrationDeleteResponse!
+  deleteOnePackageEntitlement(input: DeleteOnePackageEntitlementInput!): PackageEntitlementDeleteResponse!
   deleteOnePrice(input: DeleteOnePriceInput!): PriceDeleteResponse!
   deleteOneProduct(input: DeleteOneProductInput!): ProductDeleteResponse!
-  deleteOnePromotionalEntitlement(
-    input: DeleteOnePromotionalEntitlementInput!
-  ): PromotionalEntitlementDeleteResponse!
+  deleteOnePromotionalEntitlement(input: DeleteOnePromotionalEntitlementInput!): PromotionalEntitlementDeleteResponse!
   estimateSubscription(input: EstimateSubscriptionInput!): SubscriptionPreview!
-  estimateSubscriptionUpdate(
-    input: EstimateSubscriptionUpdateInput!
-  ): SubscriptionPreview!
+  estimateSubscriptionUpdate(input: EstimateSubscriptionUpdateInput!): SubscriptionPreview!
   hideGettingStartedPage(memberId: String!): String!
   importOneCustomer(input: ImportCustomerInput!): Customer!
-  initAddStripeCustomerPaymentMethod(
-    input: InitAddStripeCustomerPaymentMethodInput!
-  ): InitAddStripeCustomerPaymentMethod!
-  initiateCheckout(input: InitiateCheckoutInput!): Checkout!
-    @deprecated(
-      reason: "Use 'provisionSubscription' instead to create subscription or checkout session according to customer and subscription payment requirements. See 'provisionSubscription' for more info."
-    )
+  initAddStripeCustomerPaymentMethod(input: InitAddStripeCustomerPaymentMethodInput!): InitAddStripeCustomerPaymentMethod!
+  initiateCheckout(input: InitiateCheckoutInput!): Checkout! @deprecated(reason: "Use 'provisionSubscription' instead to create subscription or checkout session according to customer and subscription payment requirements. See 'provisionSubscription' for more info.")
   inviteMembers(invites: [String!]!): MembersInviteResponse!
-  migrateSubscriptionToLatest(
-    input: SubscriptionMigrationInput!
-  ): CustomerSubscription!
+  migrateSubscriptionToLatest(input: SubscriptionMigrationInput!): CustomerSubscription!
   provisionCustomer(input: ProvisionCustomerInput!): ProvisionedCustomer!
-  provisionSubscription(
-    input: ProvisionSubscription!
-  ): ProvisionSubscriptionResult!
+  provisionSubscription(input: ProvisionSubscription!): ProvisionSubscriptionResult!
   publishAddon(input: PackagePublishInput!): PublishPackageResult!
   publishPlan(input: PackagePublishInput!): PublishPackageResult!
   registerMember: User!
   removeAddonDraft(input: DiscardPackageDraftInput!): String!
   removeBasePlanFromPlan(input: RemoveBasePlanFromPlanInput!): Plan!
-  removeCompatibleAddonsFromPlan(
-    input: RemoveCompatibleAddonsFromPlanInput!
-  ): Plan!
+  removeCompatibleAddonsFromPlan(input: RemoveCompatibleAddonsFromPlanInput!): Plan!
   removeCouponFromCustomer(input: RemoveCouponFromCustomerInput!): Customer!
-  removeCouponFromCustomerSubscription(
-    input: RemoveCouponFromCustomerSubscriptionInput!
-  ): CustomerSubscription!
-  removeExperimentFromCustomer(
-    input: RemoveExperimentFromCustomerInput!
-  ): Customer!
-  removeExperimentFromCustomerSubscription(
-    input: RemoveExperimentFromCustomerSubscriptionInput!
-  ): CustomerSubscription!
+  removeCouponFromCustomerSubscription(input: RemoveCouponFromCustomerSubscriptionInput!): CustomerSubscription!
+  removeExperimentFromCustomer(input: RemoveExperimentFromCustomerInput!): Customer!
+  removeExperimentFromCustomerSubscription(input: RemoveExperimentFromCustomerSubscriptionInput!): CustomerSubscription!
   removeMember(memberId: String!): String!
   removePlanDraft(input: DiscardPackageDraftInput!): String!
-  reportEntitlementCheckRequested(
-    entitlementCheckRequested: EntitlementCheckRequested!
-  ): Boolean!
+  reportEntitlementCheckRequested(entitlementCheckRequested: EntitlementCheckRequested!): Boolean!
   resendEmailVerification: String!
   resyncIntegration(input: ResyncIntegrationInput!): ResyncIntegrationResult!
   setBasePlanOnPlan(input: SetBasePlanOnPlanInput!): Plan!
   setCompatibleAddonsOnPlan(input: SetCompatibleAddonsOnPlanInput!): Plan!
   setCouponOnCustomer(input: SetCouponOnCustomerInput!): Customer!
-  setCouponOnCustomerSubscription(
-    input: SetCouponOnCustomerSubscriptionInput!
-  ): CustomerSubscription!
+  setCouponOnCustomerSubscription(input: SetCouponOnCustomerSubscriptionInput!): CustomerSubscription!
   setExperimentOnCustomer(input: SetExperimentOnCustomerInput!): Customer!
-  setExperimentOnCustomerSubscription(
-    input: SetExperimentOnCustomerSubscriptionInput!
-  ): CustomerSubscription!
+  setExperimentOnCustomerSubscription(input: SetExperimentOnCustomerSubscriptionInput!): CustomerSubscription!
   setPackagePricing(input: PackagePricingInput!): PackagePrice!
   startExperiment(input: StartExperimentInput!): String!
   stopExperiment(input: StopExperimentInput!): String!
   triggerImportCatalog(input: ImportIntegrationCatalogInput!): AsyncTaskResult!
-  triggerImportCustomers(
-    input: ImportIntegrationCustomersInput!
-  ): AsyncTaskResult!
+  triggerImportCustomers(input: ImportIntegrationCustomersInput!): AsyncTaskResult!
   updateAccount(input: UpdateAccountInput!): Account!
-  updateEntitlementsOrder(
-    input: UpdatePackageEntitlementOrderInput!
-  ): [UpdateEntitlementsOrderDTO!]!
+  updateEntitlementsOrder(input: UpdatePackageEntitlementOrderInput!): [UpdateEntitlementsOrderDTO!]!
   updateFeature(input: UpdateFeatureInput!): Feature!
   updateOneAddon(input: AddonUpdateInput!): Addon!
   updateOneCoupon(input: UpdateCouponInput!): Coupon!
@@ -3055,14 +2791,10 @@ type Mutation {
   updateOneFeature(input: UpdateOneFeatureInput!): Feature!
   updateOneHook(input: UpdateOneHookInput!): Hook!
   updateOneIntegration(input: UpdateOneIntegrationInput!): Integration!
-  updateOnePackageEntitlement(
-    input: UpdateOnePackageEntitlementInput!
-  ): PackageEntitlement!
+  updateOnePackageEntitlement(input: UpdateOnePackageEntitlementInput!): PackageEntitlement!
   updateOnePlan(input: PlanUpdateInput!): Plan!
   updateOneProduct(input: UpdateOneProductInput!): Product!
-  updateOnePromotionalEntitlement(
-    input: UpdateOnePromotionalEntitlementInput!
-  ): PromotionalEntitlement!
+  updateOnePromotionalEntitlement(input: UpdateOnePromotionalEntitlementInput!): PromotionalEntitlement!
   updateOneSubscription(input: UpdateSubscriptionInput!): CustomerSubscription!
 }
 
@@ -3185,6 +2917,7 @@ type PackageDraftSummary {
 type PackageEntitlement {
   createdAt: DateTime
   description: String
+  displayNameOverride: String
   environmentId: String!
   feature: Feature!
   featureId: String!
@@ -3215,19 +2948,13 @@ type PackageEntitlementChange {
 }
 
 type PackageEntitlementConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [PackageEntitlementEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -3242,6 +2969,7 @@ type PackageEntitlementCountAggregate {
 type PackageEntitlementDeleteResponse {
   createdAt: DateTime
   description: String
+  displayNameOverride: String
   environmentId: String
   featureId: String
   hasUnlimitedUsage: Boolean
@@ -3256,14 +2984,10 @@ type PackageEntitlementDeleteResponse {
 }
 
 type PackageEntitlementEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the PackageEntitlement
-  """
+  """The node containing the PackageEntitlement"""
   node: PackageEntitlement!
 }
 
@@ -3357,8 +3081,9 @@ enum PackageEntitlementSortFields {
 
 input PackageEntitlementUpdateInput {
   description: String
+  displayNameOverride: String
   hasUnlimitedUsage: Boolean
-  hiddenFromWidgets: [WidgetType!] = []
+  hiddenFromWidgets: [WidgetType!]
   monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
   order: Float
   resetPeriod: EntitlementResetPeriod
@@ -3395,9 +3120,7 @@ input PackagePublishInput {
   migrationType: PublishMigrationType!
 }
 
-"""
-Package status.
-"""
+"""Package status."""
 enum PackageStatus {
   ARCHIVED
   DRAFT
@@ -3422,30 +3145,20 @@ input PackageStatusFilterComparison {
 }
 
 type PageInfo {
-  """
-  The cursor of the last returned record.
-  """
+  """The cursor of the last returned record."""
   endCursor: ConnectionCursor
 
-  """
-  true if paging forward and there are more records.
-  """
+  """true if paging forward and there are more records."""
   hasNextPage: Boolean
 
-  """
-  true if paging backwards and there are more records.
-  """
+  """true if paging backwards and there are more records."""
   hasPreviousPage: Boolean
 
-  """
-  The cursor of the first returned record.
-  """
+  """The cursor of the first returned record."""
   startCursor: ConnectionCursor
 }
 
-"""
-Type of a payment method
-"""
+"""Type of a payment method"""
 enum PaymentMethodType {
   BANK
   CARD
@@ -3508,15 +3221,11 @@ type Plan {
   billingId: String
   billingLinkUrl: String
   compatibleAddons(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: AddonFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [AddonSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [AddonSort!] = [{direction: DESC, field: createdAt}]
   ): [Addon!]
   createdAt: DateTime
   defaultTrialConfig: DefaultTrialConfig
@@ -3528,21 +3237,15 @@ type Plan {
   environment: Environment
   environmentId: String
   id: String!
-  inheritedEntitlements(
-    includeOverridden: Boolean = false
-  ): [PackageEntitlement!]
+  inheritedEntitlements(includeOverridden: Boolean = false): [PackageEntitlement!]
   isLatest: Boolean
   isParent: Boolean!
   prices(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PriceFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PriceSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [PriceSort!] = [{direction: DESC, field: createdAt}]
   ): [Price!]
   pricingType: PricingType
   product: Product!
@@ -3582,19 +3285,13 @@ type PlanCompatibleAddonChange {
 }
 
 type PlanConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [PlanEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -3627,14 +3324,10 @@ input PlanCreateInput {
 }
 
 type PlanEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Plan
-  """
+  """The node containing the Plan"""
   node: Plan!
 }
 
@@ -3806,14 +3499,10 @@ type PriceDeleteResponse {
 }
 
 type PriceEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Price
-  """
+  """The node containing the Price"""
   node: Price!
 }
 
@@ -3903,9 +3592,7 @@ input PricingModelCreateInput {
   pricePeriods: [PricePeriodInput!]!
 }
 
-"""
-Package pricing type.
-"""
+"""Package pricing type."""
 enum PricingType {
   CUSTOM
   FREE
@@ -3965,19 +3652,13 @@ type ProductAggregateGroupBy {
 }
 
 type ProductConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [ProductEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -4016,14 +3697,10 @@ type ProductDeleteResponse {
 }
 
 type ProductEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the Product
-  """
+  """The node containing the Product"""
   node: Product!
 }
 
@@ -4132,19 +3809,13 @@ type PromotionalEntitlementAggregateGroupBy {
 }
 
 type PromotionalEntitlementConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [PromotionalEntitlementEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -4176,14 +3847,10 @@ type PromotionalEntitlementDeleteResponse {
 }
 
 type PromotionalEntitlementEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the PromotionalEntitlement
-  """
+  """The node containing the PromotionalEntitlement"""
   node: PromotionalEntitlement!
 }
 
@@ -4228,9 +3895,7 @@ type PromotionalEntitlementMinAggregate {
   updatedAt: DateTime
 }
 
-"""
-Promotional entitlement duration
-"""
+"""Promotional entitlement duration"""
 enum PromotionalEntitlementPeriod {
   CUSTOM
   LIFETIME
@@ -4254,9 +3919,7 @@ enum PromotionalEntitlementSortFields {
   updatedAt
 }
 
-"""
-Promotional entitlement status
-"""
+"""Promotional entitlement status"""
 enum PromotionalEntitlementStatus {
   Active
   Expired
@@ -4346,9 +4009,7 @@ type ProvisionSubscriptionResult {
   subscription: CustomerSubscription
 }
 
-"""
-Provision subscription status
-"""
+"""Provision subscription status"""
 enum ProvisionSubscriptionStatus {
   PAYMENT_REQUIRED
   SUCCESS
@@ -4358,15 +4019,10 @@ type ProvisionedCustomer {
   customer: Customer!
   subscription: CustomerSubscription
   subscriptionDecisionStrategy: SubscriptionDecisionStrategy!
-  subscriptionStrategyDecision: SubscriptionDecisionStrategy!
-    @deprecated(
-      reason: "this field was renamed to 'subscriptionDecisionStrategy'"
-    )
+  subscriptionStrategyDecision: SubscriptionDecisionStrategy! @deprecated(reason: "this field was renamed to 'subscriptionDecisionStrategy'")
 }
 
-"""
-PublishMigrationType
-"""
+"""PublishMigrationType"""
 enum PublishMigrationType {
   ALL_CUSTOMERS
   NEW_CUSTOMERS
@@ -4378,401 +4034,258 @@ type PublishPackageResult {
 
 type Query {
   addons(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: AddonFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [AddonSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [AddonSort!] = [{direction: DESC, field: createdAt}]
   ): AddonConnection!
   cachedEntitlements(query: FetchEntitlementsQuery!): [Entitlement!]!
   coupon(
-    """
-    The id of the record to find.
-    """
+    """The id of the record to find."""
     id: String!
   ): Coupon
   coupons(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: CouponFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [CouponSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [CouponSort!] = [{direction: DESC, field: createdAt}]
   ): CouponConnection!
   currentEnvironment: String!
   currentUser: User!
   customerPortal(input: CustomerPortalInput!): CustomerPortal!
   customerSubscriptions(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: CustomerSubscriptionFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [CustomerSubscriptionSort!] = [
-      { direction: DESC, field: createdAt }
-    ]
+    """Specify to sort results."""
+    sorting: [CustomerSubscriptionSort!] = [{direction: DESC, field: createdAt}]
   ): CustomerSubscriptionConnection!
   customers(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: CustomerFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [CustomerSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [CustomerSort!] = [{direction: DESC, field: createdAt}]
   ): CustomerConnection!
   entitlement(query: FetchEntitlementQuery!): Entitlement!
   entitlements(query: FetchEntitlementsQuery!): [EntitlementWithSummary!]!
   environments(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: EnvironmentFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [EnvironmentSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [EnvironmentSort!] = [{direction: DESC, field: createdAt}]
   ): EnvironmentConnection!
   experiment(
-    """
-    The id of the record to find.
-    """
+    """The id of the record to find."""
     id: String!
   ): Experiment
   experiments(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: ExperimentFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [ExperimentSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [ExperimentSort!] = [{direction: DESC, field: createdAt}]
   ): ExperimentConnection!
   features(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: FeatureFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [FeatureSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [FeatureSort!] = [{direction: DESC, field: createdAt}]
   ): FeatureConnection!
   fetchAccount: Account
   getAddonByRefId(input: GetPackageByRefIdInput!): Addon
   getExperimentStats(query: ExperimentStatsQuery!): ExperimentStats!
-  getPaywall(input: GetPaywallInput!): [Plan!]!
-    @deprecated(reason: "Deprecated query, use paywall query instead")
+  getPaywall(input: GetPaywallInput!): [Plan!]! @deprecated(reason: "Deprecated query, use paywall query instead")
   getPlanByRefId(input: GetPackageByRefIdInput!): Plan
   hook(
-    """
-    The id of the record to find.
-    """
+    """The id of the record to find."""
     id: String!
   ): Hook
   hooks(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: HookFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [HookSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [HookSort!] = [{direction: DESC, field: createdAt}]
   ): HookConnection!
   importIntegrationTasks(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: ImportIntegrationTaskFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
+    """Specify to sort results."""
     sorting: [ImportIntegrationTaskSort!] = []
   ): ImportIntegrationTaskConnection!
   integrations(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: IntegrationFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [IntegrationSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [IntegrationSort!] = [{direction: DESC, field: createdAt}]
   ): IntegrationConnection!
   members(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: MemberFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [MemberSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [MemberSort!] = [{direction: DESC, field: createdAt}]
   ): MemberConnection!
   mockPaywall(input: GetPaywallInput!): MockPaywall!
   packageEntitlements(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PackageEntitlementFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PackageEntitlementSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [PackageEntitlementSort!] = [{direction: DESC, field: createdAt}]
   ): PackageEntitlementConnection!
   paywall(input: GetPaywallInput!): Paywall!
   plans(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PlanFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PlanSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [PlanSort!] = [{direction: DESC, field: createdAt}]
   ): PlanConnection!
   products(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: ProductFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [ProductSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [ProductSort!] = [{direction: DESC, field: createdAt}]
   ): ProductConnection!
   promotionalEntitlements(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PromotionalEntitlementFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PromotionalEntitlementSort!] = [
-      { direction: DESC, field: createdAt }
-    ]
+    """Specify to sort results."""
+    sorting: [PromotionalEntitlementSort!] = [{direction: DESC, field: createdAt}]
   ): PromotionalEntitlementConnection!
   sdkConfiguration: SdkConfiguration
   sendTestHook(testHookInput: TestHookInput!): TestHookResult!
-  stripeCustomers(
-    input: StripeCustomerSearchInput!
-  ): StripeCustomerSearchResult!
+  stripeCustomers(input: StripeCustomerSearchInput!): StripeCustomerSearchResult!
   stripeProducts(input: StripeProductSearchInput!): StripeProductSearchResult!
-  stripeSubscriptions(
-    input: StripeSubscriptionSearchInput!
-  ): StripeSubscriptionSearchResult!
+  stripeSubscriptions(input: StripeSubscriptionSearchInput!): StripeSubscriptionSearchResult!
   subscriptionMigrationTasks(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: SubscriptionMigrationTaskFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
+    """Specify to sort results."""
     sorting: [SubscriptionMigrationTaskSort!] = []
   ): SubscriptionMigrationTaskConnection!
   testHookData(eventLogType: EventLogType!): TestHook!
   usageHistory(usageHistoryInput: UsageHistoryInput!): UsageHistory!
   usageMeasurements(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: UsageMeasurementFilter = {}
 
-    """
-    Limit or page results.
-    """
-    paging: CursorPaging = { first: 10 }
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [UsageMeasurementSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [UsageMeasurementSort!] = [{direction: DESC, field: createdAt}]
   ): UsageMeasurementConnection!
 }
 
 input RemoveBasePlanFromPlanInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input RemoveCompatibleAddonsFromPlanInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The ids of the relations.
-  """
+  """The ids of the relations."""
   relationIds: [String!]!
 }
 
 input RemoveCouponFromCustomerInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input RemoveCouponFromCustomerSubscriptionInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input RemoveExperimentFromCustomerInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input RemoveExperimentFromCustomerSubscriptionInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
-union ResetPeriodConfiguration =
-    MonthlyResetPeriodConfig
-  | WeeklyResetPeriodConfig
+union ResetPeriodConfiguration = MonthlyResetPeriodConfig | WeeklyResetPeriodConfig
 
 input ResyncIntegrationInput {
   environmentId: String!
@@ -4789,88 +4302,60 @@ type SdkConfiguration {
 }
 
 input SetBasePlanOnPlanInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input SetCompatibleAddonsOnPlanInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The ids of the relations.
-  """
+  """The ids of the relations."""
   relationIds: [String!]!
 }
 
 input SetCouponOnCustomerInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input SetCouponOnCustomerSubscriptionInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input SetExperimentOnCustomerInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
 input SetExperimentOnCustomerSubscriptionInput {
-  """
-  The id of the record.
-  """
+  """The id of the record."""
   id: String!
 
-  """
-  The id of relation.
-  """
+  """The id of relation."""
   relationId: String!
 }
 
-"""
-Sort Directions
-"""
+"""Sort Directions"""
 enum SortDirection {
   ASC
   DESC
 }
 
-"""
-Sort Nulls Options
-"""
+"""Sort Nulls Options"""
 enum SortNulls {
   NULLS_FIRST
   NULLS_LAST
@@ -5032,14 +4517,10 @@ type SubscriptionAddonCountAggregate {
 }
 
 type SubscriptionAddonEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the SubscriptionAddon
-  """
+  """The node containing the SubscriptionAddon"""
   node: SubscriptionAddon!
 }
 
@@ -5150,9 +4631,7 @@ input SubscriptionBillingInfo {
   taxRateIds: [String!]
 }
 
-"""
-Subscription cancellation status
-"""
+"""Subscription cancellation status"""
 enum SubscriptionCancelReason {
   CancelledByBilling
   DetachBilling
@@ -5189,8 +4668,7 @@ input SubscriptionCancellationInput {
   subscriptionRefId: String!
 }
 
-"""
-"""
+""""""
 enum SubscriptionCancellationTime {
   END_OF_BILLING_PERIOD
   IMMEDIATE
@@ -5206,9 +4684,7 @@ type SubscriptionCoupon {
   type: CouponType!
 }
 
-"""
-Subscription decision strategy
-"""
+"""Subscription decision strategy"""
 enum SubscriptionDecisionStrategy {
   PREDEFINED_FREE_PLAN
   PREDEFINED_TRIAL_PLAN
@@ -5216,8 +4692,7 @@ enum SubscriptionDecisionStrategy {
   SKIPPED_SUBSCRIPTION_CREATION
 }
 
-"""
-"""
+""""""
 enum SubscriptionEndSetup {
   CANCEL_SUBSCRIPTION
   DOWNGRADE_TO_FREE
@@ -5230,7 +4705,6 @@ input SubscriptionInput {
   billingId: String
   billingInformation: SubscriptionBillingInfo
   billingPeriod: BillingPeriod
-  couponId: String
   crmId: String
   customerId: String!
   endDate: DateTime
@@ -5257,15 +4731,11 @@ type SubscriptionMigrationTask {
   id: String!
   initiatedPackageId: String
   packages(
-    """
-    Specify to filter the records returned.
-    """
+    """Specify to filter the records returned."""
     filter: PackageDTOFilter = {}
 
-    """
-    Specify to sort results.
-    """
-    sorting: [PackageDTOSort!] = [{ direction: DESC, field: createdAt }]
+    """Specify to sort results."""
+    sorting: [PackageDTOSort!] = [{direction: DESC, field: createdAt}]
   ): [PackageDTO!]!
   progress: Int!
   startDate: DateTime!
@@ -5282,14 +4752,10 @@ type SubscriptionMigrationTaskAggregateGroupBy {
 }
 
 type SubscriptionMigrationTaskConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [SubscriptionMigrationTaskEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 }
 
@@ -5302,14 +4768,10 @@ type SubscriptionMigrationTaskCountAggregate {
 }
 
 type SubscriptionMigrationTaskEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the SubscriptionMigrationTask
-  """
+  """The node containing the SubscriptionMigrationTask"""
   node: SubscriptionMigrationTask!
 }
 
@@ -5400,14 +4862,10 @@ type SubscriptionPriceCountAggregate {
 }
 
 type SubscriptionPriceEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the SubscriptionPrice
-  """
+  """The node containing the SubscriptionPrice"""
   node: SubscriptionPrice!
 }
 
@@ -5483,17 +4941,14 @@ type SubscriptionPriceSumAggregate {
   usageLimit: Float
 }
 
-"""
-"""
+""""""
 enum SubscriptionStartSetup {
   FREE_PLAN
   PLAN_SELECTION
   TRIAL_PERIOD
 }
 
-"""
-Subscription status
-"""
+"""Subscription status"""
 enum SubscriptionStatus {
   ACTIVE
   CANCELED
@@ -5526,9 +4981,7 @@ type SyncState {
   vendorIdentifier: VendorIdentifier!
 }
 
-"""
-Status of the integration sync
-"""
+"""Status of the integration sync"""
 enum SyncStatus {
   ERROR
   NO_SYNC_REQUIRED
@@ -5619,9 +5072,7 @@ type TrialMustBeCancelledImmediately {
   refId: String!
 }
 
-"""
-day or month.
-"""
+"""day or month."""
 enum TrialPeriodUnits {
   DAY
   MONTH
@@ -5753,86 +5204,58 @@ input UpdateIntegrationInput {
 }
 
 input UpdateOneEnvironmentInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: UpdateEnvironment!
 }
 
 input UpdateOneFeatureInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: UpdateFeature!
 }
 
 input UpdateOneHookInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: UpdateHook!
 }
 
 input UpdateOneIntegrationInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: UpdateIntegrationInput!
 }
 
 input UpdateOnePackageEntitlementInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: PackageEntitlementUpdateInput!
 }
 
 input UpdateOneProductInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: ProductUpdateInput!
 }
 
 input UpdateOnePromotionalEntitlementInput {
-  """
-  The id of the record to update
-  """
+  """The id of the record to update"""
   id: String!
 
-  """
-  The update to apply.
-  """
+  """The update to apply."""
   update: PromotionalEntitlementUpdateInput!
 }
 
@@ -5897,19 +5320,13 @@ type UsageMeasurementAvgAggregate {
 }
 
 type UsageMeasurementConnection {
-  """
-  Array of edges.
-  """
+  """Array of edges."""
   edges: [UsageMeasurementEdge!]!
 
-  """
-  Paging information
-  """
+  """Paging information"""
   pageInfo: PageInfo!
 
-  """
-  Fetch total count of records
-  """
+  """Fetch total count of records"""
   totalCount: Int!
 }
 
@@ -5928,14 +5345,10 @@ input UsageMeasurementCreateInput {
 }
 
 type UsageMeasurementEdge {
-  """
-  Cursor for this node.
-  """
+  """Cursor for this node."""
   cursor: ConnectionCursor!
 
-  """
-  The node containing the UsageMeasurement
-  """
+  """The node containing the UsageMeasurement"""
   node: UsageMeasurement!
 }
 
@@ -6061,9 +5474,7 @@ input VendorIdentifierFilterComparison {
   notLike: VendorIdentifier
 }
 
-"""
-Weekly reset period according to configuration
-"""
+"""Weekly reset period according to configuration"""
 enum WeeklyAccordingTo {
   EveryFriday
   EveryMonday
@@ -6083,9 +5494,7 @@ input WeeklyResetPeriodConfigInput {
   accordingTo: WeeklyAccordingTo!
 }
 
-"""
-The widget type
-"""
+"""The widget type"""
 enum WidgetType {
   CUSTOMER_PORTAL
   PAYWALL
@@ -6103,9 +5512,7 @@ input ZuoraCredentialsInput {
   clientSecret: String!
 }
 
-"""
-The group of the experiment
-"""
+"""The group of the experiment"""
 enum experimentGroupType {
   CONTROL
   VARIANT
