@@ -1,0 +1,5527 @@
+"""DenyReason of get access policy"""
+enum AccessDeniedReason {
+  CustomerNotFound
+  FeatureNotFound
+  NoActiveSubscription
+  NoFeatureEntitlementInSubscription
+  RequestedUsageExceedingLimit
+  Unknown
+}
+
+type Account {
+  displayName: String!
+  id: String!
+  subscriptionBillingAnchor: BillingAnchor
+  timezone: String
+}
+
+type AccountNotFoundError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+input AddCompatibleAddonsToPlanInput {
+  """The id of the record."""
+  id: String!
+
+  """The ids of the relations."""
+  relationIds: [String!]!
+}
+
+type AdditionalMetaDataChange {
+  after: JSON
+  before: JSON
+  changeType: ChangeType
+}
+
+type Addon {
+  additionalMetaData: JSON
+  billingId: String
+  billingLinkUrl: String
+  createdAt: DateTime
+  description: String
+  displayName: String!
+  draftDetails: PackageDraftDetails
+  draftSummary: PackageDraftSummary
+  entitlements: [PackageEntitlement!]
+  environment: Environment
+  environmentId: String
+  id: String!
+  isLatest: Boolean
+  prices(
+    """Specify to filter the records returned."""
+    filter: PriceFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PriceSort!] = [{direction: DESC, field: createdAt}]
+  ): [Price!]
+  pricingType: PricingType
+  product: Product
+  productId: String
+  refId: String!
+  status: PackageStatus!
+  syncStates: [SyncState!]
+  type: String
+  updatedAt: DateTime
+  versionNumber: Int!
+}
+
+type AddonAggregateGroupBy {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  isLatest: Boolean
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+type AddonAvgAggregate {
+  versionNumber: Float
+}
+
+type AddonConnection {
+  """Array of edges."""
+  edges: [AddonEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type AddonCountAggregate {
+  billingId: Int
+  createdAt: Int
+  description: Int
+  displayName: Int
+  environmentId: Int
+  id: Int
+  isLatest: Int
+  pricingType: Int
+  productId: Int
+  refId: Int
+  status: Int
+  updatedAt: Int
+  versionNumber: Int
+}
+
+input AddonCreateInput {
+  additionalMetaData: JSON
+  billingId: String
+  description: String
+  displayName: String!
+  environmentId: String
+  productId: String!
+  refId: String
+  status: PackageStatus
+}
+
+type AddonDeleteResponse {
+  additionalMetaData: JSON
+  billingId: String
+  billingLinkUrl: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  draftDetails: PackageDraftDetails
+  draftSummary: PackageDraftSummary
+  entitlements: [PackageEntitlement!]
+  environmentId: String
+  id: String
+  isLatest: Boolean
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  syncStates: [SyncState!]
+  type: String
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+type AddonEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Addon"""
+  node: Addon!
+}
+
+input AddonFilter {
+  and: [AddonFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [AddonFilter!]
+  pricingType: PricingTypeFilterComparison
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+type AddonMaxAggregate {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+type AddonMinAggregate {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+input AddonSort {
+  direction: SortDirection!
+  field: AddonSortFields!
+  nulls: SortNulls
+}
+
+enum AddonSortFields {
+  billingId
+  createdAt
+  description
+  displayName
+  environmentId
+  id
+  isLatest
+  pricingType
+  productId
+  refId
+  status
+  updatedAt
+  versionNumber
+}
+
+type AddonSumAggregate {
+  versionNumber: Float
+}
+
+input AddonUpdateInput {
+  additionalMetaData: JSON
+  billingId: String
+  description: String
+  displayName: String!
+  id: String!
+  status: PackageStatus
+}
+
+input Address {
+  addressLine1: String
+  addressLine2: String
+  city: String
+  country: String
+  phoneNumber: String
+  postalCode: String
+  state: String
+}
+
+type ApiKey {
+  id: String!
+  keyType: ApiKeyType!
+  token: String!
+}
+
+input ApiKeyFilter {
+  and: [ApiKeyFilter!]
+  id: StringFieldComparison
+  or: [ApiKeyFilter!]
+}
+
+input ApiKeySort {
+  direction: SortDirection!
+  field: ApiKeySortFields!
+  nulls: SortNulls
+}
+
+enum ApiKeySortFields {
+  id
+}
+
+enum ApiKeyType {
+  CLIENT
+  SERVER
+}
+
+input ArchiveCouponInput {
+  environmentId: String
+  refId: String!
+}
+
+input ArchivePlanInput {
+  environmentId: String
+  id: String!
+}
+
+type AsyncTaskResult {
+  taskId: String!
+}
+
+input AttachCustomerPaymentMethodInput {
+  customerId: String
+  environmentId: String
+  paymentMethodId: String!
+  refId: String
+  vendorIdentifier: VendorIdentifier!
+}
+
+type BaseError {
+  code: String!
+}
+
+type BasePlanChange {
+  after: Addon
+  before: Addon
+  changeType: ChangeType
+}
+
+enum BillingAnchor {
+  START_OF_THE_MONTH
+  SUBSCRIPTION_START
+}
+
+"""Billing model."""
+enum BillingModel {
+  FLAT_FEE
+  PER_UNIT
+  USAGE_BASED
+}
+
+input BillingModelFilterComparison {
+  eq: BillingModel
+  gt: BillingModel
+  gte: BillingModel
+  iLike: BillingModel
+  in: [BillingModel!]
+  is: Boolean
+  isNot: Boolean
+  like: BillingModel
+  lt: BillingModel
+  lte: BillingModel
+  neq: BillingModel
+  notILike: BillingModel
+  notIn: [BillingModel!]
+  notLike: BillingModel
+}
+
+"""Billing period."""
+enum BillingPeriod {
+  ANNUALLY
+  MONTHLY
+}
+
+input BillingPeriodFilterComparison {
+  eq: BillingPeriod
+  gt: BillingPeriod
+  gte: BillingPeriod
+  iLike: BillingPeriod
+  in: [BillingPeriod!]
+  is: Boolean
+  isNot: Boolean
+  like: BillingPeriod
+  lt: BillingPeriod
+  lte: BillingPeriod
+  neq: BillingPeriod
+  notILike: BillingPeriod
+  notIn: [BillingPeriod!]
+  notLike: BillingPeriod
+}
+
+input BooleanFieldComparison {
+  is: Boolean
+  isNot: Boolean
+}
+
+type CannotDeleteCustomerError {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+type CannotDeleteFeatureError {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+enum ChangeType {
+  ADDED
+  DELETED
+  MODIFIED
+  REORDERED
+}
+
+type Checkout {
+  checkoutBillingId: String!
+  checkoutUrl: String!
+  id: String!
+}
+
+input CheckoutOptions {
+  allowPromoCodes: Boolean = false
+  cancelUrl: String!
+  collectBillingAddress: Boolean = false
+  successUrl: String!
+}
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+type Coupon {
+  additionalMetaData: JSON
+  billingId: String
+  billingLinkUrl: String
+  createdAt: DateTime!
+  customers(
+    """Specify to filter the records returned."""
+    filter: CustomerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [CustomerSort!] = [{direction: DESC, field: createdAt}]
+  ): [Customer!]
+  description: String
+  discountValue: Float!
+  environment: Environment
+  environmentId: String!
+  id: String!
+  name: String!
+  refId: String!
+  status: CouponStatus!
+  syncStates: [SyncState!]
+  type: CouponType!
+  updatedAt: DateTime!
+}
+
+type CouponAggregateGroupBy {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  environmentId: String
+  id: String
+  name: String
+  refId: String
+  status: CouponStatus
+  type: CouponType
+  updatedAt: DateTime
+}
+
+type CouponAvgAggregate {
+  id: Float
+}
+
+type CouponConnection {
+  """Array of edges."""
+  edges: [CouponEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type CouponCountAggregate {
+  billingId: Int
+  createdAt: Int
+  description: Int
+  environmentId: Int
+  id: Int
+  name: Int
+  refId: Int
+  status: Int
+  type: Int
+  updatedAt: Int
+}
+
+type CouponEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Coupon"""
+  node: Coupon!
+}
+
+input CouponFilter {
+  and: [CouponFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  customers: CouponFilterCustomerFilter
+  description: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [CouponFilter!]
+  refId: StringFieldComparison
+  status: CouponStatusFilterComparison
+  type: CouponTypeFilterComparison
+  updatedAt: DateFieldComparison
+}
+
+input CouponFilterCustomerFilter {
+  and: [CouponFilterCustomerFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  crmHubspotCompanyId: StringFieldComparison
+  crmHubspotCompanyUrl: StringFieldComparison
+  crmId: StringFieldComparison
+  customerId: StringFieldComparison
+  email: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [CouponFilterCustomerFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type CouponMaxAggregate {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  environmentId: String
+  id: String
+  name: String
+  refId: String
+  status: CouponStatus
+  type: CouponType
+  updatedAt: DateTime
+}
+
+type CouponMinAggregate {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  environmentId: String
+  id: String
+  name: String
+  refId: String
+  status: CouponStatus
+  type: CouponType
+  updatedAt: DateTime
+}
+
+input CouponSort {
+  direction: SortDirection!
+  field: CouponSortFields!
+  nulls: SortNulls
+}
+
+enum CouponSortFields {
+  billingId
+  createdAt
+  description
+  environmentId
+  id
+  name
+  refId
+  status
+  type
+  updatedAt
+}
+
+"""The status of the coupon"""
+enum CouponStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+input CouponStatusFilterComparison {
+  eq: CouponStatus
+  gt: CouponStatus
+  gte: CouponStatus
+  iLike: CouponStatus
+  in: [CouponStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: CouponStatus
+  lt: CouponStatus
+  lte: CouponStatus
+  neq: CouponStatus
+  notILike: CouponStatus
+  notIn: [CouponStatus!]
+  notLike: CouponStatus
+}
+
+type CouponSumAggregate {
+  id: Float
+}
+
+"""The type of the coupon"""
+enum CouponType {
+  FIXED
+  PERCENTAGE
+}
+
+input CouponTypeFilterComparison {
+  eq: CouponType
+  gt: CouponType
+  gte: CouponType
+  iLike: CouponType
+  in: [CouponType!]
+  is: Boolean
+  isNot: Boolean
+  like: CouponType
+  lt: CouponType
+  lte: CouponType
+  neq: CouponType
+  notILike: CouponType
+  notIn: [CouponType!]
+  notLike: CouponType
+}
+
+input CreateCouponInput {
+  additionalMetaData: JSON
+  description: String
+  discountValue: Float!
+  environmentId: String
+  name: String!
+  refId: String!
+  type: CouponType!
+}
+
+input CreateEnvironment {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  id: String
+  provisionStatus: EnvironmentProvisionStatus
+  slug: String
+}
+
+input CreateEnvironmentOptions {
+  createDefaultProduct: Boolean
+}
+
+input CreateExperimentInput {
+  controlGroupName: String!
+  description: String
+  environmentId: String
+  name: String!
+  productId: String!
+  productSettings: ProductSettingsInput
+  variantGroupName: String!
+  variantPercentage: Float!
+}
+
+input CreateHook {
+  createdAt: DateTime
+  description: String
+  endpoint: String
+  environmentId: String
+  eventLogTypes: [EventLogType!]
+  id: String
+  secretKey: String
+  status: HookStatus
+}
+
+input CreateIntegrationInput {
+  environmentId: String!
+  hubspotCredentials: HubspotCredentialsInput
+  stripeCredentials: StripeCredentialsInput
+  vendorIdentifier: VendorIdentifier!
+  zuoraCredentials: ZuoraCredentialsInput
+}
+
+input CreateManyPackageEntitlementsInput {
+  """Array of records to create"""
+  packageEntitlements: [PackageEntitlementInput!]!
+}
+
+input CreateManyPromotionalEntitlementsInput {
+  """Array of records to create"""
+  promotionalEntitlements: [PromotionalEntitlementInput!]!
+}
+
+input CreateOneEnvironmentInput {
+  environment: CreateEnvironment!
+  options: CreateEnvironmentOptions
+}
+
+input CreateOneFeatureInput {
+  """The record to create"""
+  feature: FeatureInput!
+}
+
+input CreateOneHookInput {
+  """The record to create"""
+  hook: CreateHook!
+}
+
+input CreateOneIntegrationInput {
+  """The record to create"""
+  integration: CreateIntegrationInput!
+}
+
+input CreateOneProductInput {
+  """The record to create"""
+  product: ProductCreateInput!
+}
+
+union Credentials = HubspotCredentials | StripeCredentials | ZuoraCredentials
+
+"""Currency"""
+enum Currency {
+  ILS
+  USD
+}
+
+input CursorPaging {
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+type Customer {
+  additionalMetaData: JSON
+  billingId: String
+  billingLinkUrl: String
+  coupon: Coupon
+  createdAt: DateTime
+  crmHubspotCompanyId: String
+  crmHubspotCompanyUrl: String
+  crmId: String
+  customerId: String!
+  defaultPaymentExpirationMonth: Int
+  defaultPaymentExpirationYear: Int
+  defaultPaymentMethodId: String
+  defaultPaymentMethodLast4Digits: String
+  defaultPaymentMethodType: PaymentMethodType
+  email: String
+  environment: Environment
+  environmentId: String!
+  excludeFromExperiment: Boolean
+  experiment: Experiment
+  experimentInfo: experimentInfo
+  hasPaymentMethod: Boolean!
+  id: String!
+  name: String
+  promotionalEntitlements(
+    """Specify to filter the records returned."""
+    filter: PromotionalEntitlementFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PromotionalEntitlementSort!] = [{direction: DESC, field: createdAt}]
+  ): [PromotionalEntitlement!]!
+  refId: String! @deprecated(reason: "Renamed to customerId")
+  subscriptions(
+    """Specify to filter the records returned."""
+    filter: CustomerSubscriptionFilter = {}
+
+    """Specify to sort results."""
+    sorting: [CustomerSubscriptionSort!] = [{direction: DESC, field: createdAt}]
+  ): [CustomerSubscription!]
+  syncStates: [SyncState!]
+  trialedPlans: [TrialedPlan!]
+  updatedAt: DateTime!
+}
+
+type CustomerAggregateGroupBy {
+  billingId: String
+  createdAt: DateTime
+  crmHubspotCompanyId: String
+  crmHubspotCompanyUrl: String
+  crmId: String
+  customerId: String
+  email: String
+  environmentId: String
+  id: String
+  name: String
+  refId: String
+  updatedAt: DateTime
+}
+
+input CustomerBillingInfo {
+  billingAddress: Address
+  currency: Currency = USD
+  invoiceCustomFields: JSON
+  language: String
+  paymentMethodId: String
+  shippingAddress: Address
+  taxIds: [TaxExempt!]
+  timezone: String
+}
+
+type CustomerConnection {
+  """Array of edges."""
+  edges: [CustomerEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type CustomerCountAggregate {
+  billingId: Int
+  createdAt: Int
+  crmHubspotCompanyId: Int
+  crmHubspotCompanyUrl: Int
+  crmId: Int
+  customerId: Int
+  email: Int
+  environmentId: Int
+  id: Int
+  name: Int
+  refId: Int
+  updatedAt: Int
+}
+
+type CustomerEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Customer"""
+  node: Customer!
+}
+
+input CustomerFilter {
+  and: [CustomerFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  crmHubspotCompanyId: StringFieldComparison
+  crmHubspotCompanyUrl: StringFieldComparison
+  crmId: StringFieldComparison
+  customerId: StringFieldComparison
+  email: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [CustomerFilter!]
+  promotionalEntitlements: CustomerFilterPromotionalEntitlementFilter
+  refId: StringFieldComparison
+  subscriptions: CustomerFilterCustomerSubscriptionFilter
+  updatedAt: DateFieldComparison
+}
+
+input CustomerFilterCustomerSubscriptionFilter {
+  and: [CustomerFilterCustomerSubscriptionFilter!]
+  billingId: StringFieldComparison
+  cancelReason: SubscriptionCancelReasonFilterComparison
+  cancellationDate: DateFieldComparison
+  createdAt: DateFieldComparison
+  crmId: StringFieldComparison
+  crmLinkUrl: StringFieldComparison
+  effectiveEndDate: DateFieldComparison
+  endDate: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [CustomerFilterCustomerSubscriptionFilter!]
+  pricingType: PricingTypeFilterComparison
+  refId: StringFieldComparison
+  startDate: DateFieldComparison
+  status: SubscriptionStatusFilterComparison
+  subscriptionId: StringFieldComparison
+  trialEndDate: DateFieldComparison
+}
+
+input CustomerFilterPromotionalEntitlementFilter {
+  and: [CustomerFilterPromotionalEntitlementFilter!]
+  createdAt: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [CustomerFilterPromotionalEntitlementFilter!]
+  status: PromotionalEntitlementStatusFilterComparison
+  updatedAt: DateFieldComparison
+}
+
+input CustomerInput {
+  additionalMetaData: JSON
+  billingId: String
+  billingInformation: CustomerBillingInfo
+  couponRefId: String
+  createdAt: DateTime
+  crmId: String
+  customerId: String
+  email: String
+  environmentId: String
+  name: String
+  refId: String
+  shouldSyncFree: Boolean = true
+}
+
+type CustomerMaxAggregate {
+  billingId: String
+  createdAt: DateTime
+  crmHubspotCompanyId: String
+  crmHubspotCompanyUrl: String
+  crmId: String
+  customerId: String
+  email: String
+  environmentId: String
+  id: String
+  name: String
+  refId: String
+  updatedAt: DateTime
+}
+
+type CustomerMinAggregate {
+  billingId: String
+  createdAt: DateTime
+  crmHubspotCompanyId: String
+  crmHubspotCompanyUrl: String
+  crmId: String
+  customerId: String
+  email: String
+  environmentId: String
+  id: String
+  name: String
+  refId: String
+  updatedAt: DateTime
+}
+
+type CustomerNoBillingId {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+type CustomerNotFoundError {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+type CustomerPortal {
+  billingInformation: CustomerPortalBillingInformation!
+  billingPortalUrl: String
+  canUpgradeSubscription: Boolean!
+  entitlements: [Entitlement!]!
+  promotionalEntitlements: [CustomerPortalPromotionalEntitlement!]!
+  showWatermark: Boolean!
+  subscriptions: [CustomerPortalSubscription!]!
+}
+
+type CustomerPortalAddon {
+  addonId: String!
+  description: String
+  displayName: String!
+  quantity: Int!
+}
+
+type CustomerPortalBillingInformation {
+  defaultPaymentExpirationMonth: Int
+  defaultPaymentExpirationYear: Int
+  defaultPaymentMethodId: String
+  defaultPaymentMethodLast4Digits: String
+  defaultPaymentMethodType: PaymentMethodType
+  email: String
+  name: String
+}
+
+input CustomerPortalInput {
+  customerId: String!
+}
+
+type CustomerPortalPricingFeature {
+  description: String
+  displayName: String!
+  featureType: FeatureType!
+  featureUnits: String
+  featureUnitsPlural: String
+  meterType: MeterType
+}
+
+type CustomerPortalPromotionalEntitlement {
+  description: String
+  displayName: String!
+  endDate: DateTime
+  hasUnlimitedUsage: Boolean
+  period: PromotionalEntitlementPeriod!
+  startDate: DateTime!
+  usageLimit: Float
+}
+
+type CustomerPortalSubscription {
+  addons: [CustomerPortalAddon!]!
+  billingPeriodRange: DateRange
+  planName: String!
+  pricing: CustomerPortalSubscriptionPricing!
+  status: SubscriptionStatus!
+  subscriptionId: String!
+  totalPrice: CustomerSubscriptionTotalPrice
+  trialRemainingDays: Int
+}
+
+type CustomerPortalSubscriptionPricing {
+  billingModel: BillingModel
+  billingPeriod: BillingPeriod
+  feature: CustomerPortalPricingFeature
+  price: Money
+  pricingType: PricingType!
+  unitQuantity: Int
+  usageBasedEstimatedBill: Float
+}
+
+input CustomerSort {
+  direction: SortDirection!
+  field: CustomerSortFields!
+  nulls: SortNulls
+}
+
+enum CustomerSortFields {
+  billingId
+  createdAt
+  crmHubspotCompanyId
+  crmHubspotCompanyUrl
+  crmId
+  customerId
+  email
+  environmentId
+  id
+  name
+  refId
+  updatedAt
+}
+
+type CustomerSubscription {
+  additionalMetaData: JSON
+  addons(
+    """Specify to filter the records returned."""
+    filter: SubscriptionAddonFilter = {}
+
+    """Specify to sort results."""
+    sorting: [SubscriptionAddonSort!] = [{direction: DESC, field: createdAt}]
+  ): [SubscriptionAddon!]
+  billingId: String
+  billingLinkUrl: String
+  cancelReason: SubscriptionCancelReason
+  cancellationDate: DateTime
+  coupon: SubscriptionCoupon
+  createdAt: DateTime
+  crmId: String
+  crmLinkUrl: String
+  currentBillingPeriodEnd: DateTime
+  customer: Customer!
+  effectiveEndDate: DateTime
+  endDate: DateTime
+  environment: Environment!
+  environmentId: String!
+  experiment: Experiment
+  experimentInfo: experimentInfo
+  id: String!
+  isCustomPriceSubscription: Boolean
+  plan: Plan!
+  prices(
+    """Specify to filter the records returned."""
+    filter: SubscriptionPriceFilter = {}
+
+    """Specify to sort results."""
+    sorting: [SubscriptionPriceSort!] = [{direction: DESC, field: createdAt}]
+  ): [SubscriptionPrice!]
+  pricingType: PricingType!
+  refId: String! @deprecated(reason: "Renamed to subscriptionId")
+  startDate: DateTime!
+  status: SubscriptionStatus!
+  subscriptionId: String!
+  syncStates: [SyncState!]
+  totalPrice: CustomerSubscriptionTotalPrice
+  trialEndDate: DateTime
+  wasInTrial: Boolean
+}
+
+type CustomerSubscriptionAggregateGroupBy {
+  billingId: String
+  cancelReason: SubscriptionCancelReason
+  cancellationDate: DateTime
+  createdAt: DateTime
+  crmId: String
+  crmLinkUrl: String
+  effectiveEndDate: DateTime
+  endDate: DateTime
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  refId: String
+  startDate: DateTime
+  status: SubscriptionStatus
+  subscriptionId: String
+  trialEndDate: DateTime
+}
+
+type CustomerSubscriptionConnection {
+  """Array of edges."""
+  edges: [CustomerSubscriptionEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type CustomerSubscriptionCountAggregate {
+  billingId: Int
+  cancelReason: Int
+  cancellationDate: Int
+  createdAt: Int
+  crmId: Int
+  crmLinkUrl: Int
+  effectiveEndDate: Int
+  endDate: Int
+  environmentId: Int
+  id: Int
+  pricingType: Int
+  refId: Int
+  startDate: Int
+  status: Int
+  subscriptionId: Int
+  trialEndDate: Int
+}
+
+type CustomerSubscriptionEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the CustomerSubscription"""
+  node: CustomerSubscription!
+}
+
+input CustomerSubscriptionFilter {
+  addons: CustomerSubscriptionFilterSubscriptionAddonFilter
+  and: [CustomerSubscriptionFilter!]
+  billingId: StringFieldComparison
+  cancelReason: SubscriptionCancelReasonFilterComparison
+  cancellationDate: DateFieldComparison
+  createdAt: DateFieldComparison
+  crmId: StringFieldComparison
+  crmLinkUrl: StringFieldComparison
+  customer: CustomerSubscriptionFilterCustomerFilter
+  effectiveEndDate: DateFieldComparison
+  endDate: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [CustomerSubscriptionFilter!]
+  prices: CustomerSubscriptionFilterSubscriptionPriceFilter
+  pricingType: PricingTypeFilterComparison
+  refId: StringFieldComparison
+  startDate: DateFieldComparison
+  status: SubscriptionStatusFilterComparison
+  subscriptionId: StringFieldComparison
+  trialEndDate: DateFieldComparison
+}
+
+input CustomerSubscriptionFilterCustomerFilter {
+  and: [CustomerSubscriptionFilterCustomerFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  crmHubspotCompanyId: StringFieldComparison
+  crmHubspotCompanyUrl: StringFieldComparison
+  crmId: StringFieldComparison
+  customerId: StringFieldComparison
+  email: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [CustomerSubscriptionFilterCustomerFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+input CustomerSubscriptionFilterSubscriptionAddonFilter {
+  and: [CustomerSubscriptionFilterSubscriptionAddonFilter!]
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [CustomerSubscriptionFilterSubscriptionAddonFilter!]
+  quantity: NumberFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+input CustomerSubscriptionFilterSubscriptionPriceFilter {
+  and: [CustomerSubscriptionFilterSubscriptionPriceFilter!]
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [CustomerSubscriptionFilterSubscriptionPriceFilter!]
+  updatedAt: DateFieldComparison
+  usageLimit: NumberFieldComparison
+}
+
+type CustomerSubscriptionMaxAggregate {
+  billingId: String
+  cancelReason: SubscriptionCancelReason
+  cancellationDate: DateTime
+  createdAt: DateTime
+  crmId: String
+  crmLinkUrl: String
+  effectiveEndDate: DateTime
+  endDate: DateTime
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  refId: String
+  startDate: DateTime
+  status: SubscriptionStatus
+  subscriptionId: String
+  trialEndDate: DateTime
+}
+
+type CustomerSubscriptionMinAggregate {
+  billingId: String
+  cancelReason: SubscriptionCancelReason
+  cancellationDate: DateTime
+  createdAt: DateTime
+  crmId: String
+  crmLinkUrl: String
+  effectiveEndDate: DateTime
+  endDate: DateTime
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  refId: String
+  startDate: DateTime
+  status: SubscriptionStatus
+  subscriptionId: String
+  trialEndDate: DateTime
+}
+
+input CustomerSubscriptionSort {
+  direction: SortDirection!
+  field: CustomerSubscriptionSortFields!
+  nulls: SortNulls
+}
+
+enum CustomerSubscriptionSortFields {
+  billingId
+  cancelReason
+  cancellationDate
+  createdAt
+  crmId
+  crmLinkUrl
+  effectiveEndDate
+  endDate
+  environmentId
+  id
+  pricingType
+  refId
+  startDate
+  status
+  subscriptionId
+  trialEndDate
+}
+
+type CustomerSubscriptionTotalPrice {
+  addonsTotal: Money!
+  subTotal: Money!
+  total: Money!
+}
+
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
+type DateRange {
+  end: DateTime
+  start: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DefaultTrialConfig {
+  duration: Float!
+  units: TrialPeriodUnits!
+}
+
+type DefaultTrialConfigChange {
+  after: DefaultTrialConfig
+  before: DefaultTrialConfig
+  changeType: ChangeType
+}
+
+input DefaultTrialConfigInputDTO {
+  duration: Float
+  units: TrialPeriodUnits
+}
+
+input DeleteCustomerInput {
+  environmentId: String
+  id: String!
+}
+
+input DeleteFeatureInput {
+  environmentId: String
+  id: String!
+}
+
+input DeleteOneAddonInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOneEnvironmentInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOneHookInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOneIntegrationInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOnePackageEntitlementInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOnePriceInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOneProductInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DeleteOnePromotionalEntitlementInput {
+  """The id of the record to delete."""
+  id: String!
+}
+
+input DiscardPackageDraftInput {
+  environmentId: String!
+  refId: String!
+}
+
+type DuplicatedEntityNotAllowedError {
+  code: String!
+  entityName: String!
+  identifier: String!
+  isValidationError: Boolean!
+}
+
+type EditAllowedOnDraftPackageOnlyError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+type Entitlement {
+  accessDeniedReason: AccessDeniedReason
+  currentUsage: Float
+  customerId: String
+  displayNameOverride: String
+  feature: EntitlementFeature
+  hasUnlimitedUsage: Boolean!
+  hiddenFromWidgets: [WidgetType!]
+  isGranted: Boolean!
+  nextResetDate: DateTime
+  requestedUsage: Float
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  usageLimit: Float
+}
+
+input EntitlementCheckRequested {
+  customerId: String!
+  entitlementCheckResult: EntitlementCheckResult!
+  environmentId: String
+  featureId: String!
+  requestedUsage: Float
+}
+
+input EntitlementCheckResult {
+  accessDeniedReason: AccessDeniedReason
+  currentUsage: Float
+  hasAccess: Boolean!
+  hasUnlimitedUsage: Boolean = false
+  monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
+  nextResetDate: DateTime
+  requestedUsage: Float
+  resetPeriod: EntitlementResetPeriod
+  usageLimit: Float
+  weeklyResetPeriodConfiguration: WeeklyResetPeriodConfigInput
+}
+
+type EntitlementFeature {
+  description: String
+  displayName: String!
+  featureStatus: FeatureStatus!
+  featureType: FeatureType!
+  featureUnits: String
+  featureUnitsPlural: String
+  id: String!
+  meterType: MeterType
+  refId: String!
+}
+
+input EntitlementOptions {
+  requestedUsage: Float
+  shouldTrack: Boolean = false
+}
+
+"""Entitlement reset period."""
+enum EntitlementResetPeriod {
+  DAY
+  HOUR
+  MONTH
+  WEEK
+}
+
+type EntitlementSummary {
+  addonQuantity: Float
+  featurePackageEntitlement: PackageEntitlement
+  featurePromotionalEntitlement: PromotionalEntitlement
+  isEffectiveEntitlement: Boolean!
+  plan: Plan
+  priceEntitlement: PriceEntitlement
+  subscription: CustomerSubscription
+}
+
+type EntitlementWithSummary {
+  accessDeniedReason: AccessDeniedReason
+  currentUsage: Float
+  customerId: String
+  displayNameOverride: String
+  feature: EntitlementFeature
+  hasUnlimitedUsage: Boolean!
+  hiddenFromWidgets: [WidgetType!]
+  isGranted: Boolean!
+  nextResetDate: DateTime
+  requestedUsage: Float
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  summaries: [EntitlementSummary!]
+  usageLimit: Float
+}
+
+type EntitlementsUpdated {
+  accountId: String!
+  customerId: String!
+  entitlements: [Entitlement!]!
+  environmentId: String!
+}
+
+enum EntitySelectionMode {
+  BLACK_LIST
+  WHITE_LIST
+}
+
+type Environment {
+  account: Account
+  apiKeys(
+    """Specify to filter the records returned."""
+    filter: ApiKeyFilter = {}
+
+    """Specify to sort results."""
+    sorting: [ApiKeySort!] = []
+  ): [ApiKey!]!
+  createdAt: DateTime
+  description: String
+  displayName: String!
+  id: String!
+  provisionStatus: EnvironmentProvisionStatus
+  slug: String!
+}
+
+type EnvironmentAggregateGroupBy {
+  createdAt: DateTime
+  displayName: String
+  id: String
+  slug: String
+}
+
+type EnvironmentConnection {
+  """Array of edges."""
+  edges: [EnvironmentEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type EnvironmentCountAggregate {
+  createdAt: Int
+  displayName: Int
+  id: Int
+  slug: Int
+}
+
+type EnvironmentDeleteResponse {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  id: String
+  provisionStatus: EnvironmentProvisionStatus
+  slug: String
+}
+
+type EnvironmentEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Environment"""
+  node: Environment!
+}
+
+input EnvironmentFilter {
+  and: [EnvironmentFilter!]
+  createdAt: DateFieldComparison
+  displayName: StringFieldComparison
+  id: StringFieldComparison
+  or: [EnvironmentFilter!]
+  slug: StringFieldComparison
+}
+
+type EnvironmentMaxAggregate {
+  createdAt: DateTime
+  displayName: String
+  id: String
+  slug: String
+}
+
+type EnvironmentMinAggregate {
+  createdAt: DateTime
+  displayName: String
+  id: String
+  slug: String
+}
+
+type EnvironmentMissingError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+"""EnvironmentProvisionStatus."""
+enum EnvironmentProvisionStatus {
+  DONE
+  FAILED
+  IN_PROGRESS
+  NOT_PROVISIONED
+}
+
+input EnvironmentSort {
+  direction: SortDirection!
+  field: EnvironmentSortFields!
+  nulls: SortNulls
+}
+
+enum EnvironmentSortFields {
+  createdAt
+  displayName
+  id
+  slug
+}
+
+"""error codes"""
+enum ErrorCode {
+  AccountNotFoundError
+  AddonHasToHavePriceError
+  AddonNotFound
+  ArchivedCouponCantBeApplied
+  BadUserInput
+  BillingPeriodMissingError
+  CannotDeleteCustomerError
+  CannotDeleteFeatureError
+  CannotEditPackageInNonDraftMode
+  CheckoutIsNotSupported
+  CheckoutOptionsMissing
+  CouponNotFound
+  CustomerAlreadyUsesCoupon
+  CustomerHasNoPaymentMethod
+  CustomerNoBillingId
+  CustomerNotFound
+  DraftPlanCantBeArchived
+  DuplicatedEntityNotAllowed
+  EditAllowedOnDraftPackageOnlyError
+  EntitlementsMustBelongToSamePackage
+  EntityIdDifferentFromRefIdError
+  EnvironmentMissing
+  ExperimentAlreadyRunning
+  ExperimentNotFoundError
+  ExperimentStatusError
+  FailedToImportCustomer
+  FeatureNotFound
+  IdentityForbidden
+  ImportAlreadyInProgress
+  InitStripePaymentMethodError
+  IntegrationNotFound
+  IntegrityViolation
+  InvalidAddressError
+  InvalidArgumentError
+  InvalidCancellationDate
+  InvalidEntitlementResetPeriod
+  InvalidMemberDelete
+  InvalidQuantity
+  InvalidSubscriptionStatus
+  InvalidUpdatePriceUnitAmountError
+  InvalidUsageValueForIncrementalFeatureError
+  MemberInvitationError
+  MemberNotFound
+  MeteringNotAvailableForFeatureType
+  MissingEntityIdError
+  NoFeatureEntitlementInSubscription
+  OperationNotAllowedDuringInProgressExperiment
+  PackageAlreadyPublished
+  PackagePricingTypeNotSet
+  PlanAlreadyExtended
+  PlanIsUsedAsDefaultStartPlan
+  PlanIsUsedAsDowngradePlan
+  PlanNotFound
+  PlanWithChildCantBeDeleted
+  PlansCircularDependencyError
+  PriceNotFound
+  RateLimitExceeded
+  ResyncAlreadyInProgress
+  SelectedBillingModelDoesntMatchImportedItemError
+  StripeCustomerIsDeleted
+  SubscriptionAlreadyCanceledOrExpired
+  SubscriptionMustHaveSinglePlanError
+  SubscriptionNotFound
+  TrialMinDateError
+  TrialMustBeCancelledImmediately
+  UnPublishedPackage
+  Unauthenticated
+  UncompatibleSubscriptionAddon
+  UnexpectedError
+  UnsupportedFeatureType
+  UnsupportedVendorIdentifier
+}
+
+input EstimateSubscriptionInput {
+  addons: [SubscriptionAddonInput!]
+  billingInformation: SubscriptionBillingInfo
+  billingPeriod: BillingPeriod
+  customerId: String!
+  environmentId: String
+  planId: String
+  priceUnitAmount: Float
+  startDate: DateTime
+}
+
+input EstimateSubscriptionUpdateInput {
+  addons: [SubscriptionAddonInput!]
+  environmentId: String
+  subscriptionId: String!
+  unitQuantity: Float
+}
+
+type EventLog {
+  description: String
+  environment: Environment
+  environmentId: String!
+  eventLogType: EventLogType!
+  id: String!
+  webhookEndpoints: [String!]
+}
+
+type EventLogAggregateGroupBy {
+  environmentId: String
+  id: String
+}
+
+type EventLogCountAggregate {
+  environmentId: Int
+  id: Int
+}
+
+type EventLogEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the EventLog"""
+  node: EventLog!
+}
+
+type EventLogMaxAggregate {
+  environmentId: String
+  id: String
+}
+
+type EventLogMinAggregate {
+  environmentId: String
+  id: String
+}
+
+"""EventLogType"""
+enum EventLogType {
+  ADDON_CREATED
+  ADDON_DELETED
+  ADDON_UPDATED
+  COUPON_ARCHIVED
+  COUPON_CREATED
+  COUPON_UPDATED
+  CREATE_SUBSCRIPTION_FAILED
+  CUSTOMER_CREATED
+  CUSTOMER_DELETED
+  CUSTOMER_PAYMENT_FAILED
+  CUSTOMER_UPDATED
+  ENTITLEMENTS_UPDATED
+  ENTITLEMENT_DENIED
+  ENTITLEMENT_GRANTED
+  ENTITLEMENT_REQUESTED
+  FEATURE_CREATED
+  FEATURE_DELETED
+  FEATURE_UPDATED
+  IMPORT_INTEGRATION_CATALOG_TRIGGERED
+  IMPORT_INTEGRATION_CUSTOMERS_TRIGGERED
+  MEASUREMENT_REPORTED
+  PACKAGE_PUBLISHED
+  PLAN_CREATED
+  PLAN_DELETED
+  PLAN_UPDATED
+  PROMOTIONAL_ENTITLEMENT_EXPIRED
+  PROMOTIONAL_ENTITLEMENT_GRANTED
+  PROMOTIONAL_ENTITLEMENT_REVOKED
+  PROMOTIONAL_ENTITLEMENT_UPDATED
+  RESYNC_INTEGRATION_TRIGGERED
+  SUBSCRIPTION_CANCELED
+  SUBSCRIPTION_CREATED
+  SUBSCRIPTION_EXPIRED
+  SUBSCRIPTION_TRIAL_CONVERTED
+  SUBSCRIPTION_TRIAL_ENDS_SOON
+  SUBSCRIPTION_TRIAL_EXPIRED
+  SUBSCRIPTION_TRIAL_STARTED
+  SUBSCRIPTION_UPDATED
+  SUBSCRIPTION_USAGE_UPDATED
+  SYNC_FAILED
+}
+
+type Experiment {
+  controlGroupName: String!
+  createdAt: DateTime!
+  customers: Customer
+  description: String
+  environment: Environment
+  environmentId: String!
+  id: String!
+  initialProductSettings: ProductSettings
+  name: String!
+  product: Product
+  productId: String!
+  productSettings: ProductSettings!
+  refId: String!
+  startedAt: DateTime
+  status: ExperimentStatus!
+  stoppedAt: DateTime
+  updatedAt: DateTime!
+  variantGroupName: String!
+  variantPercentage: Float!
+}
+
+type ExperimentAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  name: String
+  productId: String
+  refId: String
+  status: ExperimentStatus
+}
+
+type ExperimentAvgAggregate {
+  id: Float
+}
+
+type ExperimentConnection {
+  """Array of edges."""
+  edges: [ExperimentEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ExperimentCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+  name: Int
+  productId: Int
+  refId: Int
+  status: Int
+}
+
+type ExperimentEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Experiment"""
+  node: Experiment!
+}
+
+input ExperimentFilter {
+  and: [ExperimentFilter!]
+  createdAt: DateFieldComparison
+  customers: ExperimentFilterCustomerFilter
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [ExperimentFilter!]
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: ExperimentStatusFilterComparison
+}
+
+input ExperimentFilterCustomerFilter {
+  and: [ExperimentFilterCustomerFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  crmHubspotCompanyId: StringFieldComparison
+  crmHubspotCompanyUrl: StringFieldComparison
+  crmId: StringFieldComparison
+  customerId: StringFieldComparison
+  email: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [ExperimentFilterCustomerFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type ExperimentMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  name: String
+  productId: String
+  refId: String
+  status: ExperimentStatus
+}
+
+type ExperimentMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  name: String
+  productId: String
+  refId: String
+  status: ExperimentStatus
+}
+
+input ExperimentSort {
+  direction: SortDirection!
+  field: ExperimentSortFields!
+  nulls: SortNulls
+}
+
+enum ExperimentSortFields {
+  createdAt
+  environmentId
+  id
+  name
+  productId
+  refId
+  status
+}
+
+type ExperimentStats {
+  controlPaidSubscriptions: Float!
+  controlSubscriptions: Float!
+  variantPaidSubscriptions: Float!
+  variantSubscriptions: Float!
+}
+
+input ExperimentStatsQuery {
+  environmentId: String
+  experimentRefId: String!
+}
+
+"""The status of the EXPERIMENT"""
+enum ExperimentStatus {
+  COMPLETED
+  DRAFT
+  IN_PROGRESS
+}
+
+input ExperimentStatusFilterComparison {
+  eq: ExperimentStatus
+  gt: ExperimentStatus
+  gte: ExperimentStatus
+  iLike: ExperimentStatus
+  in: [ExperimentStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: ExperimentStatus
+  lt: ExperimentStatus
+  lte: ExperimentStatus
+  neq: ExperimentStatus
+  notILike: ExperimentStatus
+  notIn: [ExperimentStatus!]
+  notLike: ExperimentStatus
+}
+
+type ExperimentSumAggregate {
+  id: Float
+}
+
+type FailedToImportCustomerError {
+  billingId: String!
+  code: String!
+  isValidationError: Boolean!
+}
+
+type Feature {
+  account: Account
+  createdAt: DateTime
+  description: String
+  displayName: String!
+  environment: Environment
+  environmentId: String!
+  featureStatus: FeatureStatus!
+  featureType: FeatureType!
+  featureUnits: String
+  featureUnitsPlural: String
+  id: String!
+  meterType: MeterType
+  refId: String!
+  updatedAt: DateTime!
+}
+
+type FeatureAggregateGroupBy {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  featureStatus: FeatureStatus
+  featureType: FeatureType
+  id: String
+  meterType: MeterType
+  refId: String
+  updatedAt: DateTime
+}
+
+type FeatureConnection {
+  """Array of edges."""
+  edges: [FeatureEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type FeatureCountAggregate {
+  createdAt: Int
+  description: Int
+  displayName: Int
+  environmentId: Int
+  featureStatus: Int
+  featureType: Int
+  id: Int
+  meterType: Int
+  refId: Int
+  updatedAt: Int
+}
+
+type FeatureEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Feature"""
+  node: Feature!
+}
+
+input FeatureFilter {
+  and: [FeatureFilter!]
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  featureStatus: FeatureStatusFilterComparison
+  featureType: FeatureTypeFilterComparison
+  id: StringFieldComparison
+  meterType: MeterTypeFilterComparison
+  or: [FeatureFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+input FeatureInput {
+  description: String
+  displayName: String!
+  environmentId: String!
+  featureStatus: FeatureStatus
+  featureType: FeatureType!
+  featureUnits: String
+  featureUnitsPlural: String
+  meterType: MeterType
+  refId: String!
+}
+
+type FeatureMaxAggregate {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  featureStatus: FeatureStatus
+  featureType: FeatureType
+  id: String
+  meterType: MeterType
+  refId: String
+  updatedAt: DateTime
+}
+
+type FeatureMinAggregate {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  featureStatus: FeatureStatus
+  featureType: FeatureType
+  id: String
+  meterType: MeterType
+  refId: String
+  updatedAt: DateTime
+}
+
+type FeatureNotFoundError {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+input FeatureSort {
+  direction: SortDirection!
+  field: FeatureSortFields!
+  nulls: SortNulls
+}
+
+enum FeatureSortFields {
+  createdAt
+  description
+  displayName
+  environmentId
+  featureStatus
+  featureType
+  id
+  meterType
+  refId
+  updatedAt
+}
+
+"""Feature status."""
+enum FeatureStatus {
+  ACTIVE
+  NEW
+  SUSPENDED
+}
+
+input FeatureStatusFilterComparison {
+  eq: FeatureStatus
+  gt: FeatureStatus
+  gte: FeatureStatus
+  iLike: FeatureStatus
+  in: [FeatureStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: FeatureStatus
+  lt: FeatureStatus
+  lte: FeatureStatus
+  neq: FeatureStatus
+  notILike: FeatureStatus
+  notIn: [FeatureStatus!]
+  notLike: FeatureStatus
+}
+
+"""The type of the feature"""
+enum FeatureType {
+  BOOLEAN
+  NUMBER
+}
+
+input FeatureTypeFilterComparison {
+  eq: FeatureType
+  gt: FeatureType
+  gte: FeatureType
+  iLike: FeatureType
+  in: [FeatureType!]
+  is: Boolean
+  isNot: Boolean
+  like: FeatureType
+  lt: FeatureType
+  lte: FeatureType
+  neq: FeatureType
+  notILike: FeatureType
+  notIn: [FeatureType!]
+  notLike: FeatureType
+}
+
+input FetchEntitlementQuery {
+  customerId: String!
+  environmentId: String
+  featureId: String!
+  options: EntitlementOptions
+}
+
+input FetchEntitlementsQuery {
+  customerId: String!
+  environmentId: String
+}
+
+input GetPackageByRefIdInput {
+  environmentId: String!
+  refId: String!
+  versionNumber: Float
+}
+
+input GetPaywallInput {
+  environmentId: String
+  productId: String
+}
+
+type Hook {
+  account: Account
+  createdAt: DateTime
+  description: String
+  endpoint: String!
+  environment: Environment
+  environmentId: String!
+  eventLogTypes: [EventLogType!]!
+  id: String!
+  secretKey: String
+  status: HookStatus!
+}
+
+type HookAggregateGroupBy {
+  createdAt: DateTime
+  endpoint: String
+  environmentId: String
+  id: String
+  status: HookStatus
+}
+
+type HookConnection {
+  """Array of edges."""
+  edges: [HookEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type HookCountAggregate {
+  createdAt: Int
+  endpoint: Int
+  environmentId: Int
+  id: Int
+  status: Int
+}
+
+type HookDeleteResponse {
+  createdAt: DateTime
+  description: String
+  endpoint: String
+  environmentId: String
+  eventLogTypes: [EventLogType!]
+  id: String
+  secretKey: String
+  status: HookStatus
+}
+
+type HookEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Hook"""
+  node: Hook!
+}
+
+input HookFilter {
+  and: [HookFilter!]
+  createdAt: DateFieldComparison
+  endpoint: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [HookFilter!]
+  status: HookStatusFilterComparison
+}
+
+type HookMaxAggregate {
+  createdAt: DateTime
+  endpoint: String
+  environmentId: String
+  id: String
+  status: HookStatus
+}
+
+type HookMinAggregate {
+  createdAt: DateTime
+  endpoint: String
+  environmentId: String
+  id: String
+  status: HookStatus
+}
+
+input HookSort {
+  direction: SortDirection!
+  field: HookSortFields!
+  nulls: SortNulls
+}
+
+enum HookSortFields {
+  createdAt
+  endpoint
+  environmentId
+  id
+  status
+}
+
+"""HookStatus."""
+enum HookStatus {
+  ACTIVE
+  INACTIVE
+}
+
+input HookStatusFilterComparison {
+  eq: HookStatus
+  gt: HookStatus
+  gte: HookStatus
+  iLike: HookStatus
+  in: [HookStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: HookStatus
+  lt: HookStatus
+  lte: HookStatus
+  neq: HookStatus
+  notILike: HookStatus
+  notIn: [HookStatus!]
+  notLike: HookStatus
+}
+
+type HubspotCredentials {
+  hubDomain: String!
+}
+
+input HubspotCredentialsInput {
+  authorizationCode: String!
+  refreshToken: String
+}
+
+type IdentityForbiddenError {
+  accessedField: String!
+  code: String!
+  isValidationError: Boolean!
+  requiredIdentityType: String!
+}
+
+type ImportAlreadyInProgressError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+input ImportCustomerInput {
+  billingId: String!
+  customerId: String
+  email: String
+  environmentId: String
+  name: String
+  refId: String
+}
+
+input ImportIntegrationCatalogInput {
+  billingModel: BillingModel
+  entitySelectionMode: EntitySelectionMode!
+  environmentId: String!
+  featureUnitName: String
+  featureUnitPluralName: String
+  plansSelectionBlacklist: [String!]
+  plansSelectionWhitelist: [String!]
+  productId: String!
+  selectedAddonBillingIds: [String!]!
+  vendorIdentifier: VendorIdentifier!
+}
+
+input ImportIntegrationCustomersInput {
+  customersSelectionBlacklist: [String!]
+  customersSelectionWhitelist: [String!]
+  entitySelectionMode: EntitySelectionMode!
+  environmentId: String!
+  productId: String!
+  vendorIdentifier: VendorIdentifier!
+}
+
+type ImportIntegrationTask {
+  createdAt: DateTime
+  customersCount: Int!
+  endDate: DateTime
+  environmentId: String!
+  id: String!
+  importErrors: [ImportSubTaskError!]!
+  productsCount: Int!
+  progress: Int!
+  startDate: DateTime!
+  status: TaskStatus!
+  taskType: TaskType!
+  totalSubtasksCount: Int!
+}
+
+type ImportIntegrationTaskAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: TaskStatus
+  taskType: TaskType
+}
+
+type ImportIntegrationTaskConnection {
+  """Array of edges."""
+  edges: [ImportIntegrationTaskEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type ImportIntegrationTaskCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+  status: Int
+  taskType: Int
+}
+
+type ImportIntegrationTaskEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the ImportIntegrationTask"""
+  node: ImportIntegrationTask!
+}
+
+input ImportIntegrationTaskFilter {
+  and: [ImportIntegrationTaskFilter!]
+  createdAt: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [ImportIntegrationTaskFilter!]
+  status: TaskStatusFilterComparison
+  taskType: TaskTypeFilterComparison
+}
+
+type ImportIntegrationTaskMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: TaskStatus
+  taskType: TaskType
+}
+
+type ImportIntegrationTaskMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: TaskStatus
+  taskType: TaskType
+}
+
+input ImportIntegrationTaskSort {
+  direction: SortDirection!
+  field: ImportIntegrationTaskSortFields!
+  nulls: SortNulls
+}
+
+enum ImportIntegrationTaskSortFields {
+  createdAt
+  environmentId
+  id
+  status
+  taskType
+}
+
+type ImportSubTaskError {
+  error: String!
+  id: String!
+}
+
+type InitAddStripeCustomerPaymentMethod {
+  paymentIntentClientSecret: String!
+}
+
+input InitAddStripeCustomerPaymentMethodInput {
+  customerRefId: String!
+  environmentId: String
+}
+
+type InitStripePaymentMethodError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+input InitiateCheckoutInput {
+  addons: [SubscriptionAddonInput!]
+  allowPromoCodes: Boolean = false
+  billingPeriod: BillingPeriod!
+  cancelUrl: String!
+  collectBillingAddress: Boolean = false
+  customerId: String!
+  planId: String!
+  successUrl: String!
+  unitQuantity: Int
+}
+
+input IntFieldComparison {
+  between: IntFieldComparisonBetween
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  is: Boolean
+  isNot: Boolean
+  lt: Int
+  lte: Int
+  neq: Int
+  notBetween: IntFieldComparisonBetween
+  notIn: [Int!]
+}
+
+input IntFieldComparisonBetween {
+  lower: Int!
+  upper: Int!
+}
+
+type Integration {
+  account: Account
+  createdAt: DateTime
+  credentials: Credentials
+  environment: Environment
+  environmentId: String!
+  id: String!
+  vendorIdentifier: VendorIdentifier!
+}
+
+type IntegrationAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  vendorIdentifier: VendorIdentifier
+}
+
+type IntegrationConnection {
+  """Array of edges."""
+  edges: [IntegrationEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type IntegrationCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+  vendorIdentifier: Int
+}
+
+type IntegrationDeleteResponse {
+  createdAt: DateTime
+  credentials: Credentials
+  environmentId: String
+  id: String
+  vendorIdentifier: VendorIdentifier
+}
+
+type IntegrationEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Integration"""
+  node: Integration!
+}
+
+input IntegrationFilter {
+  and: [IntegrationFilter!]
+  createdAt: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [IntegrationFilter!]
+  vendorIdentifier: VendorIdentifierFilterComparison
+}
+
+type IntegrationMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  vendorIdentifier: VendorIdentifier
+}
+
+type IntegrationMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  vendorIdentifier: VendorIdentifier
+}
+
+input IntegrationSort {
+  direction: SortDirection!
+  field: IntegrationSortFields!
+  nulls: SortNulls
+}
+
+enum IntegrationSortFields {
+  createdAt
+  environmentId
+  id
+  vendorIdentifier
+}
+
+type InvalidArgumentError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+type InvalidCancellationDate {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+type InvalidEntitlementResetPeriodError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+type InvalidMemberDeleteError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+type InvalidSubscriptionStatus {
+  code: String!
+  isValidationError: Boolean!
+}
+
+type InvalidUsageValueForIncrementalFeatureError {
+  code: String!
+  isValidationError: Boolean!
+  usageValue: Float!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Member {
+  account: Account!
+  createdAt: DateTime
+  cubejsToken: String
+  email: String!
+  hideGettingStartedPage: Boolean
+  id: String!
+  memberStatus: MemberStatus!
+  serviceApiKey: String
+  user: User
+}
+
+type MemberAggregateGroupBy {
+  createdAt: DateTime
+  id: String
+}
+
+type MemberConnection {
+  """Array of edges."""
+  edges: [MemberEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type MemberCountAggregate {
+  createdAt: Int
+  id: Int
+}
+
+type MemberEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Member"""
+  node: Member!
+}
+
+input MemberFilter {
+  and: [MemberFilter!]
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [MemberFilter!]
+}
+
+type MemberInvitationError {
+  code: String!
+  reason: String!
+}
+
+type MemberMaxAggregate {
+  createdAt: DateTime
+  id: String
+}
+
+type MemberMinAggregate {
+  createdAt: DateTime
+  id: String
+}
+
+type MemberNotFoundError {
+  code: String!
+}
+
+input MemberSort {
+  direction: SortDirection!
+  field: MemberSortFields!
+  nulls: SortNulls
+}
+
+enum MemberSortFields {
+  createdAt
+  id
+}
+
+"""Member Status."""
+enum MemberStatus {
+  INVITED
+  REGISTERED
+}
+
+type MembersInviteResponse {
+  failedInvites: [String!]!
+  skippedInvites: [String!]!
+  successInvites: [String!]!
+}
+
+"""The meter type of the feature"""
+enum MeterType {
+  Fluctuating
+  Incremental
+  None
+}
+
+input MeterTypeFilterComparison {
+  eq: MeterType
+  gt: MeterType
+  gte: MeterType
+  iLike: MeterType
+  in: [MeterType!]
+  is: Boolean
+  isNot: Boolean
+  like: MeterType
+  lt: MeterType
+  lte: MeterType
+  neq: MeterType
+  notILike: MeterType
+  notIn: [MeterType!]
+  notLike: MeterType
+}
+
+type MeteringNotAvailableForFeatureTypeError {
+  code: String!
+  featureType: String!
+}
+
+type MockPaywall {
+  plans: [PaywallPlan!]!
+}
+
+type Money {
+  amount: Float!
+  currency: Currency!
+}
+
+input MoneyInputDTO {
+  amount: Float!
+  currency: Currency
+}
+
+"""Montly reset period according to configuration"""
+enum MonthlyAccordingTo {
+  StartOfTheMonth
+  SubscriptionStart
+}
+
+type MonthlyResetPeriodConfig {
+  monthlyAccordingTo: MonthlyAccordingTo
+}
+
+input MonthlyResetPeriodConfigInput {
+  accordingTo: MonthlyAccordingTo!
+}
+
+type Mutation {
+  addCompatibleAddonsToPlan(input: AddCompatibleAddonsToPlanInput!): Plan!
+  archiveOneCoupon(input: ArchiveCouponInput!): Coupon!
+  archivePlan(input: ArchivePlanInput!): Plan!
+  attachCustomerPaymentMethod(input: AttachCustomerPaymentMethodInput!): Customer!
+  cancelSubscription(input: SubscriptionCancellationInput!): CustomerSubscription!
+  createAccount(accountName: String!): Member!
+  createAddonDraft(id: String!): Addon!
+  createFeature(input: FeatureInput!): Feature!
+  createManyPackageEntitlements(input: CreateManyPackageEntitlementsInput!): [PackageEntitlement!]!
+  createManyPromotionalEntitlements(input: CreateManyPromotionalEntitlementsInput!): [PromotionalEntitlement!]!
+  createOneAddon(input: AddonCreateInput!): Addon!
+  createOneCoupon(input: CreateCouponInput!): Coupon!
+  createOneCustomer(input: CustomerInput!): Customer! @deprecated(reason: "Use 'provisionCustomer' instead to create both customer and subscription in single operation. See 'provisionCustomer' for more info.")
+  createOneEnvironment(input: CreateOneEnvironmentInput!): Environment!
+  createOneExperiment(input: CreateExperimentInput!): Experiment!
+  createOneFeature(input: CreateOneFeatureInput!): Feature!
+  createOneHook(input: CreateOneHookInput!): Hook!
+  createOneIntegration(input: CreateOneIntegrationInput!): Integration!
+  createOnePlan(input: PlanCreateInput!): Plan!
+  createOneProduct(input: CreateOneProductInput!): Product!
+  createPlanDraft(id: String!): Plan!
+  createSubscription(subscription: SubscriptionInput!): CustomerSubscription!
+  createUsageMeasurement(usageMeasurement: UsageMeasurementCreateInput!): UsageMeasurement!
+  deleteEnvironment(slug: String!): String!
+  deleteFeature(input: DeleteFeatureInput!): Feature!
+  deleteOneAddon(input: DeleteOneAddonInput!): AddonDeleteResponse!
+  deleteOneCustomer(input: DeleteCustomerInput!): Customer!
+  deleteOneEnvironment(input: DeleteOneEnvironmentInput!): EnvironmentDeleteResponse!
+  deleteOneFeature(input: DeleteFeatureInput!): Feature!
+  deleteOneHook(input: DeleteOneHookInput!): HookDeleteResponse!
+  deleteOneIntegration(input: DeleteOneIntegrationInput!): IntegrationDeleteResponse!
+  deleteOnePackageEntitlement(input: DeleteOnePackageEntitlementInput!): PackageEntitlementDeleteResponse!
+  deleteOnePrice(input: DeleteOnePriceInput!): PriceDeleteResponse!
+  deleteOneProduct(input: DeleteOneProductInput!): ProductDeleteResponse!
+  deleteOnePromotionalEntitlement(input: DeleteOnePromotionalEntitlementInput!): PromotionalEntitlementDeleteResponse!
+  estimateSubscription(input: EstimateSubscriptionInput!): SubscriptionPreview!
+  estimateSubscriptionUpdate(input: EstimateSubscriptionUpdateInput!): SubscriptionPreview!
+  hideGettingStartedPage(memberId: String!): String!
+  importOneCustomer(input: ImportCustomerInput!): Customer!
+  initAddStripeCustomerPaymentMethod(input: InitAddStripeCustomerPaymentMethodInput!): InitAddStripeCustomerPaymentMethod!
+  initiateCheckout(input: InitiateCheckoutInput!): Checkout! @deprecated(reason: "Use 'provisionSubscription' instead to create subscription or checkout session according to customer and subscription payment requirements. See 'provisionSubscription' for more info.")
+  inviteMembers(invites: [String!]!): MembersInviteResponse!
+  migrateSubscriptionToLatest(input: SubscriptionMigrationInput!): CustomerSubscription!
+  provisionCustomer(input: ProvisionCustomerInput!): ProvisionedCustomer!
+  provisionSubscription(input: ProvisionSubscription!): ProvisionSubscriptionResult!
+  publishAddon(input: PackagePublishInput!): PublishPackageResult!
+  publishPlan(input: PackagePublishInput!): PublishPackageResult!
+  registerMember: User!
+  removeAddonDraft(input: DiscardPackageDraftInput!): String!
+  removeBasePlanFromPlan(input: RemoveBasePlanFromPlanInput!): Plan!
+  removeCompatibleAddonsFromPlan(input: RemoveCompatibleAddonsFromPlanInput!): Plan!
+  removeCouponFromCustomer(input: RemoveCouponFromCustomerInput!): Customer!
+  removeCouponFromCustomerSubscription(input: RemoveCouponFromCustomerSubscriptionInput!): CustomerSubscription!
+  removeExperimentFromCustomer(input: RemoveExperimentFromCustomerInput!): Customer!
+  removeExperimentFromCustomerSubscription(input: RemoveExperimentFromCustomerSubscriptionInput!): CustomerSubscription!
+  removeMember(memberId: String!): String!
+  removePlanDraft(input: DiscardPackageDraftInput!): String!
+  reportEntitlementCheckRequested(entitlementCheckRequested: EntitlementCheckRequested!): Boolean!
+  resendEmailVerification: String!
+  resyncIntegration(input: ResyncIntegrationInput!): ResyncIntegrationResult!
+  setBasePlanOnPlan(input: SetBasePlanOnPlanInput!): Plan!
+  setCompatibleAddonsOnPlan(input: SetCompatibleAddonsOnPlanInput!): Plan!
+  setCouponOnCustomer(input: SetCouponOnCustomerInput!): Customer!
+  setCouponOnCustomerSubscription(input: SetCouponOnCustomerSubscriptionInput!): CustomerSubscription!
+  setExperimentOnCustomer(input: SetExperimentOnCustomerInput!): Customer!
+  setExperimentOnCustomerSubscription(input: SetExperimentOnCustomerSubscriptionInput!): CustomerSubscription!
+  setPackagePricing(input: PackagePricingInput!): PackagePrice!
+  startExperiment(input: StartExperimentInput!): String!
+  stopExperiment(input: StopExperimentInput!): String!
+  triggerImportCatalog(input: ImportIntegrationCatalogInput!): AsyncTaskResult!
+  triggerImportCustomers(input: ImportIntegrationCustomersInput!): AsyncTaskResult!
+  updateAccount(input: UpdateAccountInput!): Account!
+  updateEntitlementsOrder(input: UpdatePackageEntitlementOrderInput!): [UpdateEntitlementsOrderDTO!]!
+  updateFeature(input: UpdateFeatureInput!): Feature!
+  updateOneAddon(input: AddonUpdateInput!): Addon!
+  updateOneCoupon(input: UpdateCouponInput!): Coupon!
+  updateOneCustomer(input: UpdateCustomerInput!): Customer!
+  updateOneEnvironment(input: UpdateOneEnvironmentInput!): Environment!
+  updateOneExperiment(input: UpdateExperimentInput!): Experiment!
+  updateOneFeature(input: UpdateOneFeatureInput!): Feature!
+  updateOneHook(input: UpdateOneHookInput!): Hook!
+  updateOneIntegration(input: UpdateOneIntegrationInput!): Integration!
+  updateOnePackageEntitlement(input: UpdateOnePackageEntitlementInput!): PackageEntitlement!
+  updateOnePlan(input: PlanUpdateInput!): Plan!
+  updateOneProduct(input: UpdateOneProductInput!): Product!
+  updateOnePromotionalEntitlement(input: UpdateOnePromotionalEntitlementInput!): PromotionalEntitlement!
+  updateOneSubscription(input: UpdateSubscriptionInput!): CustomerSubscription!
+}
+
+input NumberFieldComparison {
+  between: NumberFieldComparisonBetween
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: Boolean
+  isNot: Boolean
+  lt: Float
+  lte: Float
+  neq: Float
+  notBetween: NumberFieldComparisonBetween
+  notIn: [Float!]
+}
+
+input NumberFieldComparisonBetween {
+  lower: Float!
+  upper: Float!
+}
+
+type PackageAlreadyPublishedError {
+  code: String!
+}
+
+type PackageChanges {
+  additionalMetaData: AdditionalMetaDataChange
+  basePlan: BasePlanChange
+  compatibleAddons: [PlanCompatibleAddonChange!]
+  defaultTrialConfig: DefaultTrialConfigChange
+  description: StringChangeDTO
+  displayName: StringChangeDTO
+  entitlements: [PackageEntitlementChange!]!
+  prices: [PackagePriceChange!]!
+  pricingType: PricingTypeChange
+  totalChanges: Int!
+}
+
+type PackageDTO {
+  additionalMetaData: JSON
+  billingId: String
+  billingLinkUrl: String
+  createdAt: DateTime
+  description: String
+  displayName: String!
+  draftDetails: PackageDraftDetails
+  draftSummary: PackageDraftSummary
+  entitlements: [PackageEntitlement!]
+  environmentId: String
+  id: String!
+  isLatest: Boolean
+  pricingType: PricingType
+  productId: String
+  refId: String!
+  status: PackageStatus!
+  syncStates: [SyncState!]!
+  type: String
+  updatedAt: DateTime
+  versionNumber: Int!
+}
+
+input PackageDTOFilter {
+  and: [PackageDTOFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [PackageDTOFilter!]
+  pricingType: PricingTypeFilterComparison
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+input PackageDTOSort {
+  direction: SortDirection!
+  field: PackageDTOSortFields!
+  nulls: SortNulls
+}
+
+enum PackageDTOSortFields {
+  billingId
+  createdAt
+  description
+  displayName
+  environmentId
+  id
+  isLatest
+  pricingType
+  productId
+  refId
+  status
+  updatedAt
+  versionNumber
+}
+
+type PackageDraftDetails {
+  affectedChildPlans: [Plan!]
+  changes: PackageChanges
+  childPlansWithDraft: [Plan!]
+  customersAffected: Int
+  updatedAt: DateTime!
+  updatedBy: String
+  version: Int!
+}
+
+type PackageDraftSummary {
+  updatedAt: DateTime!
+  updatedBy: String
+  version: Int!
+}
+
+type PackageEntitlement {
+  createdAt: DateTime
+  description: String
+  displayNameOverride: String
+  environmentId: String!
+  feature: Feature!
+  featureId: String!
+  hasUnlimitedUsage: Boolean
+  hiddenFromWidgets: [WidgetType!]
+  id: String!
+  order: Float
+  package: PackageDTO
+  packageId: String!
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+type PackageEntitlementAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  packageId: String
+  updatedAt: DateTime
+}
+
+type PackageEntitlementChange {
+  after: PackageEntitlement
+  before: PackageEntitlement
+  changeType: ChangeType
+}
+
+type PackageEntitlementConnection {
+  """Array of edges."""
+  edges: [PackageEntitlementEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type PackageEntitlementCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+  packageId: Int
+  updatedAt: Int
+}
+
+type PackageEntitlementDeleteResponse {
+  createdAt: DateTime
+  description: String
+  displayNameOverride: String
+  environmentId: String
+  featureId: String
+  hasUnlimitedUsage: Boolean
+  hiddenFromWidgets: [WidgetType!]
+  id: String
+  order: Float
+  packageId: String
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+type PackageEntitlementEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the PackageEntitlement"""
+  node: PackageEntitlement!
+}
+
+input PackageEntitlementFilter {
+  and: [PackageEntitlementFilter!]
+  createdAt: DateFieldComparison
+  environmentId: StringFieldComparison
+  feature: PackageEntitlementFilterFeatureFilter
+  id: StringFieldComparison
+  or: [PackageEntitlementFilter!]
+  package: PackageEntitlementFilterPackageDTOFilter
+  packageId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+input PackageEntitlementFilterFeatureFilter {
+  and: [PackageEntitlementFilterFeatureFilter!]
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  featureStatus: FeatureStatusFilterComparison
+  featureType: FeatureTypeFilterComparison
+  id: StringFieldComparison
+  meterType: MeterTypeFilterComparison
+  or: [PackageEntitlementFilterFeatureFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+input PackageEntitlementFilterPackageDTOFilter {
+  and: [PackageEntitlementFilterPackageDTOFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [PackageEntitlementFilterPackageDTOFilter!]
+  pricingType: PricingTypeFilterComparison
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+input PackageEntitlementInput {
+  description: String
+  environmentId: String!
+  featureId: String!
+  hasUnlimitedUsage: Boolean
+  monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
+  order: Float
+  packageId: String!
+  resetPeriod: EntitlementResetPeriod
+  usageLimit: Float
+  weeklyResetPeriodConfiguration: WeeklyResetPeriodConfigInput
+}
+
+type PackageEntitlementMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  packageId: String
+  updatedAt: DateTime
+}
+
+type PackageEntitlementMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  packageId: String
+  updatedAt: DateTime
+}
+
+input PackageEntitlementSort {
+  direction: SortDirection!
+  field: PackageEntitlementSortFields!
+  nulls: SortNulls
+}
+
+enum PackageEntitlementSortFields {
+  createdAt
+  environmentId
+  id
+  packageId
+  updatedAt
+}
+
+input PackageEntitlementUpdateInput {
+  description: String
+  displayNameOverride: String
+  hasUnlimitedUsage: Boolean
+  hiddenFromWidgets: [WidgetType!]
+  monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
+  order: Float
+  resetPeriod: EntitlementResetPeriod
+  usageLimit: Float
+  weeklyResetPeriodConfiguration: WeeklyResetPeriodConfigInput
+}
+
+type PackagePrice {
+  packageId: String!
+  pricingType: PricingType!
+}
+
+type PackagePriceChange {
+  after: Price
+  before: Price
+  changeType: ChangeType
+}
+
+input PackagePricingInput {
+  environmentId: String!
+  packageId: String!
+  pricingModel: PricingModelCreateInput
+  pricingType: PricingType!
+}
+
+type PackagePricingTypeNotSetError {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+input PackagePublishInput {
+  id: ID!
+  migrationType: PublishMigrationType!
+}
+
+"""Package status."""
+enum PackageStatus {
+  ARCHIVED
+  DRAFT
+  PUBLISHED
+}
+
+input PackageStatusFilterComparison {
+  eq: PackageStatus
+  gt: PackageStatus
+  gte: PackageStatus
+  iLike: PackageStatus
+  in: [PackageStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: PackageStatus
+  lt: PackageStatus
+  lte: PackageStatus
+  neq: PackageStatus
+  notILike: PackageStatus
+  notIn: [PackageStatus!]
+  notLike: PackageStatus
+}
+
+type PageInfo {
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+}
+
+"""Type of a payment method"""
+enum PaymentMethodType {
+  BANK
+  CARD
+}
+
+type Paywall {
+  plans: [Plan!]!
+}
+
+type PaywallAddon {
+  additionalMetaData: JSON
+  description: String
+  displayName: String!
+  entitlements: [Entitlement!]!
+  prices: [PaywallPrice!]!
+  pricingType: PricingType
+  refId: String!
+}
+
+type PaywallBasePlan {
+  displayName: String!
+  refId: String!
+}
+
+type PaywallPlan {
+  additionalMetaData: JSON
+  basePlan: PaywallBasePlan
+  compatibleAddons: [PaywallAddon!]
+  defaultTrialConfig: DefaultTrialConfig
+  description: String
+  displayName: String!
+  entitlements: [Entitlement!]
+  inheritedEntitlements: [Entitlement!]
+  prices: [PaywallPrice!]!
+  pricingType: PricingType
+  product: PaywallProduct!
+  refId: String!
+}
+
+type PaywallPrice {
+  billingModel: BillingModel!
+  billingPeriod: BillingPeriod!
+  feature: EntitlementFeature
+  featureId: String
+  maxUnitQuantity: Float
+  minUnitQuantity: Float
+  price: Money!
+}
+
+type PaywallProduct {
+  additionalMetaData: JSON
+  description: String
+  displayName: String
+  refId: String!
+}
+
+type Plan {
+  additionalMetaData: JSON
+  basePlan: Plan
+  billingId: String
+  billingLinkUrl: String
+  compatibleAddons(
+    """Specify to filter the records returned."""
+    filter: AddonFilter = {}
+
+    """Specify to sort results."""
+    sorting: [AddonSort!] = [{direction: DESC, field: createdAt}]
+  ): [Addon!]
+  createdAt: DateTime
+  defaultTrialConfig: DefaultTrialConfig
+  description: String
+  displayName: String!
+  draftDetails: PackageDraftDetails
+  draftSummary: PackageDraftSummary
+  entitlements: [PackageEntitlement!]
+  environment: Environment
+  environmentId: String
+  id: String!
+  inheritedEntitlements(includeOverridden: Boolean = false): [PackageEntitlement!]
+  isLatest: Boolean
+  isParent: Boolean!
+  prices(
+    """Specify to filter the records returned."""
+    filter: PriceFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PriceSort!] = [{direction: DESC, field: createdAt}]
+  ): [Price!]
+  pricingType: PricingType
+  product: Product!
+  productId: String
+  refId: String!
+  status: PackageStatus!
+  syncStates: [SyncState!]
+  type: String
+  updatedAt: DateTime
+  versionNumber: Int!
+}
+
+type PlanAggregateGroupBy {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  isLatest: Boolean
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+type PlanAvgAggregate {
+  versionNumber: Float
+}
+
+type PlanCompatibleAddonChange {
+  after: Addon
+  before: Addon
+  changeType: ChangeType
+}
+
+type PlanConnection {
+  """Array of edges."""
+  edges: [PlanEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type PlanCountAggregate {
+  billingId: Int
+  createdAt: Int
+  description: Int
+  displayName: Int
+  environmentId: Int
+  id: Int
+  isLatest: Int
+  pricingType: Int
+  productId: Int
+  refId: Int
+  status: Int
+  updatedAt: Int
+  versionNumber: Int
+}
+
+input PlanCreateInput {
+  additionalMetaData: JSON
+  billingId: String
+  description: String
+  displayName: String!
+  environmentId: String
+  parentPlanId: String
+  productId: String!
+  refId: String
+  status: PackageStatus
+}
+
+type PlanEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Plan"""
+  node: Plan!
+}
+
+input PlanFilter {
+  and: [PlanFilter!]
+  billingId: StringFieldComparison
+  compatibleAddons: PlanFilterAddonFilter
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [PlanFilter!]
+  pricingType: PricingTypeFilterComparison
+  product: PlanFilterProductFilter
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+input PlanFilterAddonFilter {
+  and: [PlanFilterAddonFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [PlanFilterAddonFilter!]
+  pricingType: PricingTypeFilterComparison
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+input PlanFilterProductFilter {
+  and: [PlanFilterProductFilter!]
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isDefaultProduct: BooleanFieldComparison
+  or: [PlanFilterProductFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type PlanMaxAggregate {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+type PlanMinAggregate {
+  billingId: String
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  pricingType: PricingType
+  productId: String
+  refId: String
+  status: PackageStatus
+  updatedAt: DateTime
+  versionNumber: Int
+}
+
+type PlanNotFoundError {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+input PlanSort {
+  direction: SortDirection!
+  field: PlanSortFields!
+  nulls: SortNulls
+}
+
+enum PlanSortFields {
+  billingId
+  createdAt
+  description
+  displayName
+  environmentId
+  id
+  isLatest
+  pricingType
+  productId
+  refId
+  status
+  updatedAt
+  versionNumber
+}
+
+type PlanSumAggregate {
+  versionNumber: Float
+}
+
+input PlanUpdateInput {
+  additionalMetaData: JSON
+  billingId: String
+  defaultTrialConfig: DefaultTrialConfigInputDTO
+  description: String
+  displayName: String
+  id: String!
+  parentPlanId: String
+  status: PackageStatus
+}
+
+type Price {
+  billingModel: BillingModel!
+  billingPeriod: BillingPeriod!
+  createdAt: DateTime
+  crmId: String
+  crmLinkUrl: String
+  feature: Feature
+  featureId: String
+  id: String!
+  maxUnitQuantity: Float
+  minUnitQuantity: Float
+  package: PackageDTO!
+  price: Money!
+}
+
+type PriceAggregateGroupBy {
+  billingModel: BillingModel
+  billingPeriod: BillingPeriod
+  createdAt: DateTime
+  id: String
+}
+
+type PriceCountAggregate {
+  billingModel: Int
+  billingPeriod: Int
+  createdAt: Int
+  id: Int
+}
+
+type PriceDeleteResponse {
+  billingModel: BillingModel
+  billingPeriod: BillingPeriod
+  createdAt: DateTime
+  crmId: String
+  crmLinkUrl: String
+  feature: Feature
+  featureId: String
+  id: String
+  maxUnitQuantity: Float
+  minUnitQuantity: Float
+  price: Money
+}
+
+type PriceEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Price"""
+  node: Price!
+}
+
+type PriceEntitlement {
+  description: String
+  feature: Feature!
+  featureId: String!
+  hasUnlimitedUsage: Boolean
+  package: PackageDTO!
+  packageId: String!
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+input PriceFilter {
+  and: [PriceFilter!]
+  billingModel: BillingModelFilterComparison
+  billingPeriod: BillingPeriodFilterComparison
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [PriceFilter!]
+  package: PriceFilterPackageDTOFilter
+}
+
+input PriceFilterPackageDTOFilter {
+  and: [PriceFilterPackageDTOFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [PriceFilterPackageDTOFilter!]
+  pricingType: PricingTypeFilterComparison
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+type PriceMaxAggregate {
+  billingModel: BillingModel
+  billingPeriod: BillingPeriod
+  createdAt: DateTime
+  id: String
+}
+
+type PriceMinAggregate {
+  billingModel: BillingModel
+  billingPeriod: BillingPeriod
+  createdAt: DateTime
+  id: String
+}
+
+type PriceNotFoundError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+input PricePeriodInput {
+  billingPeriod: BillingPeriod!
+  price: MoneyInputDTO!
+}
+
+input PriceSort {
+  direction: SortDirection!
+  field: PriceSortFields!
+  nulls: SortNulls
+}
+
+enum PriceSortFields {
+  billingModel
+  billingPeriod
+  createdAt
+  id
+}
+
+input PricingModelCreateInput {
+  billingModel: BillingModel!
+  featureId: String
+  maxUnitQuantity: Float
+  minUnitQuantity: Float
+  pricePeriods: [PricePeriodInput!]!
+}
+
+"""Package pricing type."""
+enum PricingType {
+  CUSTOM
+  FREE
+  PAID
+}
+
+type PricingTypeChange {
+  after: PricingType
+  before: PricingType
+  changeType: ChangeType
+}
+
+input PricingTypeFilterComparison {
+  eq: PricingType
+  gt: PricingType
+  gte: PricingType
+  iLike: PricingType
+  in: [PricingType!]
+  is: Boolean
+  isNot: Boolean
+  like: PricingType
+  lt: PricingType
+  lte: PricingType
+  neq: PricingType
+  notILike: PricingType
+  notIn: [PricingType!]
+  notLike: PricingType
+}
+
+type Product {
+  additionalMetaData: JSON
+  addons: [Addon!]!
+  createdAt: DateTime!
+  description: String
+  displayName: String
+  downgradePlan: Plan
+  environment: Environment
+  environmentId: String!
+  id: String!
+  isDefaultProduct: Boolean!
+  plans: [Plan!]!
+  productSettings: ProductSettings!
+  refId: String!
+  subscriptionStartPlan: Plan
+  updatedAt: DateTime!
+}
+
+type ProductAggregateGroupBy {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  isDefaultProduct: Boolean
+  refId: String
+  updatedAt: DateTime
+}
+
+type ProductConnection {
+  """Array of edges."""
+  edges: [ProductEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ProductCountAggregate {
+  createdAt: Int
+  description: Int
+  displayName: Int
+  environmentId: Int
+  id: Int
+  isDefaultProduct: Int
+  refId: Int
+  updatedAt: Int
+}
+
+input ProductCreateInput {
+  additionalMetaData: JSON
+  description: String
+  displayName: String
+  environmentId: String!
+  refId: String!
+}
+
+type ProductDeleteResponse {
+  additionalMetaData: JSON
+  addons: [Addon!]
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  isDefaultProduct: Boolean
+  plans: [Plan!]
+  productSettings: ProductSettings
+  refId: String
+  updatedAt: DateTime
+}
+
+type ProductEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Product"""
+  node: Product!
+}
+
+input ProductFilter {
+  and: [ProductFilter!]
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isDefaultProduct: BooleanFieldComparison
+  or: [ProductFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type ProductMaxAggregate {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  refId: String
+  updatedAt: DateTime
+}
+
+type ProductMinAggregate {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  id: String
+  refId: String
+  updatedAt: DateTime
+}
+
+type ProductSettings {
+  downgradePlan: Plan
+  downgradePlanId: String
+  subscriptionCancellationTime: SubscriptionCancellationTime!
+  subscriptionEndSetup: SubscriptionEndSetup!
+  subscriptionStartPlan: Plan
+  subscriptionStartPlanId: String
+  subscriptionStartSetup: SubscriptionStartSetup!
+}
+
+input ProductSettingsInput {
+  downgradePlanId: String
+  subscriptionCancellationTime: SubscriptionCancellationTime!
+  subscriptionEndSetup: SubscriptionEndSetup!
+  subscriptionStartPlanId: String
+  subscriptionStartSetup: SubscriptionStartSetup!
+}
+
+input ProductSort {
+  direction: SortDirection!
+  field: ProductSortFields!
+  nulls: SortNulls
+}
+
+enum ProductSortFields {
+  createdAt
+  description
+  displayName
+  environmentId
+  id
+  isDefaultProduct
+  refId
+  updatedAt
+}
+
+input ProductUpdateInput {
+  additionalMetaData: JSON
+  description: String
+  displayName: String
+  productSettings: ProductSettingsInput
+}
+
+type PromotionalEntitlement {
+  createdAt: DateTime
+  customer: Customer!
+  description: String
+  endDate: DateTime
+  environmentId: String!
+  feature: Feature!
+  featureId: String!
+  hasUnlimitedUsage: Boolean
+  id: String!
+  isVisible: Boolean!
+  period: PromotionalEntitlementPeriod!
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  startDate: DateTime!
+  status: PromotionalEntitlementStatus!
+  unlimited: Boolean
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+type PromotionalEntitlementAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: PromotionalEntitlementStatus
+  updatedAt: DateTime
+}
+
+type PromotionalEntitlementConnection {
+  """Array of edges."""
+  edges: [PromotionalEntitlementEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type PromotionalEntitlementCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+  status: Int
+  updatedAt: Int
+}
+
+type PromotionalEntitlementDeleteResponse {
+  createdAt: DateTime
+  description: String
+  endDate: DateTime
+  environmentId: String
+  featureId: String
+  hasUnlimitedUsage: Boolean
+  id: String
+  isVisible: Boolean
+  period: PromotionalEntitlementPeriod
+  resetPeriod: EntitlementResetPeriod
+  resetPeriodConfiguration: ResetPeriodConfiguration
+  startDate: DateTime
+  status: PromotionalEntitlementStatus
+  unlimited: Boolean
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+type PromotionalEntitlementEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the PromotionalEntitlement"""
+  node: PromotionalEntitlement!
+}
+
+input PromotionalEntitlementFilter {
+  and: [PromotionalEntitlementFilter!]
+  createdAt: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [PromotionalEntitlementFilter!]
+  status: PromotionalEntitlementStatusFilterComparison
+  updatedAt: DateFieldComparison
+}
+
+input PromotionalEntitlementInput {
+  customerId: String!
+  description: String
+  endDate: DateTime
+  environmentId: String!
+  featureId: String!
+  hasUnlimitedUsage: Boolean
+  isVisible: Boolean!
+  monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
+  period: PromotionalEntitlementPeriod!
+  resetPeriod: EntitlementResetPeriod
+  usageLimit: Float
+  weeklyResetPeriodConfiguration: WeeklyResetPeriodConfigInput
+}
+
+type PromotionalEntitlementMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: PromotionalEntitlementStatus
+  updatedAt: DateTime
+}
+
+type PromotionalEntitlementMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: PromotionalEntitlementStatus
+  updatedAt: DateTime
+}
+
+"""Promotional entitlement duration"""
+enum PromotionalEntitlementPeriod {
+  CUSTOM
+  LIFETIME
+  ONE_MONTH
+  ONE_WEEK
+  ONE_YEAR
+  SIX_MONTH
+}
+
+input PromotionalEntitlementSort {
+  direction: SortDirection!
+  field: PromotionalEntitlementSortFields!
+  nulls: SortNulls
+}
+
+enum PromotionalEntitlementSortFields {
+  createdAt
+  environmentId
+  id
+  status
+  updatedAt
+}
+
+"""Promotional entitlement status"""
+enum PromotionalEntitlementStatus {
+  Active
+  Expired
+  Paused
+}
+
+input PromotionalEntitlementStatusFilterComparison {
+  eq: PromotionalEntitlementStatus
+  gt: PromotionalEntitlementStatus
+  gte: PromotionalEntitlementStatus
+  iLike: PromotionalEntitlementStatus
+  in: [PromotionalEntitlementStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: PromotionalEntitlementStatus
+  lt: PromotionalEntitlementStatus
+  lte: PromotionalEntitlementStatus
+  neq: PromotionalEntitlementStatus
+  notILike: PromotionalEntitlementStatus
+  notIn: [PromotionalEntitlementStatus!]
+  notLike: PromotionalEntitlementStatus
+}
+
+input PromotionalEntitlementUpdateInput {
+  description: String
+  endDate: DateTime
+  hasUnlimitedUsage: Boolean
+  isVisible: Boolean!
+  monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
+  period: PromotionalEntitlementPeriod!
+  resetPeriod: EntitlementResetPeriod
+  usageLimit: Float
+  weeklyResetPeriodConfiguration: WeeklyResetPeriodConfigInput
+}
+
+input ProvisionCustomerInput {
+  additionalMetaData: JSON
+  billingId: String
+  billingInformation: CustomerBillingInfo
+  couponRefId: String
+  createdAt: DateTime
+  crmId: String
+  customerId: String
+  email: String
+  environmentId: String
+  excludeFromExperiment: Boolean = false
+  name: String
+  refId: String
+  shouldSyncFree: Boolean = true
+  subscriptionParams: ProvisionCustomerSubscriptionInput
+}
+
+input ProvisionCustomerSubscriptionInput {
+  additionalMetaData: JSON
+  addons: [SubscriptionAddonInput!]
+  awaitPaymentConfirmation: Boolean = false
+  billingInformation: SubscriptionBillingInfo
+  billingPeriod: BillingPeriod
+  planId: String
+  priceUnitAmount: Float
+  refId: String
+  startDate: DateTime
+  subscriptionId: String
+}
+
+input ProvisionSubscription {
+  additionalMetaData: JSON
+  addons: [SubscriptionAddonInput!]
+  awaitPaymentConfirmation: Boolean = false
+  billingInformation: SubscriptionBillingInfo
+  billingPeriod: BillingPeriod
+  checkoutOptions: CheckoutOptions
+  customerId: String!
+  planId: String
+  priceUnitAmount: Float
+  refId: String
+  skipTrial: Boolean = false
+  startDate: DateTime
+  subscriptionId: String
+}
+
+type ProvisionSubscriptionResult {
+  checkoutBillingId: String
+  checkoutUrl: String
+  id: String!
+  status: ProvisionSubscriptionStatus!
+  subscription: CustomerSubscription
+}
+
+"""Provision subscription status"""
+enum ProvisionSubscriptionStatus {
+  PAYMENT_REQUIRED
+  SUCCESS
+}
+
+type ProvisionedCustomer {
+  customer: Customer!
+  subscription: CustomerSubscription
+  subscriptionDecisionStrategy: SubscriptionDecisionStrategy!
+  subscriptionStrategyDecision: SubscriptionDecisionStrategy! @deprecated(reason: "this field was renamed to 'subscriptionDecisionStrategy'")
+}
+
+"""PublishMigrationType"""
+enum PublishMigrationType {
+  ALL_CUSTOMERS
+  NEW_CUSTOMERS
+}
+
+type PublishPackageResult {
+  taskId: String
+}
+
+type Query {
+  addons(
+    """Specify to filter the records returned."""
+    filter: AddonFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [AddonSort!] = [{direction: DESC, field: createdAt}]
+  ): AddonConnection!
+  cachedEntitlements(query: FetchEntitlementsQuery!): [Entitlement!]!
+  coupon(
+    """The id of the record to find."""
+    id: String!
+  ): Coupon
+  coupons(
+    """Specify to filter the records returned."""
+    filter: CouponFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [CouponSort!] = [{direction: DESC, field: createdAt}]
+  ): CouponConnection!
+  currentEnvironment: String!
+  currentUser: User!
+  customerPortal(input: CustomerPortalInput!): CustomerPortal!
+  customerSubscriptions(
+    """Specify to filter the records returned."""
+    filter: CustomerSubscriptionFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [CustomerSubscriptionSort!] = [{direction: DESC, field: createdAt}]
+  ): CustomerSubscriptionConnection!
+  customers(
+    """Specify to filter the records returned."""
+    filter: CustomerFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [CustomerSort!] = [{direction: DESC, field: createdAt}]
+  ): CustomerConnection!
+  entitlement(query: FetchEntitlementQuery!): Entitlement!
+  entitlements(query: FetchEntitlementsQuery!): [EntitlementWithSummary!]!
+  environments(
+    """Specify to filter the records returned."""
+    filter: EnvironmentFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [EnvironmentSort!] = [{direction: DESC, field: createdAt}]
+  ): EnvironmentConnection!
+  experiment(
+    """The id of the record to find."""
+    id: String!
+  ): Experiment
+  experiments(
+    """Specify to filter the records returned."""
+    filter: ExperimentFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [ExperimentSort!] = [{direction: DESC, field: createdAt}]
+  ): ExperimentConnection!
+  features(
+    """Specify to filter the records returned."""
+    filter: FeatureFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [FeatureSort!] = [{direction: DESC, field: createdAt}]
+  ): FeatureConnection!
+  fetchAccount: Account
+  getAddonByRefId(input: GetPackageByRefIdInput!): Addon
+  getExperimentStats(query: ExperimentStatsQuery!): ExperimentStats!
+  getPaywall(input: GetPaywallInput!): [Plan!]! @deprecated(reason: "Deprecated query, use paywall query instead")
+  getPlanByRefId(input: GetPackageByRefIdInput!): Plan
+  hook(
+    """The id of the record to find."""
+    id: String!
+  ): Hook
+  hooks(
+    """Specify to filter the records returned."""
+    filter: HookFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [HookSort!] = [{direction: DESC, field: createdAt}]
+  ): HookConnection!
+  importIntegrationTasks(
+    """Specify to filter the records returned."""
+    filter: ImportIntegrationTaskFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [ImportIntegrationTaskSort!] = []
+  ): ImportIntegrationTaskConnection!
+  integrations(
+    """Specify to filter the records returned."""
+    filter: IntegrationFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [IntegrationSort!] = [{direction: DESC, field: createdAt}]
+  ): IntegrationConnection!
+  members(
+    """Specify to filter the records returned."""
+    filter: MemberFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [MemberSort!] = [{direction: DESC, field: createdAt}]
+  ): MemberConnection!
+  mockPaywall(input: GetPaywallInput!): MockPaywall!
+  packageEntitlements(
+    """Specify to filter the records returned."""
+    filter: PackageEntitlementFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [PackageEntitlementSort!] = [{direction: DESC, field: createdAt}]
+  ): PackageEntitlementConnection!
+  paywall(input: GetPaywallInput!): Paywall!
+  plans(
+    """Specify to filter the records returned."""
+    filter: PlanFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [PlanSort!] = [{direction: DESC, field: createdAt}]
+  ): PlanConnection!
+  products(
+    """Specify to filter the records returned."""
+    filter: ProductFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [ProductSort!] = [{direction: DESC, field: createdAt}]
+  ): ProductConnection!
+  promotionalEntitlements(
+    """Specify to filter the records returned."""
+    filter: PromotionalEntitlementFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [PromotionalEntitlementSort!] = [{direction: DESC, field: createdAt}]
+  ): PromotionalEntitlementConnection!
+  sdkConfiguration: SdkConfiguration
+  sendTestHook(testHookInput: TestHookInput!): TestHookResult!
+  stripeCustomers(input: StripeCustomerSearchInput!): StripeCustomerSearchResult!
+  stripeProducts(input: StripeProductSearchInput!): StripeProductSearchResult!
+  stripeSubscriptions(input: StripeSubscriptionSearchInput!): StripeSubscriptionSearchResult!
+  subscriptionMigrationTasks(
+    """Specify to filter the records returned."""
+    filter: SubscriptionMigrationTaskFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [SubscriptionMigrationTaskSort!] = []
+  ): SubscriptionMigrationTaskConnection!
+  testHookData(eventLogType: EventLogType!): TestHook!
+  usageHistory(usageHistoryInput: UsageHistoryInput!): UsageHistory!
+  usageMeasurements(
+    """Specify to filter the records returned."""
+    filter: UsageMeasurementFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [UsageMeasurementSort!] = [{direction: DESC, field: createdAt}]
+  ): UsageMeasurementConnection!
+}
+
+input RemoveBasePlanFromPlanInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input RemoveCompatibleAddonsFromPlanInput {
+  """The id of the record."""
+  id: String!
+
+  """The ids of the relations."""
+  relationIds: [String!]!
+}
+
+input RemoveCouponFromCustomerInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input RemoveCouponFromCustomerSubscriptionInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input RemoveExperimentFromCustomerInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input RemoveExperimentFromCustomerSubscriptionInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+union ResetPeriodConfiguration = MonthlyResetPeriodConfig | WeeklyResetPeriodConfig
+
+input ResyncIntegrationInput {
+  environmentId: String!
+  vendorIdentifier: VendorIdentifier!
+}
+
+type ResyncIntegrationResult {
+  taskId: String!
+}
+
+type SdkConfiguration {
+  isWidgetWatermarkEnabled: Boolean
+  sentryDsn: String
+}
+
+input SetBasePlanOnPlanInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input SetCompatibleAddonsOnPlanInput {
+  """The id of the record."""
+  id: String!
+
+  """The ids of the relations."""
+  relationIds: [String!]!
+}
+
+input SetCouponOnCustomerInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input SetCouponOnCustomerSubscriptionInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input SetExperimentOnCustomerInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+input SetExperimentOnCustomerSubscriptionInput {
+  """The id of the record."""
+  id: String!
+
+  """The id of relation."""
+  relationId: String!
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+enum SourceType {
+  JS_CLIENT_SDK
+  NODE_SERVER_SDK
+}
+
+input StartExperimentInput {
+  environmentId: String
+  refId: String!
+}
+
+input StopExperimentInput {
+  environmentId: String
+  refId: String!
+}
+
+type StringChangeDTO {
+  after: String
+  before: String
+  changeType: ChangeType
+}
+
+input StringFieldComparison {
+  eq: String
+  gt: String
+  gte: String
+  iLike: String
+  in: [String!]
+  is: Boolean
+  isNot: Boolean
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  notILike: String
+  notIn: [String!]
+  notLike: String
+}
+
+type StripeCredentials {
+  accountDisplayName: String!
+  accountId: String!
+  isTestMode: Boolean!
+}
+
+input StripeCredentialsInput {
+  accountId: String
+  authorizationCode: String!
+  isTestMode: Boolean!
+}
+
+type StripeCustomer {
+  createdAt: DateTime!
+  email: String!
+  environmentId: String
+  id: String!
+  isSynced: Boolean!
+  name: String!
+  subscriptionPlanName: String
+  subscriptionsCount: Float!
+}
+
+type StripeCustomerIsDeleted {
+  billingId: String!
+  code: String!
+  isValidationError: Boolean!
+}
+
+input StripeCustomerSearchInput {
+  customerName: String
+  environmentId: String!
+  nextPage: String
+}
+
+type StripeCustomerSearchResult {
+  customers: [StripeCustomer!]!
+  nextPage: String
+  totalCount: Int!
+}
+
+type StripeProduct {
+  environmentId: String
+  id: String!
+  isSynced: Boolean!
+  name: String!
+  notSupportedForImport: Boolean!
+  prices: [StripeProductPrice!]!
+  updatedAt: DateTime!
+}
+
+type StripeProductPrice {
+  amount: Float!
+  billingPeriod: BillingPeriod
+}
+
+input StripeProductSearchInput {
+  environmentId: String!
+  nextPage: String
+  productName: String
+}
+
+type StripeProductSearchResult {
+  nextPage: String
+  products: [StripeProduct!]!
+  totalCount: Int!
+  usageBasedProductPresent: Boolean
+}
+
+type StripeSubscription {
+  id: String!
+}
+
+input StripeSubscriptionSearchInput {
+  environmentId: String!
+  nextPage: String
+}
+
+type StripeSubscriptionSearchResult {
+  nextPage: String
+  subscriptions: [StripeSubscription!]!
+  totalCount: Int!
+}
+
+type Subscription {
+  entitlementsUpdated: EntitlementsUpdated!
+  usageUpdated: UsageUpdated!
+}
+
+type SubscriptionAddon {
+  addon: Addon!
+  createdAt: DateTime
+  id: String!
+  price: Price
+  quantity: Float!
+  subscription: CustomerSubscription!
+  updatedAt: DateTime!
+}
+
+type SubscriptionAddonAggregateGroupBy {
+  createdAt: DateTime
+  id: String
+  quantity: Float
+  updatedAt: DateTime
+}
+
+type SubscriptionAddonAvgAggregate {
+  quantity: Float
+}
+
+type SubscriptionAddonCountAggregate {
+  createdAt: Int
+  id: Int
+  quantity: Int
+  updatedAt: Int
+}
+
+type SubscriptionAddonEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the SubscriptionAddon"""
+  node: SubscriptionAddon!
+}
+
+input SubscriptionAddonFilter {
+  addon: SubscriptionAddonFilterAddonFilter
+  and: [SubscriptionAddonFilter!]
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionAddonFilter!]
+  price: SubscriptionAddonFilterPriceFilter
+  quantity: NumberFieldComparison
+  subscription: SubscriptionAddonFilterCustomerSubscriptionFilter
+  updatedAt: DateFieldComparison
+}
+
+input SubscriptionAddonFilterAddonFilter {
+  and: [SubscriptionAddonFilterAddonFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  isLatest: BooleanFieldComparison
+  or: [SubscriptionAddonFilterAddonFilter!]
+  pricingType: PricingTypeFilterComparison
+  productId: StringFieldComparison
+  refId: StringFieldComparison
+  status: PackageStatusFilterComparison
+  updatedAt: DateFieldComparison
+  versionNumber: IntFieldComparison
+}
+
+input SubscriptionAddonFilterCustomerSubscriptionFilter {
+  and: [SubscriptionAddonFilterCustomerSubscriptionFilter!]
+  billingId: StringFieldComparison
+  cancelReason: SubscriptionCancelReasonFilterComparison
+  cancellationDate: DateFieldComparison
+  createdAt: DateFieldComparison
+  crmId: StringFieldComparison
+  crmLinkUrl: StringFieldComparison
+  effectiveEndDate: DateFieldComparison
+  endDate: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionAddonFilterCustomerSubscriptionFilter!]
+  pricingType: PricingTypeFilterComparison
+  refId: StringFieldComparison
+  startDate: DateFieldComparison
+  status: SubscriptionStatusFilterComparison
+  subscriptionId: StringFieldComparison
+  trialEndDate: DateFieldComparison
+}
+
+input SubscriptionAddonFilterPriceFilter {
+  and: [SubscriptionAddonFilterPriceFilter!]
+  billingModel: BillingModelFilterComparison
+  billingPeriod: BillingPeriodFilterComparison
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionAddonFilterPriceFilter!]
+}
+
+input SubscriptionAddonInput {
+  addonId: String!
+  quantity: Int = 1
+}
+
+type SubscriptionAddonMaxAggregate {
+  createdAt: DateTime
+  id: String
+  quantity: Float
+  updatedAt: DateTime
+}
+
+type SubscriptionAddonMinAggregate {
+  createdAt: DateTime
+  id: String
+  quantity: Float
+  updatedAt: DateTime
+}
+
+input SubscriptionAddonSort {
+  direction: SortDirection!
+  field: SubscriptionAddonSortFields!
+  nulls: SortNulls
+}
+
+enum SubscriptionAddonSortFields {
+  createdAt
+  id
+  quantity
+  updatedAt
+}
+
+type SubscriptionAddonSumAggregate {
+  quantity: Float
+}
+
+type SubscriptionAlreadyCanceledOrExpired {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+  status: SubscriptionStatus!
+}
+
+input SubscriptionBillingInfo {
+  taxRateIds: [String!]
+}
+
+"""Subscription cancellation status"""
+enum SubscriptionCancelReason {
+  CancelledByBilling
+  DetachBilling
+  Expired
+  Immediate
+  PendingPaymentExpired
+  ScheduledCancellation
+  TrialConverted
+  TrialEnded
+  UpgradeOrDowngrade
+}
+
+input SubscriptionCancelReasonFilterComparison {
+  eq: SubscriptionCancelReason
+  gt: SubscriptionCancelReason
+  gte: SubscriptionCancelReason
+  iLike: SubscriptionCancelReason
+  in: [SubscriptionCancelReason!]
+  is: Boolean
+  isNot: Boolean
+  like: SubscriptionCancelReason
+  lt: SubscriptionCancelReason
+  lte: SubscriptionCancelReason
+  neq: SubscriptionCancelReason
+  notILike: SubscriptionCancelReason
+  notIn: [SubscriptionCancelReason!]
+  notLike: SubscriptionCancelReason
+}
+
+input SubscriptionCancellationInput {
+  endDate: DateTime
+  environmentId: String
+  subscriptionCancellationTime: SubscriptionCancellationTime
+  subscriptionRefId: String!
+}
+
+""""""
+enum SubscriptionCancellationTime {
+  END_OF_BILLING_PERIOD
+  IMMEDIATE
+  SPECIFIC_DATE
+}
+
+type SubscriptionCoupon {
+  discountValue: Float!
+  environmentId: String!
+  id: String!
+  name: String!
+  refId: String!
+  type: CouponType!
+}
+
+"""Subscription decision strategy"""
+enum SubscriptionDecisionStrategy {
+  PREDEFINED_FREE_PLAN
+  PREDEFINED_TRIAL_PLAN
+  REQUESTED_PLAN
+  SKIPPED_SUBSCRIPTION_CREATION
+}
+
+""""""
+enum SubscriptionEndSetup {
+  CANCEL_SUBSCRIPTION
+  DOWNGRADE_TO_FREE
+}
+
+input SubscriptionInput {
+  additionalMetaData: JSON
+  addons: [SubscriptionAddonInput!]
+  awaitPaymentConfirmation: Boolean = false
+  billingId: String
+  billingInformation: SubscriptionBillingInfo
+  billingPeriod: BillingPeriod
+  crmId: String
+  customerId: String!
+  endDate: DateTime
+  environmentId: String
+  isCustomPriceSubscription: Boolean = false
+  isOverridingTrialConfig: Boolean = false
+  isTrial: Boolean
+  planId: String
+  priceUnitAmount: Float
+  refId: String
+  startDate: DateTime
+  subscriptionId: String
+}
+
+input SubscriptionMigrationInput {
+  subscriptionId: String!
+}
+
+type SubscriptionMigrationTask {
+  affectedCustomersCount: Int!
+  createdAt: DateTime
+  endDate: DateTime
+  environmentId: String!
+  id: String!
+  initiatedPackageId: String
+  packages(
+    """Specify to filter the records returned."""
+    filter: PackageDTOFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PackageDTOSort!] = [{direction: DESC, field: createdAt}]
+  ): [PackageDTO!]!
+  progress: Int!
+  startDate: DateTime!
+  status: TaskStatus!
+  taskType: TaskType!
+}
+
+type SubscriptionMigrationTaskAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: TaskStatus
+  taskType: TaskType
+}
+
+type SubscriptionMigrationTaskConnection {
+  """Array of edges."""
+  edges: [SubscriptionMigrationTaskEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type SubscriptionMigrationTaskCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+  status: Int
+  taskType: Int
+}
+
+type SubscriptionMigrationTaskEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the SubscriptionMigrationTask"""
+  node: SubscriptionMigrationTask!
+}
+
+input SubscriptionMigrationTaskFilter {
+  and: [SubscriptionMigrationTaskFilter!]
+  createdAt: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionMigrationTaskFilter!]
+  status: TaskStatusFilterComparison
+  taskType: TaskTypeFilterComparison
+}
+
+type SubscriptionMigrationTaskMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: TaskStatus
+  taskType: TaskType
+}
+
+type SubscriptionMigrationTaskMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+  status: TaskStatus
+  taskType: TaskType
+}
+
+input SubscriptionMigrationTaskSort {
+  direction: SortDirection!
+  field: SubscriptionMigrationTaskSortFields!
+  nulls: SortNulls
+}
+
+enum SubscriptionMigrationTaskSortFields {
+  createdAt
+  environmentId
+  id
+  status
+  taskType
+}
+
+type SubscriptionMustHaveSinglePlanError {
+  code: String!
+  isValidationError: Boolean!
+  refIds: [String!]!
+}
+
+type SubscriptionPreview {
+  billingPeriodRange: DateRange!
+  proration: SubscriptionPreviewProrations
+  subTotal: Money!
+  total: Money!
+}
+
+type SubscriptionPreviewProrations {
+  credit: Money!
+  debit: Money!
+  prorationDate: DateTime!
+}
+
+type SubscriptionPrice {
+  createdAt: DateTime
+  id: String!
+  price: Price
+  subscription: CustomerSubscription!
+  updatedAt: DateTime!
+  usageLimit: Float
+}
+
+type SubscriptionPriceAggregateGroupBy {
+  createdAt: DateTime
+  id: String
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+type SubscriptionPriceAvgAggregate {
+  usageLimit: Float
+}
+
+type SubscriptionPriceCountAggregate {
+  createdAt: Int
+  id: Int
+  updatedAt: Int
+  usageLimit: Int
+}
+
+type SubscriptionPriceEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the SubscriptionPrice"""
+  node: SubscriptionPrice!
+}
+
+input SubscriptionPriceFilter {
+  and: [SubscriptionPriceFilter!]
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionPriceFilter!]
+  price: SubscriptionPriceFilterPriceFilter
+  subscription: SubscriptionPriceFilterCustomerSubscriptionFilter
+  updatedAt: DateFieldComparison
+  usageLimit: NumberFieldComparison
+}
+
+input SubscriptionPriceFilterCustomerSubscriptionFilter {
+  and: [SubscriptionPriceFilterCustomerSubscriptionFilter!]
+  billingId: StringFieldComparison
+  cancelReason: SubscriptionCancelReasonFilterComparison
+  cancellationDate: DateFieldComparison
+  createdAt: DateFieldComparison
+  crmId: StringFieldComparison
+  crmLinkUrl: StringFieldComparison
+  effectiveEndDate: DateFieldComparison
+  endDate: DateFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionPriceFilterCustomerSubscriptionFilter!]
+  pricingType: PricingTypeFilterComparison
+  refId: StringFieldComparison
+  startDate: DateFieldComparison
+  status: SubscriptionStatusFilterComparison
+  subscriptionId: StringFieldComparison
+  trialEndDate: DateFieldComparison
+}
+
+input SubscriptionPriceFilterPriceFilter {
+  and: [SubscriptionPriceFilterPriceFilter!]
+  billingModel: BillingModelFilterComparison
+  billingPeriod: BillingPeriodFilterComparison
+  createdAt: DateFieldComparison
+  id: StringFieldComparison
+  or: [SubscriptionPriceFilterPriceFilter!]
+}
+
+type SubscriptionPriceMaxAggregate {
+  createdAt: DateTime
+  id: String
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+type SubscriptionPriceMinAggregate {
+  createdAt: DateTime
+  id: String
+  updatedAt: DateTime
+  usageLimit: Float
+}
+
+input SubscriptionPriceSort {
+  direction: SortDirection!
+  field: SubscriptionPriceSortFields!
+  nulls: SortNulls
+}
+
+enum SubscriptionPriceSortFields {
+  createdAt
+  id
+  updatedAt
+  usageLimit
+}
+
+type SubscriptionPriceSumAggregate {
+  usageLimit: Float
+}
+
+""""""
+enum SubscriptionStartSetup {
+  FREE_PLAN
+  PLAN_SELECTION
+  TRIAL_PERIOD
+}
+
+"""Subscription status"""
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  EXPIRED
+  IN_TRIAL
+  NOT_STARTED
+  PAYMENT_PENDING
+}
+
+input SubscriptionStatusFilterComparison {
+  eq: SubscriptionStatus
+  gt: SubscriptionStatus
+  gte: SubscriptionStatus
+  iLike: SubscriptionStatus
+  in: [SubscriptionStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: SubscriptionStatus
+  lt: SubscriptionStatus
+  lte: SubscriptionStatus
+  neq: SubscriptionStatus
+  notILike: SubscriptionStatus
+  notIn: [SubscriptionStatus!]
+  notLike: SubscriptionStatus
+}
+
+type SyncState {
+  error: String
+  status: SyncStatus!
+  vendorIdentifier: VendorIdentifier!
+}
+
+"""Status of the integration sync"""
+enum SyncStatus {
+  ERROR
+  NO_SYNC_REQUIRED
+  PENDING
+  SUCCESS
+}
+
+enum TaskStatus {
+  COMPLETED
+  FAILED
+  IN_PROGRESS
+  PARTIALLY_FAILED
+  PENDING
+}
+
+input TaskStatusFilterComparison {
+  eq: TaskStatus
+  gt: TaskStatus
+  gte: TaskStatus
+  iLike: TaskStatus
+  in: [TaskStatus!]
+  is: Boolean
+  isNot: Boolean
+  like: TaskStatus
+  lt: TaskStatus
+  lte: TaskStatus
+  neq: TaskStatus
+  notILike: TaskStatus
+  notIn: [TaskStatus!]
+  notLike: TaskStatus
+}
+
+enum TaskType {
+  IMPORT_INTEGRATION_CATALOG
+  IMPORT_INTEGRATION_CUSTOMERS
+  RESYNC_INTEGRATION
+  SUBSCRIPTION_MIGRATION
+}
+
+input TaskTypeFilterComparison {
+  eq: TaskType
+  gt: TaskType
+  gte: TaskType
+  iLike: TaskType
+  in: [TaskType!]
+  is: Boolean
+  isNot: Boolean
+  like: TaskType
+  lt: TaskType
+  lte: TaskType
+  neq: TaskType
+  notILike: TaskType
+  notIn: [TaskType!]
+  notLike: TaskType
+}
+
+input TaxExempt {
+  type: String!
+  value: String!
+}
+
+type TestHook {
+  testHookEventType: String!
+  testHookPayload: String!
+}
+
+input TestHookInput {
+  endpointUrl: String!
+  environmentId: String!
+  hookEventType: EventLogType!
+}
+
+type TestHookResult {
+  responsePayload: String!
+  responseStatusCode: Float
+  responseStatusText: String
+  responseSuccess: Boolean!
+}
+
+type TrialMinDateError {
+  code: String!
+  isValidationError: Boolean!
+}
+
+type TrialMustBeCancelledImmediately {
+  code: String!
+  isValidationError: Boolean!
+  refId: String!
+}
+
+"""day or month."""
+enum TrialPeriodUnits {
+  DAY
+  MONTH
+}
+
+type TrialedPlan {
+  planId: String
+  planRefId: String
+  productId: String
+  productRefId: String
+}
+
+type UnPublishedPackageError {
+  code: String!
+  nonPublishedPackageIds: [String!]
+  packageType: String!
+}
+
+type UncompatibleSubscriptionAddonError {
+  code: String!
+  isValidationError: Boolean!
+  nonCompatibleAddons: [String!]
+  planDisplayName: String!
+}
+
+type UnsupportedFeatureTypeError {
+  code: String!
+  featureType: String!
+}
+
+type UnsupportedVendorIdentifierError {
+  code: String!
+  vendorIdentifier: String!
+}
+
+input UpdateAccountInput {
+  displayName: String!
+  id: String!
+  subscriptionBillingAnchor: BillingAnchor
+  timezone: String
+}
+
+input UpdateCouponInput {
+  additionalMetaData: JSON
+  description: String
+  environmentId: String
+  name: String!
+  refId: String!
+}
+
+input UpdateCustomerInput {
+  additionalMetaData: JSON
+  billingId: String
+  billingInformation: CustomerBillingInfo
+  couponRefId: String
+  crmId: String
+  customerId: String
+  email: String
+  environmentId: String
+  name: String
+  refId: String
+}
+
+type UpdateEntitlementsOrderDTO {
+  id: String!
+  order: Float
+}
+
+input UpdateEnvironment {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  id: String
+  provisionStatus: EnvironmentProvisionStatus
+  slug: String
+}
+
+input UpdateExperimentInput {
+  controlGroupName: String
+  description: String
+  environmentId: String
+  name: String
+  productId: String
+  productSettings: ProductSettingsInput
+  refId: String!
+  variantGroupName: String
+  variantPercentage: Float
+}
+
+input UpdateFeature {
+  createdAt: DateTime
+  description: String
+  displayName: String
+  environmentId: String
+  featureStatus: FeatureStatus
+  featureType: FeatureType
+  featureUnits: String
+  featureUnitsPlural: String
+  id: String
+  meterType: MeterType
+  refId: String
+  updatedAt: DateTime
+}
+
+input UpdateFeatureInput {
+  description: String
+  displayName: String
+  environmentId: String!
+  featureUnits: String
+  featureUnitsPlural: String
+  refId: String!
+}
+
+input UpdateHook {
+  createdAt: DateTime
+  description: String
+  endpoint: String
+  environmentId: String
+  eventLogTypes: [EventLogType!]
+  id: String
+  secretKey: String
+  status: HookStatus
+}
+
+input UpdateIntegrationInput {
+  stripeCredentials: StripeCredentialsInput
+  vendorIdentifier: VendorIdentifier!
+  zuoraCredentials: ZuoraCredentialsInput
+}
+
+input UpdateOneEnvironmentInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: UpdateEnvironment!
+}
+
+input UpdateOneFeatureInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: UpdateFeature!
+}
+
+input UpdateOneHookInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: UpdateHook!
+}
+
+input UpdateOneIntegrationInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: UpdateIntegrationInput!
+}
+
+input UpdateOnePackageEntitlementInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: PackageEntitlementUpdateInput!
+}
+
+input UpdateOneProductInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: ProductUpdateInput!
+}
+
+input UpdateOnePromotionalEntitlementInput {
+  """The id of the record to update"""
+  id: String!
+
+  """The update to apply."""
+  update: PromotionalEntitlementUpdateInput!
+}
+
+input UpdatePackageEntitlementOrderInput {
+  entitlements: [UpdatePackageEntitlementOrderItemInput!]!
+  environmentId: String
+  packageId: String!
+}
+
+input UpdatePackageEntitlementOrderItemInput {
+  id: String!
+  order: Float
+}
+
+input UpdateSubscriptionInput {
+  additionalMetaData: JSON
+  addons: [SubscriptionAddonInput!]
+  environmentId: String
+  refId: String
+  subscriptionId: String
+  trialEndDate: DateTime
+  unitQuantity: Float
+}
+
+type UsageHistory {
+  endDate: DateTime
+  startDate: DateTime!
+  usageMeasurements: [UsageMeasurementPoint!]!
+}
+
+input UsageHistoryInput {
+  customerRefId: String!
+  endDate: DateTime
+  environmentId: String
+  featureRefId: String!
+  monthlyResetPeriodConfiguration: MonthlyResetPeriodConfigInput
+  resetPeriod: EntitlementResetPeriod
+  startDate: DateTime!
+  weeklyResetPeriodConfiguration: WeeklyResetPeriodConfigInput
+}
+
+type UsageMeasurement {
+  createdAt: DateTime!
+  customer: Customer!
+  customerId: String!
+  environment: Environment!
+  environmentId: String!
+  feature: Feature!
+  featureId: String!
+  id: String!
+  value: Float!
+}
+
+type UsageMeasurementAggregateGroupBy {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+}
+
+type UsageMeasurementAvgAggregate {
+  id: Float
+}
+
+type UsageMeasurementConnection {
+  """Array of edges."""
+  edges: [UsageMeasurementEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type UsageMeasurementCountAggregate {
+  createdAt: Int
+  environmentId: Int
+  id: Int
+}
+
+input UsageMeasurementCreateInput {
+  createdAt: DateTime
+  customerId: String!
+  environmentId: String
+  featureId: String!
+  value: Float!
+}
+
+type UsageMeasurementEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the UsageMeasurement"""
+  node: UsageMeasurement!
+}
+
+input UsageMeasurementFilter {
+  and: [UsageMeasurementFilter!]
+  createdAt: DateFieldComparison
+  customer: UsageMeasurementFilterCustomerFilter
+  environmentId: StringFieldComparison
+  feature: UsageMeasurementFilterFeatureFilter
+  id: StringFieldComparison
+  or: [UsageMeasurementFilter!]
+}
+
+input UsageMeasurementFilterCustomerFilter {
+  and: [UsageMeasurementFilterCustomerFilter!]
+  billingId: StringFieldComparison
+  createdAt: DateFieldComparison
+  crmHubspotCompanyId: StringFieldComparison
+  crmHubspotCompanyUrl: StringFieldComparison
+  crmId: StringFieldComparison
+  customerId: StringFieldComparison
+  email: StringFieldComparison
+  environmentId: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [UsageMeasurementFilterCustomerFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+input UsageMeasurementFilterFeatureFilter {
+  and: [UsageMeasurementFilterFeatureFilter!]
+  createdAt: DateFieldComparison
+  description: StringFieldComparison
+  displayName: StringFieldComparison
+  environmentId: StringFieldComparison
+  featureStatus: FeatureStatusFilterComparison
+  featureType: FeatureTypeFilterComparison
+  id: StringFieldComparison
+  meterType: MeterTypeFilterComparison
+  or: [UsageMeasurementFilterFeatureFilter!]
+  refId: StringFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type UsageMeasurementMaxAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+}
+
+type UsageMeasurementMinAggregate {
+  createdAt: DateTime
+  environmentId: String
+  id: String
+}
+
+type UsageMeasurementPoint {
+  date: DateTime!
+  isResetPoint: Boolean
+  value: Float!
+}
+
+input UsageMeasurementSort {
+  direction: SortDirection!
+  field: UsageMeasurementSortFields!
+  nulls: SortNulls
+}
+
+enum UsageMeasurementSortFields {
+  createdAt
+  environmentId
+  id
+}
+
+type UsageMeasurementSumAggregate {
+  id: Float
+}
+
+type UsageMeasurementUpdated {
+  accountId: String!
+  currentUsage: Float!
+  customerId: String!
+  environmentId: String!
+  featureId: String!
+  nextResetDate: Float
+}
+
+type UsageUpdated {
+  entitlement: Entitlement!
+  usage: UsageMeasurementUpdated!
+}
+
+type User {
+  email: String
+  id: String!
+  lastSeenAt: DateTime
+  memberships: [Member!]!
+  name: String
+  profileImageUrl: String
+}
+
+enum VendorIdentifier {
+  HUBSPOT
+  STRIPE
+  ZUORA
+}
+
+input VendorIdentifierFilterComparison {
+  eq: VendorIdentifier
+  gt: VendorIdentifier
+  gte: VendorIdentifier
+  iLike: VendorIdentifier
+  in: [VendorIdentifier!]
+  is: Boolean
+  isNot: Boolean
+  like: VendorIdentifier
+  lt: VendorIdentifier
+  lte: VendorIdentifier
+  neq: VendorIdentifier
+  notILike: VendorIdentifier
+  notIn: [VendorIdentifier!]
+  notLike: VendorIdentifier
+}
+
+"""Weekly reset period according to configuration"""
+enum WeeklyAccordingTo {
+  EveryFriday
+  EveryMonday
+  EverySaturday
+  EverySunday
+  EveryThursday
+  EveryTuesday
+  EveryWednesday
+  SubscriptionStart
+}
+
+type WeeklyResetPeriodConfig {
+  weeklyAccordingTo: WeeklyAccordingTo
+}
+
+input WeeklyResetPeriodConfigInput {
+  accordingTo: WeeklyAccordingTo!
+}
+
+"""The widget type"""
+enum WidgetType {
+  CUSTOMER_PORTAL
+  PAYWALL
+}
+
+type ZuoraCredentials {
+  baseUrl: String!
+  clientId: String!
+  clientSecret: String!
+}
+
+input ZuoraCredentialsInput {
+  baseUrl: String!
+  clientId: String!
+  clientSecret: String!
+}
+
+"""The group of the experiment"""
+enum experimentGroupType {
+  CONTROL
+  VARIANT
+}
+
+type experimentInfo {
+  groupName: String!
+  groupType: experimentGroupType!
+  id: String!
+  name: String!
+  status: ExperimentStatus!
+}

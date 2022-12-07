@@ -1,0 +1,20 @@
+schema: http://localhost:4000/graphql
+documents:
+  - "**/*.ts"
+generates:
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+  ./src/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      dedupeOperationSuffix: true
+      inlineFragmentTypes: combine
+      onlyOperationTypes: true
+  ./src/fragments.json:
+    plugins:
+      - fragment-matcher
+    config:
+      useExplicitTyping: true
