@@ -25,7 +25,7 @@ import {
 import * as fs from "fs";
 import fetch from "cross-fetch";
 import { PRODUCTS_QUERY } from "./queries/products";
-import { FEATURES_QUERY } from "./queries/featrues";
+import { FEATURES_QUERY } from "./queries/features";
 import { PLANS_QUERY } from "./queries/plans";
 import { ADDONS_QUERY } from "./queries/addons";
 import { COUPONS_QUERY } from "./queries/coupons";
