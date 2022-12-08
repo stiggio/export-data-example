@@ -18,11 +18,16 @@ export const PRODUCTS_QUERY = gql`
           environmentId
           updatedAt
           productSettings {
-            subscriptionEndSetup
             subscriptionCancellationTime
+            subscriptionEndSetup
+            subscriptionStartSetup
             downgradePlan {
-              refId
               id
+              refId
+            }
+            subscriptionStartPlan {
+              id
+              refId
             }
           }
         }
