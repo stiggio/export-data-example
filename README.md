@@ -4,6 +4,16 @@
 
 This repository contains an example for exporting your Stigg data using a GraphQL client.
 When script execution is done, for each entity a file will be created in the ```/data``` directory.
+By default, the following data will be exported:
+* Product catalog
+  * Features
+  * Products 
+  * Plans
+  * Add-ons
+  * Coupons
+* Customers
+* Subscriptions
+
 For data customizations you can alter the queries in the [./src/queries](./src/queries) directory.
 
 ### Requirements
